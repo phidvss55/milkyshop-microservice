@@ -1,0 +1,73 @@
+<app-layout></app-layout>
+<div class="container body">
+    <div class="right_col">
+        <div class="page-header zvn-page-header clearfix">
+            <div class="zvn-page-header-title">
+                <h3>Danh sách danh mục</h3>
+            </div>
+            <div class="zvn-add-new pull-right">
+                <a [routerLink]="['/admin/category/create']" class="btn btn-success"><i class="fa fa-plus-circle"></i> Thêm mới</a>
+            </div>
+        </div>
+        <!--box-lists-->
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Danh sách</h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="table-responsive">
+                            <table class="table table-striped jambo_table bulk_action">
+                                <thead>
+                                <tr class="headings">
+                                    <th class="column-title">#</th>
+                                    <th class="column-title">Tên danh mục</th>
+                                    <th class="column-title">Trang chủ</th>
+                                    <th class="column-title">Trạng thái</th>
+                                    <th class="column-title">Title Seo</th>
+                                    <th class="column-title">Thao tác</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="even pointer">
+                                        <td class="">1</td>
+                                        <td width="10%">Điện Thoại</td>
+                                        <td>Điện Thoại</td>
+                                        <td>public</td>
+                                        <td>public</td>
+                                        <td class="last">
+                                            <div class="zvn-box-btn-filter">
+                                                <a [routerLink]="['/admin/category/1/update']" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
+                                                <a href="" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="even pointer">
+                                        <td class="">1</td>
+                                        <td width="10%">Điện Thoại</td>
+                                        <td>Điện Thoại</td>
+                                        <td>public</td>
+                                        <td>public</td>
+                                        <td class="last">
+                                            <div class="zvn-box-btn-filter">
+                                                <a [routerLink]="['/admin/category/1/update']" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
+                                                <a href="" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end-box-lists-->
+    </div>
+</div>

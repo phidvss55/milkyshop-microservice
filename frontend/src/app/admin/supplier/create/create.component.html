@@ -1,0 +1,41 @@
+<app-layout></app-layout>
+<div class="container body">
+    <div class="right_col">
+        <div class="page-header zvn-page-header clearfix">
+            <div class="zvn-page-header-title">
+                <h3>Tạo nhà cung cấp</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group">
+                                <label for=""> Tên nhà cung cấp </label>
+                                <input type="text" name="s_name" value="" placeholder=" Tên nhà cung cấp ... " class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="icon"> Mô tả </label>
+                                <textarea name="s_description" class="form-control" cols="30" rows="3" placeholder=" Mô tả nhà cung cấp ... "></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="icon"> Danh mục </label>
+                                <select name="s_category_id" id="" class="form-control">
+                                    <option value=""> -- Chọn danh mục của nhà cung cấp -- </option>
+                                    <option value="1"> Sữa nước </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="s_avatar"> Avatar </label>
+                                <input type="file" id="s_avatar" name="s_avatar" class="form-control">
+                            </div>
+                            <a [routerLink]="['/admin/supplier']" class="btn btn-primary"> Back </a>
+                            <button class="btn btn-success" type="submit"> Lưu thông tin </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

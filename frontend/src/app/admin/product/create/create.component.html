@@ -1,0 +1,77 @@
+<app-layout></app-layout>
+<div class="container body">
+    <div class="right_col">
+        <div class="page-header zvn-page-header clearfix">
+            <div class="zvn-page-header-title">
+                <h3>Danh sách danh mục</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for=""> Tên sản phẩm </label>
+                                    <input type="text" name="pro_name" value="" class="form-control" placeholder=" Tên sản phảm ... ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="icon"> Mô tả </label>
+                                    <textarea name="pro_description" class="form-control" cols="30" rows="3" placeholder=" Mô tả ngắn gọn sản phẩm ... "></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="icon"> Nội dung </label>
+                                    <textarea name="pro_content" class="form-control" cols="30" rows="3" placeholder=" Nội dung về sản phẩm ... "></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="name"> Meta title </label>
+                                    <input type="text" id="pro_title_seo" name="pro_title_seo" class="form-control" value="" placeholder=" Meta title ... ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pro_description_seo"> Meta description </label>
+                                    <input type="text" id="pro_description_seo" name="pro_description_seo" class="form-control" value="" placeholder=" Meta description ... ">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="name"> Loại sản phẩm </label>
+                                    <select name="pro_category_id" id="" class="form-control">
+                                        <option value=""> --- Chọn loại sản phẩm ---</option>
+                                        <!-- <option value=""></option> -->
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pro_price"> Giá Sản Phẩm </label>
+                                    <input type="number" name="pro_price" class="form-control" value="" placeholder=" Giá sản phảm ... ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pro_sale"> Khuyến mãi <span style="color:indianred">(%)</span> </label>
+                                    <input type="number" name="pro_sale" value="" class="form-control" placeholder=" Phần trăm khuyến mãi ... ">
+                                </div>
+                                <div class="form-group">
+                                        <label for="pro_sale"> Số lượng sản phẩm </label>
+                                        <input type="number" name="pro_number" value="" class="form-control" placeholder=" Số lượng sản phẩm ... ">
+                                    </div>
+                                <div class="form-group">
+                                    <img id="out_img" src="" alt="" width="100%" height="300px">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pro_avatar"> Avatar </label>
+                                    <input id="in_img" type="file" name="avatar" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox">
+                                        <label for=""><input type="checkbox" name="hot"> Nổi Bật </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a [routerLink]="['/admin/product']" class="btn btn-primary"> Back </a>
+                        <button class="btn btn-success" type="submit"> Lưu thông tin </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

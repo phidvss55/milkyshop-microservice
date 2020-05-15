@@ -1,0 +1,41 @@
+<app-layout></app-layout>
+<div class="container body">
+    <div class="right_col">
+        <div class="page-header zvn-page-header clearfix">
+            <div class="zvn-page-header-title">
+                <h3>Danh sách danh mục</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <form action="" method="POST">
+                        <div class="form-group">
+                            <label for="name"> Tên danh mục </label>
+                            <input class="form-control" type="text" placeholder="Tên danh mục ... ">
+                        </div>
+                        <div class="form-group">
+                            <label for="icon"> Icon </label>
+                            <input class="form-control" type="text" placeholder="Icon ... ">
+                        </div>
+                        <div class="form-group">
+                            <label for="name"> Meta title </label>
+                            <input class="form-control" type="text" placeholder="Meta title ... ">
+                        </div>
+                        <div class="form-group">
+                            <label for="name"> Meta description </label>
+                            <input class="form-control" type="text" placeholder="Meta description ... ">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label for=""><input type="checkbox" name="hot"> Nổi bật </label>
+                            </div>
+                        </div>
+                            <a [routerLink]="['/admin/category']" class="btn btn-primary"> Quay lại </a>
+                            <button class="btn btn-success" type="submit"> Lưu thông tin </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

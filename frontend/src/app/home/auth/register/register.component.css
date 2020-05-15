@@ -1,0 +1,57 @@
+.tg-innerbanner {
+    height: 150px !important;
+}
+
+.tg-breadcrumb {
+    border-radius: 5px;
+}
+
+.tg-innerbanner li a {
+    font-size: 35px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.form-action {
+    background: #b5d49e;
+    border-bottom: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    border-top: none;
+    float: left;
+    padding: 10px 5px;
+    width: 100%;
+}
+
+.form-action p.lost_password {
+    float: left;
+    line-height: 20px;
+    margin: 10px 0 0 50px;
+    width: max-content;
+}
+
+.form-action p.lost_password a {
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    color: #777;
+}
+
+.form-action p.lost_password a:hover {
+    color: #60be1d;
+}
+
+.form-action .actions-log {
+    float: left;
+}
+
+.actions-log button {
+    border: 0;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    transition: .3s;
+    margin-left: 50px;
+    width: 150px;
+    border-radius: 5px;
+}
