@@ -1,3 +1,6 @@
+** In ``backend folder`` **  
+
+** In ``frontend folder`` **  
 - Install "npm install"
 **
 - Install "npm install bootstrap@3.3.7"
