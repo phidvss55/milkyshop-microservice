@@ -23,7 +23,7 @@ export class SupplierComponent implements OnInit {
   }
 
   getSupplierData() {
-    this.dataService.getData().subscribe( res => {
+    this.dataService.getSupplier().subscribe( res => {
       this.dataArr = res;
     });
   }

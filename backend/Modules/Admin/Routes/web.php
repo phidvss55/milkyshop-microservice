@@ -24,25 +24,24 @@ Route::prefix('admin')->group(function() {
     //supplier
     Route::group(['prefix' => 'supplier'], function() {
         Route::get('', 'AdminSupplierController@index');
-        // Route::get('/create', 'AdminCategoryController@create')->name('admin.get.create.category');
         Route::post('create', 'AdminSupplierController@store');
         Route::get('/{id}', 'AdminSupplierController@getOne');
-    //     Route::get('/update/{id}', 'AdminCategoryController@edit')->name('admin.get.edit.category');
         Route::put('/update/{id}', 'AdminSupplierController@update');
         Route::delete('delete/{id}', 'AdminSupplierController@delete');
-    //     Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
+        // Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
     });
 
     //category
-    // Route::group(['prefix' => 'category'], function() {
-    //     Route::get('/', 'AdminCategoryController@index')->name('admin.get.list.category');
-    //     Route::get('/create', 'AdminCategoryController@create')->name('admin.get.create.category');
-    //     Route::post('/create', 'AdminCategoryController@store');
-    //     Route::get('/update/{id}', 'AdminCategoryController@edit')->name('admin.get.edit.category');
-    //     Route::post('/update/{id}', 'AdminCategoryController@update');
+    Route::group(['prefix' => 'category'], function() {
+        Route::get('', 'AdminCategoryController@index');
+        // Route::get('/create', 'AdminCategoryController@create')->name('admin.get.create.category');
+        Route::post('/create', 'AdminCategoryController@store');
+        Route::get('/{id}', 'AdminCategoryController@getOne');
+        Route::put('/update/{id}', 'AdminCategoryController@update');
+        Route::delete('/delete/{id}', 'AdminCategoryController@delete');
         
-    //     Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
-    // });
+        // Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
+    });
 
     //product
     // Route::group(['prefix' => 'product'], function() {

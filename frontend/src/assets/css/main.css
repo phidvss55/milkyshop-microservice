@@ -105,7 +105,7 @@ input[type="color"],
 	display: inline-block;
 	vertical-align: middle;
 	border: 1px solid #dbdbdb;
-	text-transform: capitalize;
+	/* text-transform: capitalize; */
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -4197,4 +4197,8 @@ body.tg-comingsoonpage .tg-footerbar{position:static;}
 
 #sidebar-menu .menu_section ul.nav li {
 	line-height: 0 !important;
+}
+
+.alert-noti {
+	margin-top: 10px;
 }

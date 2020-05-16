@@ -5,15 +5,16 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
+  
   data: any;
-
   private baseUrl = 'http://localhost:8000/admin/supplier';
 
   constructor(
     private httpClient: HttpClient
   ) { }
 
-  getData() {
+  //supplier
+  getSupplier() {
     return this.httpClient.get(`${this.baseUrl}`);
   }
 
@@ -32,4 +33,7 @@ export class DataService {
   getOneSupplier(id) {
     return this.httpClient.get(`${this.baseUrl}/` + id);
   }
+
+  //category
+
 }

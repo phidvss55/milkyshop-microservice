@@ -9,30 +9,37 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <form action="" method="POST">
+                    <form action="" method="POST" (ngSubmit)="insertData()">
                         <div class="form-group">
                             <label for="name"> Tên danh mục </label>
-                            <input class="form-control" type="text" placeholder="Tên danh mục ... ">
+                            <input class="form-control" name="c_name" type="text" placeholder="Tên danh mục ... " [(ngModel)]="category.c_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="supplier_id"> Nhà cung cấp </label>
+                            <select name="c_supplier_id" id="supplier_id" class="form-control" [(ngModel)]="category.c_supplier_id">
+                                <option value="" disabled selected> - Chọn nhà cung cấp - </option>
+                                <option value="{{ obj.id }}" *ngFor="let obj of supplierArr"> {{ obj.s_name }} </option>
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="icon"> Icon </label>
-                            <input class="form-control" type="text" placeholder="Icon ... ">
+                            <input class="form-control" type="text" name="c_icon" placeholder="Icon ... " [(ngModel)]="category.c_icon">
                         </div>
                         <div class="form-group">
                             <label for="name"> Meta title </label>
-                            <input class="form-control" type="text" placeholder="Meta title ... ">
+                            <input class="form-control" type="text" name="c_title_seo" placeholder="Meta title ... " [(ngModel)]="category.c_title_seo">
                         </div>
                         <div class="form-group">
                             <label for="name"> Meta description </label>
-                            <input class="form-control" type="text" placeholder="Meta description ... ">
+                            <input class="form-control" type="text" name="c_description_seo" placeholder="Meta description ... " [(ngModel)]="category.c_description_seo">
                         </div>
                         <div class="form-group">
                             <div class="checkbox">
-                                <label for=""><input type="checkbox" name="hot"> Nổi bật </label>
+                                <label for=""><input type="checkbox"> Nổi bật </label>
                             </div>
                         </div>
-                            <a [routerLink]="['/admin/category']" class="btn btn-primary"> Quay lại </a>
-                            <button class="btn btn-success" type="submit"> Lưu thông tin </button>
+                        <a [routerLink]="['/admin/category']" class="btn btn-primary"> Back </a>
+                        <button class="btn btn-success" type="submit"> Lưu thông tin </button>
                     </form>
                 </div>
             </div>

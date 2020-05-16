@@ -2,17 +2,17 @@
 
 namespace Modules\Admin\Http\Controllers;
 
-use App\Models\Supplier;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Str;
 
-class AdminSupplierController extends Controller
+class AdminCategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $suppliers = Supplier::select('id', 's_name', 's_title_seo', 's_active', 's_home', 's_avatar')->get();
+        $suppliers = Category::select('id', 's_name', 's_title_seo', 's_active', 's_home', 's_avatar')->get();
         
         // return view('admin::article.index', $viewData);
         return response()->json($suppliers);
@@ -24,7 +24,7 @@ class AdminSupplierController extends Controller
     }
 
     public function getOne($id) {
-        $supplier = Supplier::findOrFail($id);
+        $supplier = Category::findOrFail($id);
         return response()->json($supplier, 201);
     }
 
@@ -35,7 +35,7 @@ class AdminSupplierController extends Controller
     }
 
     public function delete($id) {
-        $article = Supplier::findOrFail($id);    
+        $article = Category::findOrFail($id);    
         $article->delete();
         return response()->json(['Status' => 'Delete Ok'], 201);
     }
@@ -57,8 +57,8 @@ class AdminSupplierController extends Controller
     // }
 
     public function insertOrUpdate($request, $id='') {
-        $supplier = new Supplier();
-        if($id) { $supplier = Supplier::findOrFail($id); }
+        $supplier = new Category();
+        if($id) { $supplier = Category::findOrFail($id); }
         
         $supplier_request = json_decode($request->data, true);
         
