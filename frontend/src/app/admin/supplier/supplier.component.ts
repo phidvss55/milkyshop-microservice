@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SupplierComponent implements OnInit {
 
+  imageDirectoryPath = 'http://localhost:8000/public/image/';
+  
   constructor() { }
 
   ngOnInit(): void {

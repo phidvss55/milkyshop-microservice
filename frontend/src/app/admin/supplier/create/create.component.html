@@ -9,26 +9,30 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" (ngSubmit)="insertData()">
                         <div class="row">
                             <div class="form-group">
                                 <label for=""> Tên nhà cung cấp </label>
-                                <input type="text" name="s_name" value="" placeholder=" Tên nhà cung cấp ... " class="form-control">
+                                <input type="text" name="s_name" value="" placeholder=" Tên nhà cung cấp ... " class="form-control" [(ngModel)]="supplier.s_name">
                             </div>
                             <div class="form-group">
                                 <label for="icon"> Mô tả </label>
-                                <textarea name="s_description" class="form-control" cols="30" rows="3" placeholder=" Mô tả nhà cung cấp ... "></textarea>
+                                <textarea name="s_description" class="form-control" cols="30" rows="3" style="height:auto" placeholder=" Mô tả nhà cung cấp ... " [(ngModel)]='supplier.s_description'></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="icon"> Danh mục </label>
-                                <select name="s_category_id" id="" class="form-control">
-                                    <option value=""> -- Chọn danh mục của nhà cung cấp -- </option>
-                                    <option value="1"> Sữa nước </option>
-                                </select>
+                                <label for="icon"> Meta title </label>
+                                <input type="text" name="s_title_seo" value="" placeholder=" Meta title ... " class="form-control" [(ngModel)]="supplier.s_title_seo">
+                            </div>
+                            <div class="form-group">
+                                <label for="icon"> Meta description </label>
+                                <input type="text" name="s_description_seo" value="" placeholder=" Meta description ... " class="form-control"  [(ngModel)]="supplier.s_description_seo">
                             </div>
                             <div class="form-group">
                                 <label for="s_avatar"> Avatar </label>
-                                <input type="file" id="s_avatar" name="s_avatar" class="form-control">
+                                <input type="file" id="s_avatar" name="s_avatar" class="form-control" (change)="readURL($event); imageUpload($event);">
+                            </div>
+                            <div class="form-group">
+                                <img id="out_img" [src]="imageSrc || '../assets/images/no-image.png'" alt="" width="400px" height="280px">
                             </div>
                             <a [routerLink]="['/admin/supplier']" class="btn btn-primary"> Back </a>
                             <button class="btn btn-success" type="submit"> Lưu thông tin </button>
