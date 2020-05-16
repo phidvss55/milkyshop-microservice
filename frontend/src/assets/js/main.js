@@ -239,21 +239,21 @@ jQuery(document).on('ready', function() {
 	/* -------------------------------------
 			Google Map
 	-------------------------------------- */
-	jQuery("#tg-locationmap").gmap3({
-		marker: {
-			address: "1600 Elizabeth St, Melbourne, Victoria, Australia",
-			options: {
-				title: "Books Library",
-			}
-		},
-		map: {
-			options: {
-				zoom: 16,
-				scrollwheel: false,
-				disableDoubleClickZoom: true,
-			}
-		}
-	});
+	// jQuery("#tg-locationmap").gmap3({
+	// 	marker: {
+	// 		address: "1600 Elizabeth St, Melbourne, Victoria, Australia",
+	// 		options: {
+	// 			title: "Books Library",
+	// 		}
+	// 	},
+	// 	map: {
+	// 		options: {
+	// 			zoom: 16,
+	// 			scrollwheel: false,
+	// 			disableDoubleClickZoom: true,
+	// 		}
+	// 	}
+	// });
 	/*------------------------------------------
 			PRODUCT INCREASE
 	------------------------------------------*/

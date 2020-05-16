@@ -29,43 +29,35 @@
                                     <th class="column-title">#</th>
                                     <th class="column-title">Tên nhà cung cấp</th>
                                     <th class="column-title">Trạng thái</th>
+                                    <th class="column-title">Trang chủ</th>
+                                    <th class="column-title">Title SEO</th>
                                     <th class="column-title">Hình Ảnh</th>
                                     <th class="column-title">Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td >Friso</td>
-                                        <td width="5%">
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>
-                                            <a href="#" type="button" class="btn btn-round btn-success">Active</a>
-                                        </td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td >Friso</td>
-                                        <td width="5%">
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>
-                                            <a href="#" type="button" class="btn btn-round btn-success">Active</a>
-                                        </td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a [routerLink]="['/admin/supplier/1/update']" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <!-- <ng-container *ngIf="suppliers"> -->
+                                        <tr class="even pointer" *ngFor="let supplier of dataArr">
+                                            <td class="">{{ supplier.id }}</td>
+                                            <td width="20%">{{ supplier.s_name }}</td>
+                                            <td width="13%">
+                                                <a href="#" class="btn btn-round btn-success">{{ supplier.s_active }}</a>
+                                            </td>
+                                            <td width="13%">
+                                                <a href="#" class="btn btn-round btn-success">{{ supplier.s_home }}</a>
+                                            </td>
+                                            <td width="20%">{{ supplier.s_title_seo }}</td>
+                                            <td width="15%">
+                                                <img src="{{ imageDirectoryPath }}{{ supplier.s_avatar }}" alt="{{ supplier.s_avatar }}" class="zvn-thumb" width="80px" >
+                                            </td>
+                                            <td class="last">
+                                                <div class="zvn-box-btn-filter">
+                                                    <button href="#" routerLink="/admin/supplier/{{supplier.id}}/update" class="btn btn-icon btn-success" ><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" href="#" (click)="deleteData(supplier.id)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <!-- </ng-container> -->
                                 </tbody>
                             </table>
                         </div>

@@ -1,5 +1,5 @@
 import { DataService } from './../../../services/data.service';
-import { Supplier } from './../supplier';
+import { Supplier } from '../supplier.module';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  imageDirectoryPath = 'http://localhost:8000/public/image';
+  
   file: any;
   imageSrc: string;
   supplier = new Supplier();
@@ -17,12 +17,6 @@ export class CreateComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  }
-
-  getSupplierData() {
-    this.dataService.getData().subscribe( res => {
-      // this.dataArr = res;
-    });
   }
 
   insertData() {

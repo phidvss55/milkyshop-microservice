@@ -23,12 +23,13 @@ Route::prefix('admin')->group(function() {
 
     //supplier
     Route::group(['prefix' => 'supplier'], function() {
-    //     Route::get('/', 'AdminCategoryController@index')->name('admin.get.list.category');
+        Route::get('', 'AdminSupplierController@index');
         // Route::get('/create', 'AdminCategoryController@create')->name('admin.get.create.category');
         Route::post('create', 'AdminSupplierController@store');
+        Route::get('/{id}', 'AdminSupplierController@getOne');
     //     Route::get('/update/{id}', 'AdminCategoryController@edit')->name('admin.get.edit.category');
-    //     Route::post('/update/{id}', 'AdminCategoryController@update');
-        
+        Route::put('/update/{id}', 'AdminSupplierController@update');
+        Route::delete('delete/{id}', 'AdminSupplierController@delete');
     //     Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
     });
 

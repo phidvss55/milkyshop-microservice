@@ -1,4 +1,6 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { Supplier } from './supplier.module';
 
 @Component({
   selector: 'app-supplier',
@@ -6,12 +8,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./supplier.component.css']
 })
 export class SupplierComponent implements OnInit {
+  dataArr: any;
+  imageDirectoryPath = 'http://localhost:8000/image/supplier/';
+  // imageDirectoryPath = 'C:/xampp/htdocs/GUI/backend/public/image/supplier/';
 
-  imageDirectoryPath = 'http://localhost:8000/public/image/';
-  
-  constructor() { }
+
+  // supplier = new Supplier();
+  constructor(
+    private dataService: DataService
+  ) { }
 
   ngOnInit(): void {
+    this.getSupplierData();
   }
 
+  getSupplierData() {
+    this.dataService.getData().subscribe( res => {
+      this.dataArr = res;
+    });
+  }
+
+  deleteData(id) {
+    this.dataService.deleteData(id).subscribe( res => {
+      console.log(id);
+      this.getSupplierData();
+    });
+  } 
 }

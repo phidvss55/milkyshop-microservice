@@ -12,30 +12,52 @@ class AdminSupplierController extends Controller
 {
     public function index(Request $request)
     {
-        $articles = Supplier::whereRaw(1);
-        if($request->name) $articles->where('a_name', 'like', ''. $request->name .'');
-        $articles = $articles->paginate(10);
-        $viewData =[
-            'articles' => $articles
-        ];
+        $suppliers = Supplier::select('id', 's_name', 's_title_seo', 's_active', 's_home', 's_avatar')->get();
+        
         // return view('admin::article.index', $viewData);
-        return response()->json($viewData);
+        return response()->json($suppliers);
     }
 
     public function store(Request $request) {
-        $this->insertOrUpdate($request);
+        $supplier = new Supplier();
+        $supplier_request = json_decode($request->data, true);
+        
+        if ($request->hasFile('s_avatar')) {
+            $uploadPath = "image/supplier";
+            $original_filename = $request->file('s_avatar')->getClientOriginalName();
+            $original_filename_arr = explode('.', $original_filename);
+            $file_ext = end($original_filename_arr);
+            $s_avatar = 'supplier-' . time() . '.' . $file_ext;
+
+            $request->file('s_avatar')->move($uploadPath, $s_avatar);
+            $supplier['s_avatar'] = $s_avatar;
+        }
+
+        $supplier->s_name = $supplier_request['s_name'];
+        $supplier->s_slug = Str::slug($supplier_request['s_name']);
+        $supplier->s_description = $supplier_request['s_description'];
+        $supplier->s_title_seo = $supplier_request['s_title_seo'] ? $supplier_request['s_title_seo'] : $supplier_request['s_name'];
+        $supplier->s_description_seo = $supplier_request['s_description_seo'] ? $supplier_request['s_description_seo'] : $supplier_request['s_name'];
+        $supplier->save();
         return redirect()->back();
     }
 
-    // public function edit($id) {
-    //     $article = Article::findOrFail($id);
-    //     return view('admin::article.update', compact('article'));
-    // }
+    public function getOne($id) {
+        $supplier = Supplier::findOrFail($id);
+        return response()->json($supplier, 201);
+    }
 
-    // public function update(RequestArticle $requestArticle, $id)  {
-    //     $this->insertOrUpdate($requestArticle, $id);
-    //     return redirect()->back();
-    // }
+    public function update(Request $request)  {
+        $id = $request->id;
+        $this->insertOrUpdate($request, $id);
+        return redirect()->back();
+    }
+
+    public function delete($id) {
+        $article = Supplier::findOrFail($id);    
+        $article->delete();
+        return response()->json(['Status' => 'Delete Ok'], 201);
+    }
 
     // public function action($action, $id) {
     //     if($action) {
@@ -56,39 +78,25 @@ class AdminSupplierController extends Controller
     public function insertOrUpdate($request, $id='') {
         $supplier = new Supplier();
         if($id) { $supplier = Supplier::findOrFail($id); }
-
-        $supplier = json_decode($request->data, true);
         
-        if ($request->hasFile('avatar')) {
-            $original_filename = $request->file('avatar')->getClientOriginalName();
+        $supplier_request = json_decode($request->data, true);
+        
+        if ($request->hasFile('s_avatar')) {
+            $uploadPath = "image/supplier";
+            $original_filename = $request->file('s_avatar')->getClientOriginalName();
             $original_filename_arr = explode('.', $original_filename);
             $file_ext = end($original_filename_arr);
-            $avatar = 'avatar-' . time() . '.' . $file_ext;
+            $s_avatar = 'supplier-' . time() . '.' . $file_ext;
 
-            $request->file('avatar')->move(storage_path('user'), $avatar);
-            $user_data['avatar'] = $avatar;
+            $request->file('s_avatar')->move($uploadPath, $s_avatar);
+            $supplier['s_avatar'] = $s_avatar;
         }
 
-        if($request->hasFile('s_avatar')) {
-            $file = $request->file('s_avatar');
-            $uploadPath = "image/supplier";
-            $originalImage = $file->getClientOriginalName();
-            $file->move($uploadPath, $originalImage);
-            $supplier['s_avatar'] = $originalImage;
-        }       
-
-        $supplier->s_name = $request->data['s_name'];
-        $supplier->a_slug = Str::slug($request->data['s_name']);
-        $supplier->a_description = $request->data['s_description'];
-        $supplier->a_title_seo = $request->data['s_title_seo'] ? $request->data['s_title_seo'] : $request->data['s_name'];
-        $supplier->a_description_seo = $request->data['s_description_seo'] ? $request->data['s_description_seo'] : $request->data['s_name'];
-        
-        // if($request->hasFile('avatar')) {
-        //     $file = upload_image('avatar');
-        //     if( isset($file['name'])) {
-        //         $supplier->a_avatar = $file['name'];
-        //     }
-        // }
+        $supplier->s_name = $supplier_request['s_name'];
+        $supplier->s_slug = Str::slug($supplier_request['s_name']);
+        $supplier->s_description = $supplier_request['s_description'];
+        $supplier->s_title_seo = $supplier_request['s_title_seo'] ? $supplier_request['s_title_seo'] : $supplier_request['s_name'];
+        $supplier->s_description_seo = $supplier_request['s_description_seo'] ? $supplier_request['s_description_seo'] : $supplier_request['s_name'];
 
         $supplier->save();
     }

@@ -19,7 +19,7 @@ class CreateSuppliersTable extends Migration
             $table->string('s_slug', 255)->index();
             $table->string('s_avatar', 255)->nullable();
             $table->tinyInteger('s_home')->default(0)->index();
-            $table->tinyInteger('s_description')->default(0)->index();
+            $table->string('s_description', 255)->default(0)->index();
             $table->tinyInteger('s_active')->default(1)->index(); //category nao duoc active
             $table->string('s_title_seo', 255)->nullable();
             $table->string('s_description_seo', 255)->nullable();
