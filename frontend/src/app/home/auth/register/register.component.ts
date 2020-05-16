@@ -19,6 +19,9 @@ export class RegisterComponent implements OnInit {
   }
 
   public error = [];
+
+  // public errorArr : Array<error>;
+
   
   constructor(
     private authService: AuthService,

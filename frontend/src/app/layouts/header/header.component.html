@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="dropdown tg-themedropdown tg-wishlistdropdown">
-                            <a class="tg-btnthemedropdown">
+                            <a class="tg-btnthemedropdown" *ngIf="loggedIn">
                                 <span>Hi, John</span>
                                 <div class="tg-userlogin">
                                     <figure>
@@ -711,6 +711,10 @@
                                 <li><a routerLink="/home/product" routerLinkActive="current-menu-item">All Products</a></li>
                                 <li><a routerLink="/home/article" routerLinkActive="current-menu-item">News</a></li>
                                 <li><a routerLink="/home/contact" routerLinkActive="current-menu-item">Contact</a></li>
+                                <li class="pull-right" *ngIf="!loggedIn"><a routerLink="/home/login" routerLinkActive="current-menu-item"> Đăng Nhập </a></li>
+                                <li class="pull-right" *ngIf="!loggedIn"><a routerLink="/home/signup" routerLinkActive="current-menu-item"> Đăng Ký </a></li>
+                                <li class="pull-right" *ngIf="loggedIn"><a (click)="logout($event)" routerLink="/home/logout" routerLinkActive="current-menu-item"> Đăng Xuất </a></li>
+                                
                             </ul>
                         </div>
                     </nav>

@@ -4202,3 +4202,9 @@ body.tg-comingsoonpage .tg-footerbar{position:static;}
 .alert-noti {
 	margin-top: 10px;
 }
+
+.login-nav {
+	font-weight: 500;
+	font-size: 18px;
+	color: #000000;
+}
