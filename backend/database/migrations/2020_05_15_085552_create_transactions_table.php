@@ -17,9 +17,9 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->integer('tr_user_id')->index()->default(0);
             $table->integer('tr_total')->default(0);
-            $table->string('tr_note')->nullable();
-            $table->string('tr_address')->nullable();
-            $table->string('tr_phone')->nullable();
+            $table->string('tr_note', 255)->nullable();
+            $table->string('tr_address', 255)->nullable();
+            $table->string('tr_phone', 255)->nullable();
             $table->tinyInteger('tr_status')->default(0)->index();
             $table->timestamps();
         });

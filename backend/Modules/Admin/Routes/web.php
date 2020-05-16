@@ -10,22 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::prefix('authenticate/login')->group( function() {
-    Route::get('/login', 'AdminAuthController@getLogin')->name('admin.login');
-    Route::post('/login', 'AdminAuthController@postLogin');
+// Route::prefix('authenticate/login')->group( function() {
+//     Route::get('/login', 'AdminAuthController@getLogin')->name('admin.login');
+//     Route::post('/login', 'AdminAuthController@postLogin');
 
-    Route::get('/dang-xuat', 'AdminAuthController@logoutAdmin')->name('admin.logout');
-});
+//     Route::get('/dang-xuat', 'AdminAuthController@logoutAdmin')->name('admin.logout');
+// });
 
 // Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
 Route::prefix('admin')->group(function() {
-    // Route::get('/', 'AdminController@index')->name('admin.home');
+    Route::get('/', 'AdminController@index');
 
     //supplier
     Route::group(['prefix' => 'supplier'], function() {
     //     Route::get('/', 'AdminCategoryController@index')->name('admin.get.list.category');
         // Route::get('/create', 'AdminCategoryController@create')->name('admin.get.create.category');
-        Route::post('/create', 'AdminSupplierController@store');
+        Route::post('create', 'AdminSupplierController@store');
     //     Route::get('/update/{id}', 'AdminCategoryController@edit')->name('admin.get.edit.category');
     //     Route::post('/update/{id}', 'AdminCategoryController@update');
         

@@ -15,16 +15,15 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('s_name')->unique();
-            $table->string('s_slug')->index();
-            $table->string('s_avatar')->nullable();
+            $table->string('s_name', 255)->unique();
+            $table->string('s_slug', 255)->index();
+            $table->string('s_avatar', 255)->nullable();
             $table->tinyInteger('s_home')->default(0)->index();
             $table->tinyInteger('s_description')->default(0)->index();
             $table->tinyInteger('s_active')->default(1)->index(); //category nao duoc active
-            $table->integer('s_total_categories')->default(0); //coi hien tai dnah muc co bao nhieu san pham
-            $table->string('c_title_seo')->nullable();
-            $table->string('c_description_seo')->nullable();
-            $table->string('c_keyword_seo')->nullable();
+            $table->string('s_title_seo', 255)->nullable();
+            $table->string('s_description_seo', 255)->nullable();
+            $table->string('s_keyword_seo', 255)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
