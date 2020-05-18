@@ -11,7 +11,7 @@ export class AuthService {
   authStatus = this.loggedIn.asObservable();
 
   data: any;
-  private baseUrl = 'http://localhost:8000/api/home';
+  private baseUrl = 'http://localhost:8000/home';
 
   constructor(
     private httpClient: HttpClient,
@@ -28,5 +28,9 @@ export class AuthService {
   
   login(data) {
     return this.httpClient.post(`${this.baseUrl}/login`, data);
+  }
+
+  resetPassword(data) {
+    return this.httpClient.post(`${this.baseUrl}/change-password`, data);
   }
 }

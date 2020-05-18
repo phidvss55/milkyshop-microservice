@@ -55,3 +55,7 @@
     width: 150px;
     border-radius: 5px;
 }
+
+.actions-log button:hover {
+    /* cursor: no-drop; */
+}

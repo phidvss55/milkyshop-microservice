@@ -18,11 +18,8 @@ export class RegisterComponent implements OnInit {
     password: null
   }
 
-  public error = [];
+  public error: any;
 
-  // public errorArr : Array<error>;
-
-  
   constructor(
     private authService: AuthService,
     private token: TokenService,
@@ -45,6 +42,6 @@ export class RegisterComponent implements OnInit {
   }
 
   handleError(error) {
-    this.error = error.error.errors;
+    this.error = error.error.errors.email;
   }
 }

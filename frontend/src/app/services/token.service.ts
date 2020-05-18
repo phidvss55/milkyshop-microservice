@@ -6,8 +6,8 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   private iss = {
-    login: 'http://localhost:8000/api/home/login',
-    signup: 'http://localhost:8000/api/home/signup'
+    login: 'http://localhost:8000/home/login',
+    signup: 'http://localhost:8000/home/signup'
   }
 
   constructor() { }
@@ -51,7 +51,7 @@ export class TokenService {
     return JSON.parse(atob(payload));
   }
 
-  loggedIn() {
+  loggedIn() { //đã login
     return this.isValid();
   }
 }

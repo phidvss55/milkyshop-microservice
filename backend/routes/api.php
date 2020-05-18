@@ -14,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([ 'middleware' => 'api', 'prefix' => 'home' ], function ($router) {
+// Route::group([ 'middleware' => 'api', 'prefix' => 'home' ], function ($router) {
     
-    Route::post('login', 'HomeAuthController@login');
-    Route::post('signup', 'HomeAuthController@signup');
-    Route::post('logout', 'HomeAuthController@logout');
-    Route::post('refresh', 'HomeAuthController@refresh');
-    Route::post('me', 'HomeAuthController@me');
+//     Route::post('login', 'HomeAuthController@login');
+//     Route::post('signup', 'HomeAuthController@signup');
+//     Route::post('logout', 'HomeAuthController@logout');
+//     Route::post('refresh', 'HomeAuthController@refresh');
+//     Route::post('me', 'HomeAuthController@me');
+//     Route::post('change-password', 'HomeAuthController@changePassword');
 
-});
+// });
