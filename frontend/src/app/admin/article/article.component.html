@@ -55,65 +55,29 @@
                                 <tr class="headings">
                                     <th class="column-title">#</th>
                                     <th class="column-title">Tên bài viết</th>
-                                    <th class="column-title">Hình ảnh</th>
                                     <th class="column-title">Mô tả</th>
+                                    <th class="column-title">Hình ảnh</th>
                                     <th class="column-title">Trạng thái</th>
                                     <th class="column-title">Ngày tạo</th>
                                     <th class="column-title">Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td >Laravel Angular</td>
-                                        <td width="5%">
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>This is description of news</td>
+                                    <tr class="even pointer" *ngFor="let article of dataArr">
+                                        <td>{{ article.id }}</td>
+                                        <td>{{ article.a_name }}</td>
+                                        <td>{{ article.a_description }}</td>
                                         <td>
-                                            <a href="/change-status-active/1" type="button" class="btn btn-round btn-success">Active</a>
+                                            <img src="{{ imageDirectoryPath }}{{ article.a_avatar }}" alt="{{ article.a_avatar }}" class="zvn-thumb" width="80px" >
                                         </td>
-                                        <td>25-2-2014 12:42:40 +7 JCM</td>
+                                        <td>
+                                            <a href="#" class="btn btn-round btn-success">{{ article.a_active }}</a>
+                                        </td>
+                                        <td>{{ article.created_at | date:'medium' }}</td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td >Laravel Angular</td>
-                                        <td width="5%">
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>This is description of news</td>
-                                        <td>
-                                            <a href="/change-status-active/1" type="button" class="btn btn-round btn-success">Active</a>
-                                        </td>
-                                        <td>25-2-2014 12:42:40 +7 JCM</td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td >Laravel Angular</td>
-                                        <td width="5%">
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>This is description of news</td>
-                                        <td>
-                                            <a href="/change-status-active/1" type="button" class="btn btn-round btn-success">Active</a>
-                                        </td>
-                                        <td>25-2-2014 12:42:40 +7 JCM</td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a [routerLink]="['/admin/article/1/update']" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                                <button href="#" routerLink="/admin/article/{{article.id}}/update" class="btn btn-icon btn-success" ><i class="fa fa-pencil"></i></button>
+                                                <button type="button" href="#" (click)="deleteData(article.id)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                             </div>
                                         </td>
                                     </tr>

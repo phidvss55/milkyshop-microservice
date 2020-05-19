@@ -37,7 +37,9 @@ export class RegisterComponent implements OnInit {
   }
 
   handleResponse(data) {
+    this.token.handleEmail(data.user.email); //save to localstorage
     this.token.handle(data.access_token);
+    this.authService.changeAuthStatus(true);
     this.router.navigateByUrl('/home');
   }
 

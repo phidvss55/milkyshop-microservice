@@ -10,13 +10,20 @@ export class TokenService {
     signup: 'http://localhost:8000/home/signup'
   }
 
-  constructor() { }
+  constructor( ) { }
+  handleEmail(email) {
+    localStorage.setItem('user_email', email);
+  }
+
+  getEmail() {
+    return localStorage.getItem('user_email');
+  }
 
   handle(token) {
     this.set(token);
     // console.log(this.payload(token));
     // console.log(this.isValid());
-    }
+  }
 
   set(token) {
     localStorage.setItem('token_user', token);
@@ -27,6 +34,7 @@ export class TokenService {
   }
 
   remove() {
+    localStorage.removeItem('user_email')
     localStorage.removeItem('token_user');
   }
 

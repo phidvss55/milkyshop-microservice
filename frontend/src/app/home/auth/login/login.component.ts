@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   handleResponse(data) {
-    
+    this.token.handleEmail(data.user.email); //save to localstorage
     this.token.handle(data.access_token); //handle token when login success
     this.authService.changeAuthStatus(true);
     this.router.navigateByUrl('/home');

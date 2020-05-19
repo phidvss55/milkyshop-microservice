@@ -32,7 +32,7 @@ export class UpdateComponent implements OnInit {
     formData.append('data', JSON.stringify(this.supplier));
     formData.append('_method', 'PUT');
     
-    this.dataService.updateData(this.id, formData).subscribe( res => {
+    this.dataService.updateSupplierData(this.id, formData).subscribe( res => {
       console.log(res);
     });
   }

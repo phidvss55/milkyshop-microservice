@@ -12,7 +12,6 @@ export class SupplierComponent implements OnInit {
   imageDirectoryPath = 'http://localhost:8000/image/supplier/';
   // imageDirectoryPath = 'C:/xampp/htdocs/GUI/backend/public/image/supplier/';
 
-
   // supplier = new Supplier();
   constructor(
     private dataService: DataService
@@ -29,7 +28,7 @@ export class SupplierComponent implements OnInit {
   }
 
   deleteData(id) {
-    this.dataService.deleteData(id).subscribe( res => {
+    this.dataService.deleteSupplierData(id).subscribe( res => {
       console.log(id);
       this.getSupplierData();
     });

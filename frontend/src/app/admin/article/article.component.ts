@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor() { }
+  dataArr: any;
+  imageDirectoryPath = 'http://localhost:8000/image/article/';
+  
+  constructor(
+    private dataService: DataService
+  ) { }
 
   ngOnInit(): void {
+    this.getArticleData();
   }
+
+  getArticleData() {
+    this.dataService.getArticle().subscribe( res => {
+      this.dataArr = res;
+    });
+  }
+
+  deleteData(id) {
+    this.dataService.deleteArticleData(id).subscribe( res => {
+      this.getArticleData();
+    });
+  } 
 
 }

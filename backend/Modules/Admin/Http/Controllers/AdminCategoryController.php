@@ -12,15 +12,15 @@ class AdminCategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $suppliers = Category::select('id', 's_name', 's_title_seo', 's_active', 's_home', 's_avatar')->get();
+        $categories = Category::select('id', 'c_name', 'c_supplier_id', 'c_title_seo', 'c_active', 'c_home')->get();
         
         // return view('admin::article.index', $viewData);
-        return response()->json($suppliers);
+        return response()->json($categories);
     }
 
     public function store(Request $request) {
         $this->insertOrUpdate($request);
-        return redirect()->back();
+        return response()->json(200);
     }
 
     public function getOne($id) {
@@ -31,12 +31,12 @@ class AdminCategoryController extends Controller
     public function update(Request $request)  {
         $id = $request->id;
         $this->insertOrUpdate($request, $id);
-        return redirect()->back();
+        return response()->json(200);
     }
 
     public function delete($id) {
-        $article = Category::findOrFail($id);    
-        $article->delete();
+        $category = Category::findOrFail($id);
+        $category->delete();
         return response()->json(['Status' => 'Delete Ok'], 201);
     }
 
@@ -57,28 +57,19 @@ class AdminCategoryController extends Controller
     // }
 
     public function insertOrUpdate($request, $id='') {
-        $supplier = new Category();
-        if($id) { $supplier = Category::findOrFail($id); }
+        $category = new Category();
+        if($id) { $category = Category::findOrFail($id); }
         
-        $supplier_request = json_decode($request->data, true);
-        
-        if ($request->hasFile('s_avatar')) {
-            $uploadPath = "image/supplier";
-            $original_filename = $request->file('s_avatar')->getClientOriginalName();
-            $original_filename_arr = explode('.', $original_filename);
-            $file_ext = end($original_filename_arr);
-            $s_avatar = 'supplier-' . time() . '.' . $file_ext;
+        $category_request = json_decode($request->data, true);
+        // $category_request = $request->all();
 
-            $request->file('s_avatar')->move($uploadPath, $s_avatar);
-            $supplier['s_avatar'] = $s_avatar;
-        }
+        $category->c_name = $category_request['c_name'];
+        $category->c_slug = Str::slug($category_request['c_name']);
+        $category->c_icon = $category_request['c_icon'];
+        $category->c_supplier_id = $category_request['c_supplier_id'];
+        $category->c_title_seo      = $category_request['c_title_seo'] ? $category_request['c_title_seo'] : $category_request['c_name'];
+        $category->c_description_seo      = $category_request['c_description_seo'] ? $category_request['c_description_seo'] : $category_request['c_name'];
 
-        $supplier->s_name = $supplier_request['s_name'];
-        $supplier->s_slug = Str::slug($supplier_request['s_name']);
-        $supplier->s_description = $supplier_request['s_description'];
-        $supplier->s_title_seo = $supplier_request['s_title_seo'] ? $supplier_request['s_title_seo'] : $supplier_request['s_name'];
-        $supplier->s_description_seo = $supplier_request['s_description_seo'] ? $supplier_request['s_description_seo'] : $supplier_request['s_name'];
-
-        $supplier->save();
+        $category->save();
     }
 }

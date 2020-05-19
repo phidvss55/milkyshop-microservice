@@ -27,7 +27,7 @@ export class CreateComponent implements OnInit {
     }
     // this.employee.hobby = this.selectedHobbyArr.toString();
     formData.append('data', JSON.stringify(this.supplier));
-    this.dataService.insertData(formData).subscribe( res => {
+    this.dataService.insertSupplierData(formData).subscribe( res => {
       // this.getSupplierData();
       alert('chen data thanh cong' + res)
     });
