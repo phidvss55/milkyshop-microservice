@@ -19,27 +19,8 @@ class AdminSupplierController extends Controller
     }
 
     public function store(Request $request) {
-        $supplier = new Supplier();
-        $supplier_request = json_decode($request->data, true);
-        
-        if ($request->hasFile('s_avatar')) {
-            $uploadPath = "image/supplier";
-            $original_filename = $request->file('s_avatar')->getClientOriginalName();
-            $original_filename_arr = explode('.', $original_filename);
-            $file_ext = end($original_filename_arr);
-            $s_avatar = 'supplier-' . time() . '.' . $file_ext;
-
-            $request->file('s_avatar')->move($uploadPath, $s_avatar);
-            $supplier['s_avatar'] = $s_avatar;
-        }
-
-        $supplier->s_name = $supplier_request['s_name'];
-        $supplier->s_slug = Str::slug($supplier_request['s_name']);
-        $supplier->s_description = $supplier_request['s_description'];
-        $supplier->s_title_seo = $supplier_request['s_title_seo'] ? $supplier_request['s_title_seo'] : $supplier_request['s_name'];
-        $supplier->s_description_seo = $supplier_request['s_description_seo'] ? $supplier_request['s_description_seo'] : $supplier_request['s_name'];
-        $supplier->save();
-        return redirect()->back();
+        $this->insertOrUpdate($request);
+        return response()->json(200);
     }
 
     public function getOne($id) {
@@ -50,7 +31,7 @@ class AdminSupplierController extends Controller
     public function update(Request $request)  {
         $id = $request->id;
         $this->insertOrUpdate($request, $id);
-        return redirect()->back();
+        return response()->json(200);
     }
 
     public function delete($id) {

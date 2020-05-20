@@ -35,33 +35,16 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer">
-                                        <td>1</td>
-                                        <td>Mai chí trung</td>
-                                        <td>Thừa thiên huếees</td>
-                                        <td>0912831293</td>
-                                        <td>12000000</td>
+                                    <tr class="even pointer" *ngFor="let transaction of dataArr">
+                                        <td>{{ transaction.id }}</td>
+                                        <td>{{ transaction.tr_address }}</td>
+                                        <td>{{ transaction.tr_phone }}</td>
+                                        <td>{{ transaction.tr_total }}</td>
                                         <td>
-                                            <a href="#" type="button" class="btn btn-round btn-default">Chưa xử lý</a>
+                                            <a href="" type="button" *ngIf="transaction.tr_status == 1" class="btn btn-round btn-success"> Đã xử lý </a>
+                                            <a href="" type="button" *ngIf="transaction.tr_status != 1" class="btn btn-round btn-default"> Chưa xử lý </a>
                                         </td>
-                                        <td>23-12-2019 12:42:21 +7 HCM</td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success" data-toggle="tooltip"><i class="fa icon-eye"></i>View</a>
-                                                <a href="" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i>Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td>1</td>
-                                        <td>Mai chí trung</td>
-                                        <td>Thừa thiên huếees</td>
-                                        <td>0912831293</td>
-                                        <td>12000000</td>
-                                        <td>
-                                            <a href="#" type="button" class="btn btn-round btn-default">Chưa xử lý</a>
-                                        </td>
-                                        <td>23-12-2019 12:42:21 +7 HCM</td>
+                                        <td>{{ transaction.created_at | date:'medium' }}</td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">
                                                 <a href="#" type="button" class="btn btn-icon btn-success" data-toggle="tooltip"><i class="fa icon-eye"></i>View</a>

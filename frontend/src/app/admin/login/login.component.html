@@ -4,14 +4,23 @@
 
         <!-- Icon -->
         <div class="fadeIn first">
-            <img src="../fasvicon.ico" id="icon" alt="User Icon" />
+            <!-- <img src="../fasvicon.ico" id="icon" alt="User Icon" /> -->
         </div>
 
         <!-- Login Form -->
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+        <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="alert alert-danger" [hidden]="!error">
+                {{ error }}
+            </div>
+            <div class="form-group">
+                <input type="text" class="fadeIn second" name="email" placeholder=" Email ... " [(ngModel)]="form.email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="fadeIn third" name="password" placeholder=" Password ... " [(ngModel)]="form.password" required>
+            </div>
+
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary fadeIn fourth"> Đăng Nhập </button>
+            <!-- <input type="submit" [disabled]="!loginForm.valid" class="fadeIn fourth" value="Log In"> -->
         </form>
 
     </div>

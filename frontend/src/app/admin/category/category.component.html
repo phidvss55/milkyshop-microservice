@@ -28,36 +28,31 @@
                                 <tr class="headings">
                                     <th class="column-title">#</th>
                                     <th class="column-title">Tên danh mục</th>
-                                    <th class="column-title">Trang chủ</th>
+                                    <th class="column-title">Nhà cung cấp</th>
                                     <th class="column-title">Trạng thái</th>
+                                    <th class="column-title">Trang chủ</th>
                                     <th class="column-title">Title Seo</th>
                                     <th class="column-title">Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td width="10%">Điện Thoại</td>
-                                        <td>Điện Thoại</td>
-                                        <td>public</td>
-                                        <td>public</td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a [routerLink]="['/admin/category/1/update']" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                    <tr class="even pointer"  *ngFor="let category of dataArr">
+                                        <td>{{ category.id }} </td>
+                                        <td>{{ category.c_name }}</td>
+                                        <td>
+                                            <div *ngFor="let supplier of supplierArr">
+                                                <div *ngIf="supplier.id == category.c_supplier_id">
+                                                    {{ supplier.s_name }}
+                                                </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td class="">1</td>
-                                        <td width="10%">Điện Thoại</td>
-                                        <td>Điện Thoại</td>
-                                        <td>public</td>
-                                        <td>public</td>
+                                        <td>{{ category.c_active }}</td>
+                                        <td>{{ category.c_home }}</td>
+                                        <td>{{ category.c_title_seo }}</td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">
-                                                <a [routerLink]="['/admin/category/1/update']" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                                <a routerLink="/admin/category/{{category.id}}/update" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
+                                                <a type="button" (click)="deleteData(category.id)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>

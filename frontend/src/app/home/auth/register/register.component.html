@@ -12,48 +12,50 @@
         </div>
     </div>
 </div>
-<!-- <div class="wrapper fadeInDown">
-    <div id="formContent">
-        <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="login" class="form-control" name="login" placeholder="login" >
-            </div>
-            
-            <input type="text" id="password" class="fadeIn form-control" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
-        </form>
-
-    </div>
-</div> -->
 <div class="container">
     <div class="row">
-        <form action="/action_page.php">
+        <form action="" #signUpForm=ngForm (ngSubmit)="onSubmit()">
             <div class="col-md-6 col-xs-12 customer-login">
-                <div class="form-group">
+                <div class="form-group" [class.has-error]="name.invalid && name.touched" [class.has-success]="name.valid">
                     <label for="name"> Họ tên </label>
-                    <input type="name" class="form-control" id="name">
+                    <input type="text" class="form-control" id="name" name="name" placeholder=" Họ tên ... " [(ngModel)]="form.name" required #name="ngModel">
+                    <span class="help-block" *ngIf="name.invalid && name.touched"> Trường này không được để trống </span>
                 </div>
-                <div class="form-group">
+                <div class="form-group" [class.has-error]="email.invalid && email.touched" [class.has-success]="email.valid">
                     <label for="email"> Email </label>
-                    <input type="email" class="form-control" id="email">
+                    <input type="email" class="form-control" name="email" placeholder=" Email ... " [(ngModel)]="form.email" required #email="ngModel">
+                    <span class="help-block" *ngIf="email.invalid && email.touched"> Trường này không được để trống </span>
+                    <div class="alert alert-danger alert-noti" [hidden]="!error">
+                        {{ error }}
+                    </div>
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 customer-login">
-                <div class="form-group">
+                <div class="form-group" [class.has-error]="phone.invalid && phone.touched" [class.has-success]="phone.valid">
                     <label for="phone">Số điện thoại</label>
-                    <input type="number" class="form-control" id="phone">
+                    <input type="number" class="form-control" name="phone" placeholder=" Số điện thoại ... " [(ngModel)]="form.phone" required #phone="ngModel">
+                    <span class="help-block" *ngIf="phone.invalid && phone.touched"> Trường này không được để trống </span>
+                    <!-- <div class="alert alert-danger alert-noti" [hidden]="!error.phone">
+                        {{ error.phone }}
+                    </div> -->
                 </div>
-                <div class="form-group">
+                <div class="form-group" [class.has-error]="password.invalid && password.touched" [class.has-success]="password.valid">
                     <label for="password"> Password </label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" name="password"  placeholder=" Nhập mật khẩu ... " [(ngModel)]="form.password" required #password="ngModel">
+                    <span class="help-block" *ngIf="password.invalid && password.touched"> Trường này không được để trống </span>
+                    <!-- <div class="alert alert-danger alert-noti" [hidden]="!error.password">
+                        {{ error.password }}
+                    </div> -->
                 </div>
             </div>
             
             <div class="form-action">
                 <p class="lost_password"><a href="#">Lost your password?</a></p>
                 <div class="actions-log">
-                    <button type="submit" class="button btn-primary"> Đăng ký </button>
+                    <button type="submit" class="button btn-primary" [disabled]="!signUpForm.valid"> Đăng ký </button>
+                </div>
+                <div class="actions-log">
+                    <button type="button" [routerLink]="['/home/login']" class="button btn-primary"> Đăng nhập </button>
                 </div>
             </div>
 

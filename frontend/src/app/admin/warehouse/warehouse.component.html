@@ -22,24 +22,24 @@
                         <div class="row">
                             <div class="pull-right">
                                 <div class="col-md-2">
-                                    <select name="select_filter" class="form-control" data-field="level" style="height: 34px; padding: 5px 10px; border-radius: 3px;">
-                                        <option value="default" selected="selected">Danh Muc</option>
-                                        <option value="admin">Sua Bot</option>
+                                    <select name="select_filter" class="form-control" (change)="searchCateProduct($event)" style="height: 34px; padding: 5px 10px; border-radius: 3px;">
+                                        <option value="" disabled selected>Danh Muc</option>
+                                        <option value="{{ category.id }}" *ngFor="let category of categoriesArr">{{ category.c_name }}</option>
                                     </select>
                                 </div>
                                 <div class="col-md-2">
-                                    <select name="select_filter" class="form-control" data-field="level" style="height: 34px; padding: 5px 10px; border-radius: 3px;">
-                                        <option value="default" selected="selected">Loại sản phẩm</option>
-                                        <option value="admin">hàng bán chạy</option>
-                                        <option value="admin">Tồn kho nhiều nhát</option>
-                                        <option value="admin">Tồn kho ít nhát</option>
+                                    <select name="select_filter" class="form-control" (change)="searchMultiProduct($event)" style="height: 34px; padding: 5px 10px; border-radius: 3px;">
+                                        <option value="" disabled selected> - Loại sản phẩm - </option>
+                                        <option value="1"> Hàng bán chạy </option>
+                                        <option value="2"> Tồn kho nhiều nhất </option>
+                                        <option value="3"> Tồn kho ít nhát </option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="search_value" value="" style="height: 34px">
+                                        <input type="text" class="form-control" [(ngModel)]="search_value" name="search_value" value="" style="height: 34px">
                                         <span class="input-group-btn">
-                                            <button id="btn-search" style="margin-left: 20px" type="button" class="btn btn-primary">Tìm kiếm</button>
+                                            <button id="btn-search" style="margin-left: 20px" type="button" (click)="searchProduct()" class="btn btn-primary">Tìm kiếm</button>
                                         </span>
                                     </div>                            
                                 </div>
@@ -72,92 +72,37 @@
                                     <th class="column-title">Hình ảnh</th>
                                     <th class="column-title">Trạng thái</th>
                                     <th class="column-title">Nổi bật</th>
-                                    <th class="column-title">Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer">
-                                        <td>1</td>
+                                    <tr class="even pointer" *ngFor="let product of dataArr">
+                                        <td>{{ product.id }}</td>
                                         <td>
-                                            Friso 3 900g
-                                            <ul>
-                                                <li>Gia tien</li>
-                                                <li>Giam gia</li>
-                                                <li>So luong</li>
-                                                <li>Danh gia</li>
+                                            {{ product.pro_name }}
+                                            <ul style="text-align: right; font-size: 12px; color: #383838">
+                                                <li>Giá: {{ product.pro_price | number }}</li>
+                                                <li>Giảm giá : {{ product.pro_sale }} %</li>
+                                                <li>Số lượng : {{ product.pro_number }}</li>
+                                                <li>Đánh giá : {{ product.pro_total_rating }}</li>
                                             </ul>
                                         </td>
-                                        <td>Sua Bot</td>
                                         <td>
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>
-                                            <a href="" type="button" class="btn btn-round btn-success">Active</a>
-                                        </td>
-                                        <td>
-                                            <a href="" type="button" class="btn btn-round btn-default">Active</a>
-                                        </td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                            <div *ngFor="let category of categoriesArr">
+                                                <div *ngIf="category.id == product.pro_category_id">
+                                                    {{ category.c_name }}
+                                                </div>
                                             </div>
                                         </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td>1</td>
                                         <td>
-                                            Friso 3 900g
-                                            <ul>
-                                                <li>Gia tien</li>
-                                                <li>Giam gia</li>
-                                                <li>So luong</li>
-                                                <li>Danh gia</li>
-                                            </ul>
-                                        </td>
-                                        <td>Sua Bot</td>
-                                        <td>
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
+                                            <img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="{{ product.pro_avatar }}" class="zvn-thumb" width="80px" >
                                         </td>
                                         <td>
-                                            <a href="" type="button" class="btn btn-round btn-success">Active</a>
+                                            <a href="" type="button" *ngIf="product.pro_active == 1" class="btn btn-round btn-success"> Public </a>
+                                            <a href="" type="button" *ngIf="product.pro_active != 1" class="btn btn-round btn-default"> Private </a>
                                         </td>
                                         <td>
-                                            <a href="" type="button" class="btn btn-round btn-default">Active</a>
-                                        </td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td>1</td>
-                                        <td>
-                                            Friso 3 900g
-                                            <ul>
-                                                <li>Gia tien</li>
-                                                <li>Giam gia</li>
-                                                <li>So luong</li>
-                                                <li>Danh gia</li>
-                                            </ul>
-                                        </td>
-                                        <td>Sua Bot</td>
-                                        <td>
-                                            <img src="./assets/theme_admin/img/img.jpg" alt="admin" class="zvn-thumb">
-                                        </td>
-                                        <td>
-                                            <a href="" type="button" class="btn btn-round btn-success">Active</a>
-                                        </td>
-                                        <td>
-                                            <a href="" type="button" class="btn btn-round btn-default">Active</a>
-                                        </td>
-                                        <td class="last">
-                                            <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                            </div>
+                                            <a href="" type="button" *ngIf="product.pro_hot == 1" class="btn btn-round btn-success"> Nổi Bật </a>
+                                            <a href="" type="button" *ngIf="product.pro_hot != 1" class="btn btn-round btn-default"> Không </a>
                                         </td>
                                     </tr>
                                 </tbody>

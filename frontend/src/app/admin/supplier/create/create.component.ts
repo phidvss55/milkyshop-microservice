@@ -1,6 +1,7 @@
 import { DataService } from './../../../services/data.service';
 import { Supplier } from '../supplier.module';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create',
@@ -12,8 +13,10 @@ export class CreateComponent implements OnInit {
   file: any;
   imageSrc: string;
   supplier = new Supplier();
+  
   constructor(
-    private dataService: DataService
+    private dataService: DataService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -25,12 +28,15 @@ export class CreateComponent implements OnInit {
     if(this.file) {
       formData.append('s_avatar', this.file, this.file.name);
     }
-    // this.employee.hobby = this.selectedHobbyArr.toString();
     formData.append('data', JSON.stringify(this.supplier));
-    this.dataService.insertData(formData).subscribe( res => {
-      // this.getSupplierData();
-      alert('chen data thanh cong' + res)
-    });
+    this.dataService.insertSupplierData(formData).subscribe( 
+      data => this.handleData(data),
+      error => console.log(error)
+    );
+  }
+
+  handleData(data) {
+    this.router.navigateByUrl('/admin/supplier');
   }
 
   imageUpload(event) {

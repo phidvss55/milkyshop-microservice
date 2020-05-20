@@ -1,17 +1,27 @@
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-<!------ Include the above in your HEAD tag ---------->
 <app-header></app-header>
 <div class="wrapper fadeInDown">
     <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
         <div class="fadeIn first">
-            <img src="../fasvicon.ico" id="icon" alt="User Icon" />
+            <!-- <img src="../fasvicon.ico" id="icon" alt="User Icon" /> -->
         </div>
-        <form>
-            <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
-            <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-            <input type="submit" class="fadeIn fourth" value="Log In">
+
+        <!-- Login Form -->
+        <form #loginForm=ngForm (ngSubmit)="onSubmit()">
+            <div class="alert alert-danger" [hidden]="!error">
+                {{ error }}
+            </div>
+            <div class="form-group">
+                <input type="text" class="fadeIn second" name="email" placeholder=" Email ... " [(ngModel)]="form.email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="fadeIn third" name="password" placeholder=" Password ... " [(ngModel)]="form.password" required>
+            </div>
+
+            <button type="submit" [disabled]="!loginForm.valid" class="btn btn-primary fadeIn fourth"> Đăng Nhập </button>
+            <a routerLink="/home/register" class="register-link"> Không có tài khoản? Đăng ký ngay</a>
         </form>
 
     </div>

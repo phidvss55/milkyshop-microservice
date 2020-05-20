@@ -1,3 +1,5 @@
+import { AfterLoginService } from './services/active/after-login.service';
+import { BeforeLoginService } from './services/active/before-login.service';
 // ---------------------- LAYOUTS HOME ------------------------------------------------
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -57,8 +59,8 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'article', component: HomeArticleComponent },
       { path: 'article/:id/detail', component: HomeArticleDetailComponent }, //this,
-      { path: 'login', component: HomeLoginComponent }, //this
-      { path: 'register', component: HomeRegisterComponent }, //this
+      { path: 'login', component: HomeLoginComponent, canActivate: [BeforeLoginService] }, //this
+      { path: 'register', component: HomeRegisterComponent, canActivate: [BeforeLoginService] }, //this
       { path: 'contact', component: HomeContactComponent }, //this
       { path: 'product', component: HomeProductComponent },
       { path: 'product/:id/detail', component: HomeProductDetailComponent },
@@ -94,10 +96,10 @@ const routes: Routes = [
   {
     path: 'user',
     children: [
-      { path: '', component: UserComponent },
-      { path: 'information', component: InformationComponent },
-      { path: 'change-password', component: ChangepasswordComponent },
-      { path: 'product-bought', component: ProductboughtComponent },
+      { path: '', component: UserComponent, canActivate: [AfterLoginService] },
+      { path: 'information', component: InformationComponent, canActivate: [AfterLoginService] },
+      { path: 'change-password', component: ChangepasswordComponent, canActivate: [AfterLoginService] },
+      { path: 'product-bought', component: ProductboughtComponent, canActivate: [AfterLoginService] },
     ]
   },
   { path: '**', component: PageNotFoundComponent },

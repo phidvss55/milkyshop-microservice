@@ -9,33 +9,37 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" (ngSubmit)="insertData()">
                         <div class="row">
                             <div class="form-group">
                                 <label for=""> Tên bài viết </label>
-                                <input type="text" name="a_name" value="" placeholder=" Tên bài viết ... " class="form-control">
+                                <input type="text" name="a_name" value="" required placeholder=" Tên bài viết ... " class="form-control" [(ngModel)]="article.a_name">
                             </div>
                             <div class="form-group">
                                 <label for="icon"> Mô tả </label>
-                                <textarea name="a_description" class="form-control" cols="30" rows="3" placeholder=" Mô tả bài viết ... "></textarea>
+                                <textarea name="a_description" class="form-control" cols="30" rows="3" style="height:auto" required placeholder=" Mô tả bài viết ... " [(ngModel)]="article.a_description"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="icon"> Nội dung </label>
-                                <textarea name="a_content" class="form-control" cols="30" rows="3" placeholder=" Nội dung bài viết ... "></textarea>
+                                <textarea name="a_content" class="form-control" cols="30" rows="3" style="height:auto" required placeholder=" Nội dung bài viết ... " [(ngModel)]="article.a_content"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="name"> Meta title </label>
-                                <input type="text" id="a_title_seo" name="a_title_seo" class="form-control" value="" placeholder=" Meta title ... ">
+                                <input type="text" id="a_title_seo" name="a_title_seo" class="form-control" value="" required placeholder=" Meta title ... " [(ngModel)]="article.a_title_seo">
                             </div>
                             <div class="form-group">
                                 <label for="a_description_seo"> Meta description </label>
-                                <input type="text" id="a_description_seo" name="a_description_seo" class="form-control" value="" placeholder=" Meta description ... ">
+                                <input type="text" id="a_description_seo" name="a_description_seo" class="form-control" value="" required placeholder=" Meta description ... " [(ngModel)]="article.a_description_seo">
                             </div>
                             <div class="form-group">
                                 <label for="avatar"> Avatar </label>
-                                <input type="file" name="avatar" class="form-control">
+                                <!-- <input type="file" name="a_avatar" class="form-control"  [(ngModel)]="article.a_avatar"> -->
+                                <input type="file" id="a_avatar" name="a_avatar" class="form-control" (change)="readURL($event); imageUpload($event);">
                             </div>
-                            <a href="" class="btn btn-primary"> Back </a>
+                            <div class="form-group">
+                                <img id="out_img" [src]="imageSrc || '../assets/images/no-image.png'" alt="" width="400px" height="280px">
+                            </div>
+                            <a [routerLink]="['/admin/article']" class="btn btn-primary"> Back </a>
                             <button class="btn btn-success" type="submit"> Lưu thông tin </button>
                         </div>
                     </form>
