@@ -10,6 +10,8 @@ export class DataService {
   private baseSupplierUrl = 'http://localhost:8000/admin/supplier';
   private baseCategoryUrl = 'http://localhost:8000/admin/category';
   private baseArticleUrl = 'http://localhost:8000/admin/article';
+  private baseProductUrl = 'http://localhost:8000/admin/product';
+  private baseUserUrl = 'http://localhost:8000/admin/user';
 
   constructor(
     private httpClient: HttpClient
@@ -66,6 +68,10 @@ export class DataService {
     return this.httpClient.get(`${this.baseArticleUrl}`);
   }
 
+  searchArticle(data) {
+    return this.httpClient.get(`${this.baseArticleUrl}/search?` + data);
+  }
+
   updateArticleData(id, data) {
     return this.httpClient.post(`${this.baseArticleUrl}/update/` + id, data);
   }
@@ -78,4 +84,40 @@ export class DataService {
     return this.httpClient.get(`${this.baseArticleUrl}/` + id);
   }
 
+  //product
+  insertProductData(data) {
+    return this.httpClient.post(`${this.baseProductUrl}/create`, data);
+  }
+
+  getProduct() {
+    return this.httpClient.get(`${this.baseProductUrl}`);
+  }
+
+  searchCateProduct(id) {
+    return this.httpClient.get(`${this.baseProductUrl}/cate/` + id);
+  }
+
+  searchProduct(data) {
+    return this.httpClient.get(`${this.baseProductUrl}/search?search_string=` + data);
+  }
+
+  searchMultiProduct(id) {
+    return this.httpClient.get(`${this.baseProductUrl}/multi/` + id);
+  }
+
+  updateProductData(id, data) {
+    return this.httpClient.post(`${this.baseProductUrl}/update/` + id, data);
+  }
+
+  deleteProductData(id) {
+    return this.httpClient.delete(`${this.baseProductUrl}/delete/` + id);
+  }
+
+  getOneProduct(id) {
+    return this.httpClient.get(`${this.baseProductUrl}/` + id);
+  }
+  //user data
+  getUser() {
+    return this.httpClient.get(`${this.baseUserUrl}`);
+  }
 }

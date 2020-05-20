@@ -25,9 +25,9 @@
                         <div class="row">
                             <div class="col-md-6 pull-right">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="search_value" value="" style="height: 34px">
+                                    <input type="text" class="form-control" name="search_value" [(ngModel)]="search_value" value="" style="height: 34px">
                                     <span class="input-group-btn">
-                                        <button id="btn-search" type="button" class="btn btn-primary" style="margin-left: 15px;"> Tìm kiếm </button>
+                                        <button id="btn-search" type="button" class="btn btn-primary" (click)="search()" style="margin-left: 15px;"> Tìm kiếm </button>
                                     </span>
                                 </div>                            
                             </div>
@@ -64,17 +64,20 @@
                                 </thead>
                                 <tbody>
                                     <tr class="even pointer" *ngFor="let article of dataArr">
-                                        <td>{{ article.id }}</td>
-                                        <td>{{ article.a_name }}</td>
-                                        <td>{{ article.a_description }}</td>
-                                        <td>
+                                        <td width="5%">{{ article.id }}</td>
+                                        <td width="15%">{{ article.a_name }}</td>
+                                        <td wdith="30%">
+                                            <p style="height:55px;overflow:hidden;text-overflow:ellipsis;">{{ article.a_description }}</p>
+                                        </td>
+                                        <td width="15%">
                                             <img src="{{ imageDirectoryPath }}{{ article.a_avatar }}" alt="{{ article.a_avatar }}" class="zvn-thumb" width="80px" >
                                         </td>
-                                        <td>
-                                            <a href="#" class="btn btn-round btn-success">{{ article.a_active }}</a>
+                                        <td width="10%">
+                                            <a href="" type="button" *ngIf="article.a_active == 1" class="btn btn-round btn-success"> Public </a>
+                                            <a href="" type="button" *ngIf="article.a_active != 1" class="btn btn-round btn-default"> Private </a>
                                         </td>
-                                        <td>{{ article.created_at | date:'medium' }}</td>
-                                        <td class="last">
+                                        <td width="10%">{{ article.created_at | date:'medium' }}</td>
+                                        <td width="15%" class="last">
                                             <div class="zvn-box-btn-filter">
                                                 <button href="#" routerLink="/admin/article/{{article.id}}/update" class="btn btn-icon btn-success" ><i class="fa fa-pencil"></i></button>
                                                 <button type="button" href="#" (click)="deleteData(article.id)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></button>

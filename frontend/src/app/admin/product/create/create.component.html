@@ -9,56 +9,56 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <form action="" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data" (ngSubmit)="insertData()">
                         <div class="row">
                             <div class="col-sm-8">
                                 <div class="form-group">
                                     <label for=""> Tên sản phẩm </label>
-                                    <input type="text" name="pro_name" value="" class="form-control" placeholder=" Tên sản phảm ... ">
+                                    <input type="text" name="pro_name" value="" class="form-control" required placeholder=" Tên sản phảm ... " [(ngModel)]="product.pro_name">
                                 </div>
                                 <div class="form-group">
                                     <label for="icon"> Mô tả </label>
-                                    <textarea name="pro_description" class="form-control" cols="30" rows="3" placeholder=" Mô tả ngắn gọn sản phẩm ... "></textarea>
+                                    <textarea name="pro_description" class="form-control" [(ngModel)]="product.pro_description" style="height: auto" cols="30" rows="3" required placeholder=" Mô tả ngắn gọn sản phẩm ... "></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="icon"> Nội dung </label>
-                                    <textarea name="pro_content" class="form-control" cols="30" rows="3" placeholder=" Nội dung về sản phẩm ... "></textarea>
+                                    <textarea name="pro_content" class="form-control" [(ngModel)]="product.pro_content" style="height: auto" cols="30" rows="3" required placeholder=" Nội dung về sản phẩm ... "></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="name"> Meta title </label>
-                                    <input type="text" id="pro_title_seo" name="pro_title_seo" class="form-control" value="" placeholder=" Meta title ... ">
+                                    <input type="text" id="pro_title_seo" name="pro_title_seo" [(ngModel)]="product.pro_title_seo"  class="form-control" value="" required placeholder=" Meta title ... ">
                                 </div>
                                 <div class="form-group">
                                     <label for="pro_description_seo"> Meta description </label>
-                                    <input type="text" id="pro_description_seo" name="pro_description_seo" class="form-control" value="" placeholder=" Meta description ... ">
+                                    <input type="text" id="pro_description_seo" name="pro_description_seo" [(ngModel)]="product.pro_description_seo"  class="form-control" value="" required placeholder=" Meta description ... ">
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="name"> Loại sản phẩm </label>
-                                    <select name="pro_category_id" id="" class="form-control">
-                                        <option value=""> --- Chọn loại sản phẩm ---</option>
-                                        <!-- <option value=""></option> -->
+                                    <label> Loại sản phẩm </label>
+                                    <select name="pro_category_id" class="form-control" [(ngModel)]="product.pro_category_id" required>
+                                        <option value="" disabled selected> - Chọn danh mục sản phẩm - </option>
+                                        <option value="{{ obj.id }}" *ngFor="let obj of categoriesArr"> {{ obj.c_name }} </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="pro_price"> Giá Sản Phẩm </label>
-                                    <input type="number" name="pro_price" class="form-control" value="" placeholder=" Giá sản phảm ... ">
+                                    <input type="number" name="pro_price" class="form-control" [(ngModel)]="product.pro_price" value="" required placeholder=" Giá sản phảm ... ">
                                 </div>
                                 <div class="form-group">
                                     <label for="pro_sale"> Khuyến mãi <span style="color:indianred">(%)</span> </label>
-                                    <input type="number" name="pro_sale" value="" class="form-control" placeholder=" Phần trăm khuyến mãi ... ">
+                                    <input type="number" name="pro_sale" value="" class="form-control" [(ngModel)]="product.pro_sale" required placeholder=" Phần trăm khuyến mãi ... ">
                                 </div>
                                 <div class="form-group">
-                                        <label for="pro_sale"> Số lượng sản phẩm </label>
-                                        <input type="number" name="pro_number" value="" class="form-control" placeholder=" Số lượng sản phẩm ... ">
-                                    </div>
-                                <div class="form-group">
-                                    <img id="out_img" src="" alt="" width="100%" height="300px">
+                                    <label for="pro_sale"> Số lượng sản phẩm </label>
+                                    <input type="number" name="pro_number" value="" class="form-control" [(ngModel)]="product.pro_number" required placeholder=" Số lượng sản phẩm ... ">
                                 </div>
                                 <div class="form-group">
                                     <label for="pro_avatar"> Avatar </label>
-                                    <input id="in_img" type="file" name="avatar" class="form-control">
+                                    <input type="file" name="pro_avatar" class="form-control" (change)="readURL($event); imageUpload($event);">
+                                </div>
+                                <div class="form-group">
+                                    <img id="out_img" [src]="imageSrc || '../assets/images/no-image.png'" alt="" width="280px" height="400px">
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox">

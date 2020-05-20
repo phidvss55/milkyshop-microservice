@@ -20,7 +20,7 @@ class AdminSupplierController extends Controller
 
     public function store(Request $request) {
         $this->insertOrUpdate($request);
-        return redirect()->back();
+        return response()->json(200);
     }
 
     public function getOne($id) {
@@ -31,7 +31,7 @@ class AdminSupplierController extends Controller
     public function update(Request $request)  {
         $id = $request->id;
         $this->insertOrUpdate($request, $id);
-        return redirect()->back();
+        return response()->json(200);
     }
 
     public function delete($id) {

@@ -89,3 +89,11 @@ span.highlight{
     border-right: 5px solid #1ABB9C;
     color: #77b748;
 }
+
+.panel-green {
+    background: rgb(22, 146, 22);
+}
+
+.panel-orange {
+    background: rgb(184, 124, 14);
+}

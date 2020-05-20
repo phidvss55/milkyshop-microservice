@@ -9,11 +9,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./update.component.css']
 })
 export class UpdateComponent implements OnInit {
+  
   id: any;
   supplier = new Supplier();
   data: any;
   file: any;
   imageSrc: string;
+  
   constructor(
     private route: ActivatedRoute,
     private dataService: DataService

@@ -13,8 +13,6 @@ class AdminCategoryController extends Controller
     public function index(Request $request)
     {
         $categories = Category::select('id', 'c_name', 'c_supplier_id', 'c_title_seo', 'c_active', 'c_home')->get();
-        
-        // return view('admin::article.index', $viewData);
         return response()->json($categories);
     }
 
@@ -59,16 +57,15 @@ class AdminCategoryController extends Controller
     public function insertOrUpdate($request, $id='') {
         $category = new Category();
         if($id) { $category = Category::findOrFail($id); }
-        
-        $category_request = json_decode($request->data, true);
-        // $category_request = $request->all();
 
-        $category->c_name = $category_request['c_name'];
-        $category->c_slug = Str::slug($category_request['c_name']);
-        $category->c_icon = $category_request['c_icon'];
-        $category->c_supplier_id = $category_request['c_supplier_id'];
-        $category->c_title_seo      = $category_request['c_title_seo'] ? $category_request['c_title_seo'] : $category_request['c_name'];
-        $category->c_description_seo      = $category_request['c_description_seo'] ? $category_request['c_description_seo'] : $category_request['c_name'];
+        $category_request = $request->all();
+
+        $category->c_name               = $category_request['c_name'];
+        $category->c_slug               = Str::slug($category_request['c_name']);
+        $category->c_icon               = $category_request['c_icon'];
+        $category->c_supplier_id        = $category_request['c_supplier_id'];
+        $category->c_title_seo          = $category_request['c_title_seo'] ? $category_request['c_title_seo'] : $category_request['c_name'];
+        $category->c_description_seo    = $category_request['c_description_seo'] ? $category_request['c_description_seo'] : $category_request['c_name'];
 
         $category->save();
     }

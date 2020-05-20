@@ -14,9 +14,17 @@ class AdminArticleController extends Controller
     public function index(Request $request)
     {
         $articles = Article::select('id', 'a_name', 'a_description', 'a_active', 'a_title_seo', 'a_avatar', 'created_at')->get();
-        
-        
         return response()->json($articles);
+    }
+
+    public function search(Request $request) {
+        $url = array_keys($request->all());
+        $value_search = array_pop($url);
+
+        $articles = Article::where('a_name', 'like', '%' . $value_search . '%');
+        $articles = $articles->orderByDesc('id')->paginate(10);
+        return response()->json($articles);
+        
     }
 
     public function store(Request $request) {

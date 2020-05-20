@@ -25,13 +25,10 @@ export class CreateComponent implements OnInit {
   getSuppliers() {
     this.dataService.getSupplier().subscribe( res => {
       this.supplierArr = res;
-      console.log(this.supplierArr);
     });
   }
 
-  // res => {console.log(res);}
   insertData() {
-    console.log(this.category);
     this.dataService.insertCategoryData(this.category).subscribe(
       data => this.handleData(data),
       error => console.log(error)

@@ -1,3 +1,5 @@
+import { HomeService } from './../services/home/home.service';
+import { DataService } from './../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,56 +9,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  totalProduct: any;
+  totalMoney: number = 0;
+  totalInMoney: number = 0;
+
+  constructor(
+    private dataService: DataService,
+    private homeService: HomeService
+  ) { }
 
   ngOnInit(): void {
+    this.getTransaction();
+    this.getProducts();
   }
 
-  // let data = "{{ $dataMoney }}";
-  //   dataChart = JSON.parse(data.replace(/&quot;/g,'"'));
-  //   console.log(dataChart);
-    
-  //   Highcharts.chart('container', {
-  //       chart: {
-  //           type: 'column'
-  //       },
-  //       title: {
-  //           text: 'Biểu đồ doanh thu ngày và tháng. '
-  //       },
-  //       xAxis: {
-  //           type: 'category'
-  //       },
-  //       yAxis: {
-  //           title: {
-  //               text: ' Mức độ '
-  //           }
+  getTransaction() {
+    this.homeService.getTransaction().subscribe(
+      data => this.getTotalInMoney(data),
+      error => console.log(error) 
+    )
+  }
 
-  //       },
-  //       legend: {
-  //           enabled: false
-  //       },
-  //       plotOptions: {
-  //           series: {
-  //               borderWidth: 0,
-  //               dataLabels: {
-  //                   enabled: true,
-  //                   format: '{point.y:.1f} VNĐ'
-  //               }
-  //           }
-  //       },
+  getTotalInMoney(data) {
+    data.forEach(ele => {
+      this.totalInMoney += ele.tr_total;
+    });
+  }
 
-  //       tooltip: {
-  //           headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-  //           pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
-  //       },
-
-  //       series: [
-  //           {
-  //               name: "Browsers",
-  //               colorByPoint: true,
-  //               data: dataChart,
-  //           }
-  //       ]
-  //   });
-
+  getProducts() {
+    this.dataService.getProduct().subscribe(
+      data => this.handleData(data),
+      error => console.log(error),
+    );
+  }
+  handleData(data) {
+    this.totalProduct = data.length;
+    data.forEach(ele => {
+      this.totalMoney += ele.pro_price * ele.pro_number;
+    });
+    console.log(this.totalMoney);
+  }
 }

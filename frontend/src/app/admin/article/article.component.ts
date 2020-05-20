@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class ArticleComponent implements OnInit {
 
   dataArr: any;
+  search_value: any;
   imageDirectoryPath = 'http://localhost:8000/image/article/';
   
   constructor(
@@ -17,6 +18,21 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArticleData();
+  }
+
+  search() {
+    var obj = {
+      search_string: this.search_value
+    }
+    this.dataService.searchArticle(obj.search_string).subscribe(
+      data => this.handleData(data),
+      error => console.log(error)
+    );
+  }
+
+  handleData(data) {
+    this.dataArr = data.data;
+    this.search_value = "";
   }
 
   getArticleData() {
