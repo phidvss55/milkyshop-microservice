@@ -28,7 +28,8 @@ Route::prefix('admin')->group(function() {
         Route::get('/{id}', 'AdminSupplierController@getOne');
         Route::put('/update/{id}', 'AdminSupplierController@update');
         Route::delete('delete/{id}', 'AdminSupplierController@delete');
-        // Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
+        Route::post('/change-active', 'AdminSupplierController@changeActive');
+        Route::post('/change-home', 'AdminSupplierController@changeHome');
     });
 
     //category
@@ -38,6 +39,8 @@ Route::prefix('admin')->group(function() {
         Route::get('/{id}', 'AdminCategoryController@getOne');
         Route::put('/update/{id}', 'AdminCategoryController@update');
         Route::delete('/delete/{id}', 'AdminCategoryController@delete');
+        Route::post('/change-active', 'AdminCategoryController@changeActive');
+        Route::post('/change-home', 'AdminCategoryController@changeHome');
         
         // Route::get('{action}/{id}', 'AdminCategoryController@action')->name('admin.get.action.category');
     });
@@ -89,9 +92,11 @@ Route::prefix('admin')->group(function() {
     // });
 
     //ql lien he
-    // Route::group(['prefix' => 'contact'], function() {
-    //     Route::get('/', 'AdminContactController@index')->name('admin.get.list.contact');
-    // });
+    Route::group(['prefix' => 'contact'], function() {
+        Route::get('', 'AdminContactController@index');
+        Route::post('/status', 'AdminContactController@updateStatus');
+        Route::delete('/delete/{id}', 'AdminContactController@delete');
+    });
     
     // Route::group(['prefix' => 'page-static'], function() {
     //     Route::get('/', 'AdminPageStaticController@index')->name('admin.get.list.page_static');

@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AdminSupplierController extends Controller
@@ -20,6 +21,24 @@ class AdminSupplierController extends Controller
 
     public function store(Request $request) {
         $this->insertOrUpdate($request);
+        return response()->json(200);
+    }
+
+    public function changeActive(Request $request) {
+        if($request->status == 1) {
+            DB::table('suppliers')->where('id', $request->id)->update(['s_active' => 0]);
+        } else {
+            DB::table('suppliers')->where('id', $request->id)->update(['s_active' => 1]);
+        }
+        return response()->json(200);
+    }
+
+    public function changeHome(Request $request) {
+        if($request->home == 1) {
+            DB::table('suppliers')->where('id', $request->id)->update(['s_home' => 0]);
+        } else {
+            DB::table('suppliers')->where('id', $request->id)->update(['s_home' => 1]);
+        }
         return response()->json(200);
     }
 

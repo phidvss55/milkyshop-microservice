@@ -52,4 +52,9 @@ Route::prefix('home')->group(function() {
 
         Route::get('/relate-product/{id}', 'HomeProductDetailController@getRelateProduct');
     });
+
+    //contact 
+    Route::group(['prefix' => 'contact'], function() {
+        Route::post('', 'HomeContactController@insertData');
+    });
 });

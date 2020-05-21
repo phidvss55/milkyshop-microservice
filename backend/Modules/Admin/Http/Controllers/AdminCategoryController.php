@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AdminCategoryController extends Controller
@@ -18,6 +19,24 @@ class AdminCategoryController extends Controller
 
     public function store(Request $request) {
         $this->insertOrUpdate($request);
+        return response()->json(200);
+    }
+
+    public function changeActive(Request $request) {
+        if($request->status == 1) {
+            DB::table('categories')->where('id', $request->id)->update(['c_active' => 0]);
+        } else {
+            DB::table('categories')->where('id', $request->id)->update(['c_active' => 1]);
+        }
+        return response()->json(200);
+    }
+
+    public function changeHome(Request $request) {
+        if($request->home == 1) {
+            DB::table('categories')->where('id', $request->id)->update(['c_home' => 0]);
+        } else {
+            DB::table('categories')->where('id', $request->id)->update(['c_home' => 1]);
+        }
         return response()->json(200);
     }
 
