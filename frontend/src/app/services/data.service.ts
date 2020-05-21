@@ -13,6 +13,7 @@ export class DataService {
   private baseArticleUrl = 'http://localhost:8000/admin/article';
   private baseProductUrl = 'http://localhost:8000/admin/product';
   private baseUserUrl = 'http://localhost:8000/admin/user';
+  private baseContactUrl = 'http://localhost:8000/admin/contact';
 
   constructor(
     private httpClient: HttpClient
@@ -39,6 +40,14 @@ export class DataService {
     return this.httpClient.get(`${this.baseSupplierUrl}/` + id);
   }
 
+  changeActiveSupplier(data) {
+    return this.httpClient.post(`${this.baseSupplierUrl}/change-active`, data);
+  }
+
+  changeHomeSupplier(data) {
+    return this.httpClient.post(`${this.baseSupplierUrl}/change-home`, data);
+  }
+
   //category
   insertCategoryData(data) {
     return this.httpClient.post(`${this.baseCategoryUrl}/create`, data);
@@ -60,7 +69,15 @@ export class DataService {
     return this.httpClient.get(`${this.baseCategoryUrl}/` + id);
   }
 
-  //article
+  changeActiveCategory(data) {
+    return this.httpClient.post(`${this.baseCategoryUrl}/change-active`, data);
+  }
+
+  changeHomeCategory(data) {
+    return this.httpClient.post(`${this.baseCategoryUrl}/change-home`, data);
+  }
+
+  //article -----------------------------------------------------------------------------------------
   insertArticleData(data) {
     return this.httpClient.post(`${this.baseArticleUrl}/create`, data);
   }
@@ -85,7 +102,11 @@ export class DataService {
     return this.httpClient.get(`${this.baseArticleUrl}/` + id);
   }
 
-  //product
+  changeActiveArticle(data) {
+    return this.httpClient.post(`${this.baseArticleUrl}/change-active`, data);
+  }
+
+  //product ----------------------------------------------------------
   insertProductData(data) {
     return this.httpClient.post(`${this.baseProductUrl}/create`, data);
   }
@@ -117,8 +138,37 @@ export class DataService {
   getOneProduct(id) {
     return this.httpClient.get(`${this.baseProductUrl}/` + id);
   }
+  
+  changeActiveProduct(data) {
+    return this.httpClient.post(`${this.baseProductUrl}/change-active`, data);
+  }
+
+  changeHotProduct(data) {
+    return this.httpClient.post(`${this.baseProductUrl}/change-home`, data);
+  }
+
+  //contact 
+  getContacts() {
+    return this.httpClient.get(`${this.baseContactUrl}`);
+  }
+
+  resolveContact(data) {
+    return this.httpClient.post(`${this.baseContactUrl}/status`, data);
+  }
+
+  deleteContact(id) {
+    return this.httpClient.delete(`${this.baseContactUrl}/delete/` + id);
+  }
   //user data
   getUser() {
     return this.httpClient.get(`${this.baseUserUrl}`);
+  }
+
+  changeActiveUser(data) {
+    return this.httpClient.post(`${this.baseUserUrl}/change-active`, data);
+  }
+
+  deleteUser(id) {
+    return this.httpClient.delete(`${this.baseUserUrl}/delete/` + id);
   }
 }

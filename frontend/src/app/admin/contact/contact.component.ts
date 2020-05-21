@@ -1,3 +1,4 @@
+import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  dataArr: any;
+  p: number = 1;
+  // notify: any = false;
+
+  constructor(
+    private dataService: DataService
+  ) { }
 
   ngOnInit(): void {
+    this.getContact();
   }
 
+  getContact() {
+    this.dataService.getContacts().subscribe( res => {
+      this.dataArr = res;
+    });
+  }
+
+  resolveProblem(id) {
+    var obj = {
+      "id": id
+    }
+    this.dataService.resolveContact(obj).subscribe( res => {
+      this.getContact();
+    });
+  }
+
+  deleteContact(id) {
+    this.dataService.deleteContact(id).subscribe( res => {
+      this.getContact();
+    });
+  }
 }

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
+  p: number = 1;
   dataArr: any;
   search_value: any;
   imageDirectoryPath = 'http://localhost:8000/image/article/';
@@ -28,6 +29,16 @@ export class ArticleComponent implements OnInit {
       data => this.handleData(data),
       error => console.log(error)
     );
+  }
+
+  changeActive(id, active) {
+    var obj = {
+      "id": id,
+      "active": active
+    }
+    this.dataService.changeActiveArticle(obj).subscribe( res => {
+      this.getArticleData();
+    });
   }
 
   handleData(data) {

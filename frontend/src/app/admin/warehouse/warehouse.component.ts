@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WarehouseComponent implements OnInit {
 
+  p: number = 1;
   dataArr: any;
   categoriesArr: any;
   imageDirectoryPath = 'http://localhost:8000/image/product/';
@@ -32,6 +33,26 @@ export class WarehouseComponent implements OnInit {
       data => this.handleData(data),
       error => console.log(error)
     );
+  }
+
+  changeActive(id, status) {
+    var obj = {
+      "id": id,
+      "status": status
+    }
+    this.dataService.changeActiveProduct(obj).subscribe( res => {
+      this.getProductsData();
+    });
+  }
+
+  changeHot(id, hot) {
+    var obj = {
+      "id": id,
+      "hot": hot
+    }
+    this.dataService.changeHotProduct(obj).subscribe( res => {
+      this.getProductsData();
+    })
   }
 
   searchMultiProduct(event) {

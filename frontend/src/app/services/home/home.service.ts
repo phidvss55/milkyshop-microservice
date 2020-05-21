@@ -10,6 +10,7 @@ export class HomeService {
   private baseTransactionUrl = 'http://localhost:8000/admin/transaction'; // ???????? change to data service
   private baseProductUrl = 'http://localhost:8000/home/product';
   private baseArticleUrl = 'http://localhost:8000/home/article';
+  private baseContactUrl = 'http://localhost:8000/home/contact';
 
   constructor(
     private httpClient: HttpClient
@@ -69,5 +70,10 @@ export class HomeService {
   //transaction
   getTransaction() {
     return this.httpClient.get(`${this.baseTransactionUrl}`);
+  }
+
+  //contact 
+  insertContact(data) {
+    return this.httpClient.post(`${this.baseContactUrl}`, data);
   }
 }

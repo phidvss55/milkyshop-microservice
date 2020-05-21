@@ -18,6 +18,10 @@
 // });
 
 // Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
+Route::group(['prefix' => 'admin', 'middleware' => 'api'], function ($router) {
+    Route::post('login', 'AdminController@login');
+});
+
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index');
 
@@ -55,6 +59,8 @@ Route::prefix('admin')->group(function() {
         Route::get('/{id}', 'AdminProductController@getOne');
         Route::put('/update/{id}', 'AdminProductController@update');
         Route::delete('/delete/{id}', 'AdminProductController@delete');
+        Route::post('/change-active', 'AdminProductController@changeActive');
+        Route::post('/change-home', 'AdminProductController@changeHome');
         // Route::get('{action}/{id}', 'AdminProductController@action')->name('admin.get.action.product');
     });
 
@@ -67,6 +73,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/{id}', 'AdminArticleController@getOne');
         Route::put('/update/{id}', 'AdminArticleController@update');
         Route::delete('/delete/{id}', 'AdminArticleController@delete');
+        Route::post('/change-active', 'AdminArticleController@changeActive');
         // Route::get('{action}/{id}', 'AdminArticleController@action')->name('admin.get.action.article');
     });
 
@@ -84,6 +91,8 @@ Route::prefix('admin')->group(function() {
     //ql user
     Route::group(['prefix' => 'user'], function() {
         Route::get('', 'AdminUserController@index');
+        Route::post('/change-active', 'AdminUserController@changeActive');
+        Route::delete('/delete/{id}', 'AdminUserController@delete');
     });
 
     //ql thanh vien
@@ -106,5 +115,4 @@ Route::prefix('admin')->group(function() {
     //     Route::post('/update/{id}', 'AdminPageStaticController@update');
     //     Route::get('{action}/{id}', 'AdminPageStaticController@action')->name('admin.get.action.page_static');
     // });
-
 });

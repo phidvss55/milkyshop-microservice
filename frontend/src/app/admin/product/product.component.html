@@ -93,12 +93,12 @@
                                             <img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="{{ product.pro_avatar }}" class="zvn-thumb" width="80px" >
                                         </td>
                                         <td>
-                                            <a href="" type="button" *ngIf="product.pro_active == 1" class="btn btn-round btn-success"> Public </a>
-                                            <a href="" type="button" *ngIf="product.pro_active != 1" class="btn btn-round btn-default"> Private </a>
+                                            <a (click)="changeActive(product.id, 1)" type="button" *ngIf="product.pro_active == 1" class="btn btn-detail btn-success"> Public </a>
+                                            <a (click)="changeActive(product.id, 0)" type="button" *ngIf="product.pro_active != 1" class="btn btn-detail btn-default"> Private </a>
                                         </td>
                                         <td>
-                                            <a href="" type="button" *ngIf="product.pro_hot == 1" class="btn btn-round btn-success"> Nổi Bật </a>
-                                            <a href="" type="button" *ngIf="product.pro_hot != 1" class="btn btn-round btn-default"> Không </a>
+                                            <a (click)="changeHot(product.id, 1)" type="button" *ngIf="product.pro_hot == 1" class="btn btn-detail btn-success"> Nổi Bật </a>
+                                            <a (click)="changeHot(product.id, 0)" type="button" *ngIf="product.pro_hot != 1" class="btn btn-detail btn-default"> Không </a>
                                         </td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">

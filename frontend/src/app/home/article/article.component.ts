@@ -10,6 +10,8 @@ export class ArticleComponent implements OnInit {
 
   dataArr: any;
   imageDirectoryPath = 'http://localhost:8000/image/article/';
+  topArticleArr: any;
+  relateArticleArr: any;
 
   constructor(
     private homeService: HomeService
@@ -17,6 +19,26 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.getArticles();
+    this.getTopArticle();
+    this.getRelateArticle();
+  }
+
+  loadPage() {
+    setTimeout(function () {
+      location.reload()
+    }, 100);
+  }
+
+  getRelateArticle() {
+    this.homeService.getRelateArticle().subscribe( res => {
+      this.relateArticleArr = res;
+    })
+  }
+
+  getTopArticle() {
+    this.homeService.getTopArticle().subscribe( res => {
+      this.topArticleArr = res;
+    })
   }
 
   getArticles() {

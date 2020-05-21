@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 class HomeArticleController extends Controller
 {
     public function getListArticles() {
-        $articles = Article::get();
-        return response()->json($articles, 201);
+        $articles = Article::where('a_active', 1)->get();
+        return response()->json($articles, 201); 
     }
 
     public function getOneArticles($id) {
@@ -19,12 +19,12 @@ class HomeArticleController extends Controller
     }
 
     public function getTopArticle() {
-        $articles = Article::orderBy('a_view', 'desc')->limit(3)->get();
+        $articles = Article::where('a_active', 1)->orderBy('a_view', 'desc')->limit(3)->get();
         return response()->json($articles, 201);
     }
 
     public function getRelateArticle() {
-        $articles = Article::inRandomOrder()->limit(3)->get();
+        $articles = Article::where('a_active', 1)->inRandomOrder()->limit(3)->get();
         return response()->json($articles, 201);
     }
 

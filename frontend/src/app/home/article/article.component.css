@@ -6,3 +6,9 @@
     width: 400px !important;
     height: 280px !important;
 }
+
+.img-desc {
+    width: 90px !important;
+    height: 70px !important;
+    max-width: 90px !important;
+}

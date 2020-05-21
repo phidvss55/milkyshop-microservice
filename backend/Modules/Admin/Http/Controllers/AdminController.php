@@ -2,54 +2,99 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Config;
 
 class AdminController extends Controller
 {
-    public function index() {
-        // $ratings = Rating::with('user:id,name', 'product:id,pro_name')->limit(10)->get();
-        // $contacts = Contact::limit(10)->get();
+    /**
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->admin = new Admin;
+        // $this->middleware('auth:api', ['except' => ['login', 'signup']]);
+    }
 
-        // //Doanh thu theo ngay tim trong ngay do nhung donhang nao da xu ly
-        // $moneyDay = Transaction::whereDay('updated_at', date('d'))->where('tr_status', Transaction::STATUS_DONE)
-        // ->sum('tr_total');
+    /**
+     * Get a JWT via given credentials.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function login()
+    {
+        Config::set('jwt.user', 'App\Models\Admin'); 
+        Config::set('auth.providers.users.model', \App\Models\Admin::class);
+        
+        $credentials = request(['email', 'password']);
 
-        // //Doanh thu theo thang tim trong ngay do nhung donhang nao da xu ly
-        // $moneyMonth = Transaction::whereMonth('updated_at', date('m'))->where('tr_status', Transaction::STATUS_DONE)
-        // ->sum('tr_total');
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
 
-        // $dataMoney = [
-        //     [
-        //         "name"  => "Doanh thu ngày",
-        //         "y"     => (int)$moneyDay,
-        //     ],
-        //     [
-        //         "name"  => "Doanh thu tuần",
-        //         "y"     => (int)$moneyDay,
-        //     ],            
-        //     [
-        //         "name"  => "Doanh thu tháng",
-        //         "y"     => (int)$moneyMonth,
-        //     ],
-        //     [
-        //         "name"  => "Doanh thu năm",
-        //         "y"     => (int)$moneyDay,
-        //     ],
-        // ];
+        return $this->respondWithToken($token);
+    }
 
-        // //Danh sach don hàng mới nhất
-        // $transactionNews = Transaction::with('user:id,name')->limit(5)->orderByDesc('id')->get();
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        return response()->json(auth()->user());
+    }
 
-        // $viewData = [
-        //     'ratings'       => $ratings,
-        //     'contacts'      => $contacts,
-        //     'moneyDay'      => $moneyDay,
-        //     'moneyMonth'    => $moneyMonth,
-        //     'dataMoney'     => json_encode($dataMoney),
-        //     'transactionNews'   => $transactionNews,
-        // ];
-        // return view('admin::index', $viewData);
+    /**
+     * Log the user out (Invalidate the token).
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function logout()
+    {
+        auth()->logout();
+
+        return response()->json(['message' => 'Successfully logged out']);
+    }
+
+    // public function signup(SignUpRequest $request) {
+    //     $user = new Admin();
+    //     $user->name = $request->name;
+    //     $user->phone = $request->phone;
+    //     $user->email = $request->email;
+    //     $user->password = Hash::make($request->password);
+    //     $user->save();
+    //     return $this->login($request);
+    // }
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'admin'  => auth()->user()
+        ]);
     }
 }

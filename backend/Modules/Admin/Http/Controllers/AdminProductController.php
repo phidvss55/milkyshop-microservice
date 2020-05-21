@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AdminProductController extends Controller
@@ -71,22 +72,24 @@ class AdminProductController extends Controller
         return response()->json(['Status' => 'Delete Ok'], 201);
     }
 
-    // public function action($action, $id) {
-    //     if($action) {
-    //         $article = Article::findOrFail($id);
-    //         switch($action) {
-    //             case 'delete':
-    //                 $article->delete();
-    //                 break;
-    //             case 'active':
-    //                 $article->a_active = $article->a_active ? 0 : 1;
-    //                 $article->save();
-    //                 break;
-    //         }
-    //     }
-    //     return redirect()->back();
-    // }
+    public function changeActive(Request $request) {
+        if($request->status == 1) {
+            DB::table('products')->where('id', $request->id)->update(['pro_active' => 0]);
+        } else {
+            DB::table('products')->where('id', $request->id)->update(['pro_active' => 1]);
+        }
+        return response()->json(200);
+    }
 
+    public function changeHome(Request $request) {
+        if($request->hot == 1) {
+            DB::table('products')->where('id', $request->id)->update(['pro_hot' => 0]);
+        } else {
+            DB::table('products')->where('id', $request->id)->update(['pro_hot' => 1]);
+        }
+        return response()->json(200);
+    }
+    
     public function insertOrUpdate($request, $id='') {
         $product = new Product();
         if($id) { $product = Product::findOrFail($id); }
