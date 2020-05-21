@@ -51,6 +51,9 @@ jQuery(document).on('ready', function() {
 	_tg_bestsellingbooksslider.owlCarousel({
 		nav: true,
 		loop: true,
+		autoplay: true,
+		autoplayTimeout: 1000,
+		autoplayHoverPause: true,
 		margin: 30,
 		dots: true,
 		navText: [

@@ -1669,47 +1669,23 @@ li.menu-item-has-mega-menu { position: static; }
 }
 .tg-featureimg {
 	margin: 0;
-	width: 100%;
+	/* width: 100%; */
 	float: left;
 	overflow: hidden;
 	position: relative;
 }
 .tg-bookimg{
-	width: 100%;
+	/* width: 100%; */
 	float: left;
 	position: relative;
 }
 .tg-frontcover {
 	z-index: 2;
-	width: 100%;
+	/* width: 100%; */
 	float: left;
 	position: relative;
 }
-.tg-frontcover:before{
-	top: 0;
-	left: 0;
-	z-index: 3;
-	content: '';
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background:
-		-moz-linear-gradient(left,
-		rgba(0,0,0,0) 8%,
-		rgba(0,0,0,0.1) 5%,
-		rgba(0,0,0,0) 13%);
-	background:
-		-webkit-linear-gradient(left,
-		rgba(0,0,0,0) 8%,
-		rgba(0,0,0,0.1) 5%,
-		rgba(0,0,0,0) 13%);
-	background:
-		linear-gradient(to right,
-		rgba(0,0,0,0) 8%,
-		rgba(0,0,0,0.1) 5%,
-		rgba(0,0,0,0) 13%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#00000000',GradientType=1 );
-}
+
 .tg-backcover {
 	top: 2%;
 	left: 0;
@@ -1744,8 +1720,10 @@ li.menu-item-has-mega-menu { position: static; }
 	height: auto;
 	display: block;
 }
-.tg-postbook:hover .tg-featureimg { padding: 9px 13px 9px 0; }
-.tg-postbook:hover .tg-bookimg {
+.tg-postbook:hover .tg-featureimg { 
+	transform: scale(1.1);
+}
+/* .tg-postbook:hover .tg-bookimg {
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	-ms-transform-style: preserve-3d;
@@ -1756,8 +1734,8 @@ li.menu-item-has-mega-menu { position: static; }
 	-ms-transform: perspective(1000px) rotateY(-30deg) rotateZ(0deg);
 	-o-transform: perspective(1000px) rotateY(-30deg) rotateZ(0deg);
 	transform: perspective(1000px) rotateY(-30deg) rotateZ(0deg);
-}
-.tg-postbook:hover .tg-backcover {left: 18px;}
+} */
+.tg-postbook:hover .tg-backcover {left:18px;}
 .tg-featureimg .tg-btnaddtowishlist{
 	bottom: 35%;
 	left: 0;
@@ -3498,7 +3476,7 @@ blockquote .tg-bookwriter{
 	width:auto;
 	margin:20px auto 0;
 }
-.tg-productgrid .tg-postbook {min-height: 536px;}
+.tg-productgrid .tg-postbook {min-height: 450px;}
 /* =============================================
 			Product Detail Style				
 ============================================= */
@@ -3509,7 +3487,7 @@ blockquote .tg-bookwriter{
 .tg-productdetail .tg-postbook{padding:0;}
 .tg-productdetail .tg-postbook .tg-featureimg{
 	padding:20px;
-	background:#f7f7f7;
+	/* background:#f7f7f7; */
 }
 .tg-productdetail .tg-postbook .tg-bookprice{padding:0 0 14px 20px;}
 .tg-productdetail .tg-postbook .tg-bookprice ins{

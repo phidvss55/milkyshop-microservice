@@ -1,0 +1,20 @@
+.image-description {
+    width: 169px !important;
+    height: 169px !important;
+}
+
+.img-love-product {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.tg-love {
+    float: left;
+    width: 100%;
+    padding-top: 15px
+}
+
+.tg-love:hover {
+    color: red;
+}

@@ -1,3 +1,4 @@
+import { HomeService } from './../../services/home/home.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor() { }
+  dataArr: any;
+  imageDirectoryPath = 'http://localhost:8000/image/article/';
+
+  constructor(
+    private homeService: HomeService
+  ) { }
 
   ngOnInit(): void {
+    this.getArticles();
   }
 
+  getArticles() {
+    this.homeService.getArticles().subscribe( res => {
+      this.dataArr = res;
+    })
+  }
 }

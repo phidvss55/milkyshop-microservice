@@ -58,12 +58,12 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'article', component: HomeArticleComponent },
-      { path: 'article/:id/detail', component: HomeArticleDetailComponent }, //this,
+      { path: 'article/detail/:slug/:id', component: HomeArticleDetailComponent }, //this,
       { path: 'login', component: HomeLoginComponent, canActivate: [BeforeLoginService] }, //this
       { path: 'register', component: HomeRegisterComponent, canActivate: [BeforeLoginService] }, //this
       { path: 'contact', component: HomeContactComponent }, //this
       { path: 'product', component: HomeProductComponent },
-      { path: 'product/:id/detail', component: HomeProductDetailComponent },
+      { path: 'product/detail/:id/:slug', component: HomeProductDetailComponent },
       { path: 'supplier/:id', component: HomeSupplierComponent },
       { path: 'category/:id', component: HomeCategoryComponent },
     ]

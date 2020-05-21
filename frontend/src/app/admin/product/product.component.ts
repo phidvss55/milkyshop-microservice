@@ -8,15 +8,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
+  
+  p: number = 1;
   dataArr: any;
+
   categoriesArr: any;
   imageDirectoryPath = 'http://localhost:8000/image/product/';
   search_value: string;
   data: Array<any>;
-  totalRecords: String;
+  totalRecords: number = 7;
   page: Number = 1;
-
+ 
   constructor(
     private dataService: DataService,
     private activeRoute: ActivatedRoute

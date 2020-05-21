@@ -7,10 +7,10 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="tg-innerbannercontent">
-                    <h1>Contact Us</h1>
+                    <h1>Trang liên hệ</h1>
                     <ol class="tg-breadcrumb">
                         <li><a href="javascript:void(0);">home</a></li>
-                        <li class="tg-active">Contact Us</li>
+                        <li class="tg-active">Liên hệ chúng tôi</li>
                     </ol>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="tg-contactus">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <div class="tg-sectionhead">
-                            <h2><span>Say Hello!</span>Get In Touch With Us</h2>
+                            <h2><span>Xin chào!</span>Vui lòng đièn thông tin để được giải đáp thắc mắc</h2>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -43,13 +43,13 @@
                         <form class="tg-formtheme tg-formcontactus">
                             <fieldset>
                                 <div class="form-group">
-                                    <input type="text" name="first-name" class="form-control" placeholder="First Name*">
+                                    <input type="text" [(ngModel)]="c_name" name="c_name" class="form-control" placeholder=" Nhập họ tên ... ">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="last-name" class="form-control" placeholder="Last Name*">
+                                    <input type="email" [(ngModel)]="c_email" name="c_email" class="form-control" placeholder="Nhập email ... ">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control" placeholder="Last Name*">
+                                    <input type="text"  [(ngModel)]="c_title" name="c_title" class="form-control" placeholder="Nhập tiêu đề ... ">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="subject" class="form-control" placeholder="Subject (optional)">

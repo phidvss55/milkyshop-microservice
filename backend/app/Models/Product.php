@@ -8,7 +8,7 @@ use Illuminate\Support\Arr;
 class Product extends Model
 {
     protected $table = 'products';
-
+    // protected $fillable = ['*'];
     protected $guarded = [''];
 
     const STATUS_PUBLIC = 1;

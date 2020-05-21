@@ -1,0 +1,28 @@
+ins {
+    color: green !important;
+    font-weight: 600;
+}
+
+del {
+    color: red;;
+    font-weight: 100;
+}
+
+.tg-sectionspace {
+    padding: 0 !important;
+}
+
+.img-description {
+    width: 115px;
+    height: 115px;
+}
+
+.tg-love {
+    float: left;
+    width: 100%;
+    padding-top: 15px
+}
+
+.tg-love:hover {
+    color: red;
+}

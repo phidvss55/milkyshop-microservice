@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   
   data: any;
+  
   private baseSupplierUrl = 'http://localhost:8000/admin/supplier';
   private baseCategoryUrl = 'http://localhost:8000/admin/category';
   private baseArticleUrl = 'http://localhost:8000/admin/article';

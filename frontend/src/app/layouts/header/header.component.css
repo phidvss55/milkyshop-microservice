@@ -1,0 +1,13 @@
+#tg-header .container .tg-nav ul a.active-link,
+#tg-header .container .tg-nav ul li.active-link {
+	background: rgba(0, 0, 0, 0.05);
+    color: white;
+    font-weight: 600;
+}
+
+#tg-header .container .tg-nav ul li.active-link ul li a {
+    background: #fafafa;
+    color: #666666;
+    font-weight: normal;
+    /* padding:  */
+}
