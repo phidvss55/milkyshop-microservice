@@ -32,8 +32,4 @@ class UserController extends Controller
         }
         
     }
-
-    public function savePassword(Request $request) {
-
-    }
 }

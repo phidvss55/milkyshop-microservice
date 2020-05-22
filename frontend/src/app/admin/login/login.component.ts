@@ -1,5 +1,8 @@
+import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from './../../services/auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,22 +18,28 @@ export class LoginComponent implements OnInit {
   public error = null;
 
   constructor(
-    private httpClient: HttpClient
+    private authService: AuthService,
+    private token: TokenService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    // console.log(this.form);
-    return this.httpClient.post('http://localhost:8000/api/login', this.form).subscribe(
-      data => console.log(data),
+    this.authService.loginAdmin(this.form).subscribe( 
+      data => this.handleResponse(data),
       error => this.handleError(error)
     );
   }
 
-  handleError(error) {
-    this.error = error.error.error;
+  handleResponse(data) {
+    this.token.handleTokenAdmin(data.access_token); //handle token when login success
+    this.authService.adminChangeAuthStatus(true);
+    this.router.navigateByUrl('/admin');
   }
 
+  handleError(error) {
+    this.error = error.error.message;
+  }
 }

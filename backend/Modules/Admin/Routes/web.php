@@ -17,14 +17,13 @@
 //     Route::get('/dang-xuat', 'AdminAuthController@logoutAdmin')->name('admin.logout');
 // });
 
-// Route::prefix('admin')->middleware('CheckLoginAdmin')->group(function() {
-Route::group(['prefix' => 'admin', 'middleware' => 'api'], function ($router) {
-    Route::post('login', 'AdminController@login');
-});
-
 Route::prefix('admin')->group(function() {
     Route::get('/', 'AdminController@index');
 
+    //Login
+    Route::post('/login','AdminController@login');
+    Route::get('/get/{token}','AdminController@get');
+    
     //supplier
     Route::group(['prefix' => 'supplier'], function() {
         Route::get('', 'AdminSupplierController@index');

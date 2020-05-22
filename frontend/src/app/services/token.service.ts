@@ -11,6 +11,7 @@ export class TokenService {
   }
 
   constructor( ) { }
+
   handleEmail(email) {
     localStorage.setItem('user_email', email);
   }
@@ -61,5 +62,48 @@ export class TokenService {
 
   loggedIn() { //đã login
     return this.isValid();
+  }
+
+  ///////////////////////////////ADMIN
+  handleTokenAdmin(token) {
+    localStorage.setItem('token_admin', token);
+  }
+
+  getTokenAdmin() {
+    return localStorage.getItem('token_admin');
+  }
+
+  removeTokenAdmin() {
+    localStorage.removeItem('token_admin');
+  }
+
+  adminLoggedIn() { //đã login
+    // return this.adminIsValid();
+    const token = this.getTokenAdmin();
+    if(token) {
+      return true;
+    }
+    return false;
+  }
+
+  adminIsValid() {
+    const token = this.getTokenAdmin();
+    if(token) {
+      const payload = this.adminPayload(token);
+      if(payload) {
+        // return (payload.iss === 'http://localhost:8000/api/home/login') ? true : false;
+        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
+      }
+    }
+    return false;
+  }
+
+  adminPayload(token) {
+    const payload = token.split('.')[1];
+    return this.adminDecode(payload);
+  }
+
+  adminDecode(payload) {
+    return JSON.parse(atob(payload));
   }
 }

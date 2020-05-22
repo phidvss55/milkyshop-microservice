@@ -47,6 +47,5 @@ export class AdminComponent implements OnInit {
     data.forEach(ele => {
       this.totalMoney += ele.pro_price * ele.pro_number;
     });
-    console.log(this.totalMoney);
   }
 }

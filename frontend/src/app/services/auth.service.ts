@@ -10,16 +10,27 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(this.Token.loggedIn());
   authStatus = this.loggedIn.asObservable();
 
+  private adminLoggedIn = new BehaviorSubject<boolean>(this.Token.adminLoggedIn());
+  adminAuthStatus = this.adminLoggedIn.asObservable();
+
   data: any;
+
   private baseHomeUrl = 'http://localhost:8000/home';
+  private baseAdminUrl = 'http://localhost:8000/admin';
 
   constructor(
     private httpClient: HttpClient,
     private Token: TokenService
   ) { }
 
+  //AUTHENTICATION FOR HOME
   changeAuthStatus(value: boolean) {
     this.loggedIn.next(value);
+  }
+
+  //AUTHENTICATION FOR ADMIN
+  adminChangeAuthStatus(value: boolean) {
+    this.adminLoggedIn.next(value);
   }
 
   signup(data) {
@@ -32,5 +43,14 @@ export class AuthService {
 
   resetPassword(data) {
     return this.httpClient.post(`${this.baseHomeUrl}/change-password`, data);
+  }
+
+  //AUTHENTICATION FOR ADMIN
+  loginAdmin(data) {
+    return this.httpClient.post(`${this.baseAdminUrl}/login`, data);
+  }
+
+  getAdmin(token) {
+    return this.httpClient.get(`${this.baseAdminUrl}/get/` + token);
   }
 }
