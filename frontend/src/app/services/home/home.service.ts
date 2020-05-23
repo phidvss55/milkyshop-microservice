@@ -11,6 +11,7 @@ export class HomeService {
   private baseProductUrl = 'http://localhost:8000/home/product';
   private baseArticleUrl = 'http://localhost:8000/home/article';
   private baseContactUrl = 'http://localhost:8000/home/contact';
+  private baseShoppingUrl = 'http://localhost:8000/home/shopping';
 
   constructor(
     private httpClient: HttpClient
@@ -75,5 +76,14 @@ export class HomeService {
   //contact 
   insertContact(data) {
     return this.httpClient.post(`${this.baseContactUrl}`, data);
+  }
+
+  //shopping cart
+  addCart(id) {
+    return this.httpClient.get(`${this.baseShoppingUrl}/add/` + id);
+  }
+
+  getTotalCart() {
+    return this.httpClient.get(`${this.baseShoppingUrl}/total`);
   }
 }

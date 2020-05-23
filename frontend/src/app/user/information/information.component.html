@@ -1,1 +1,68 @@
 <app-layout-user></app-layout-user>
+<div class="container body">
+    <div class="right_col">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Cập nhật thông tin user </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <form id="demo-form2" class="form-horizontal form-label-left" #ResetForm=ngForm (ngSubmit)="updateData()" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Họ tên </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="name" required="required" placeholder=" Nhập họ tên ..."
+                                    class="form-control col-md-7 col-xs-12" [(ngModel)]="form.name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> Số điện thoại </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="phone" name="phone" required="required" placeholder=" Nhập mật số điện thoại ..."
+                                     class="form-control col-md-7 col-xs-12" [(ngModel)]="form.phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> Địa chỉ </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="address" required="required" placeholder=" Nhập địa chỉ  ..."
+                                    class="form-control" [(ngModel)]="form.address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> Giới thiệu bản thân </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea name="about" class="form-control" [(ngModel)]="form.about" style="height: auto" cols="30" rows="3"
+                                        required placeholder=" Mô tả bản thân ... "></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> Giới thiệu bản thân </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" name="avatar" class="form-control" (change)="readURL($event); imageUpload($event);">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <img style="margin-left:52%" id="out_img" [src]="imageSrc || '../assets/images/no-image.png'" alt="" width="280px" height="400px">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button [routerLink]="['/user']" class="btn btn-danger" type="button">Quay về</button>
+                                    <button type="submit" class="btn btn-success col-md-3" [disabled]="!ResetForm.valid"> Lưu Thông tin </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

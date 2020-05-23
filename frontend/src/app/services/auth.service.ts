@@ -33,6 +33,10 @@ export class AuthService {
     this.adminLoggedIn.next(value);
   }
 
+  getDataAdmin(email) {
+    return this.httpClient.post(`${this.baseHomeUrl}/get`, email);
+  }
+
   signup(data) {
     return this.httpClient.post(`${this.baseHomeUrl}/signup`, data);
   }
@@ -43,6 +47,10 @@ export class AuthService {
 
   resetPassword(data) {
     return this.httpClient.post(`${this.baseHomeUrl}/change-password`, data);
+  }
+
+  updateInfor(id, data) {
+    return this.httpClient.post(`${this.baseHomeUrl}/update/` + id, data);
   }
 
   //AUTHENTICATION FOR ADMIN

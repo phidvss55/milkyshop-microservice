@@ -24,6 +24,12 @@ export class ProductComponent implements OnInit {
     private homeService: HomeService
   ) { }
 
+  addCart(id) {
+    this.homeService.addCart(id).subscribe( res => {
+      alert(res);
+    });
+  }
+
   ngOnInit(): void {
     this.getCategories();
     this.getSupplier();

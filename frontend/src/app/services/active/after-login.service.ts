@@ -20,6 +20,7 @@ export class AfterLoginService implements CanActivate {
       return this.token.loggedIn();
     } else {
       this.location.replaceState('/');
+      alert(" Bạn phải đăng nhập trước khi thực hiện hoạt động này. ");
       this.router.navigate(['/home']);
       return this.token.loggedIn();
     }

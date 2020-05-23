@@ -1,4 +1,4 @@
-import { AfterLoginService as HomeAfterLoginService } from './services/active/after-login.service';
+import { AfterLoginService as HomeAfterLoginService, AfterLoginService } from './services/active/after-login.service';
 import { BeforeLoginService as HomeBeforeLoginService } from './services/active/before-login.service';
 
 import { AfterLoginService as AdminAfterLoginService } from './services/active-admin/after-login.service';
@@ -40,6 +40,8 @@ import { ProductComponent as HomeProductComponent } from './home/product/product
 import { ProductDetailComponent as HomeProductDetailComponent } from './home/product/product-detail/product-detail.component';
 import { CategoryComponent as HomeCategoryComponent } from './home/category/category.component';
 import { SupplierComponent as HomeSupplierComponent } from './home/supplier/supplier.component';
+import { PayComponent as HomePayComponent } from './home/shopping/pay/pay.component';
+import { CartComponent as HomeCartComponent } from './home/shopping/cart/cart.component';
 
 // ----------------------- USER -----------------------
 import { UserComponent } from './user/user.component';
@@ -69,6 +71,8 @@ const routes: Routes = [
       { path: 'product/detail/:id/:slug', component: HomeProductDetailComponent },
       { path: 'supplier/:id', component: HomeSupplierComponent },
       { path: 'category/:id', component: HomeCategoryComponent },
+      { path: 'shopping/cart', component: HomeCartComponent, canActivate: [AfterLoginService] },
+      { path: 'shopping/pay', component: HomePayComponent, canActivate: [AfterLoginService] },
     ]
   },
   {

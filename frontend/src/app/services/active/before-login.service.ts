@@ -21,6 +21,7 @@ export class BeforeLoginService implements CanActivate {
       return !this.token.loggedIn();
     } else {
       this.location.replaceState('/');
+      alert(" Bạn đã đăng nhập nên không thể thực hiện hoạt động này. ");
       this.router.navigate(['/home']);
       return !this.token.loggedIn();
     }

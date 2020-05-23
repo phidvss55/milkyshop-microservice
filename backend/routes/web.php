@@ -24,7 +24,9 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'home' ], function ($router) {
     Route::post('signup', 'HomeAuthController@signup');
     Route::post('logout', 'HomeAuthController@logout');
     Route::post('refresh', 'HomeAuthController@refresh');
-    Route::post('me', 'HomeAuthController@me');
+    
+    Route::post('get', 'UserController@get');
+    Route::put('update/{id}', 'UserController@update');
     
     Route::post('change-password', 'UserController@changePassword');
 });
@@ -56,5 +58,10 @@ Route::prefix('home')->group(function() {
     //contact 
     Route::group(['prefix' => 'contact'], function() {
         Route::post('', 'HomeContactController@insertData');
+    });
+
+    Route::group(['prefix' => 'shopping'], function() {
+        Route::get('add/{id}', 'ShoppingCartController@addCart');
+        Route::get('total', 'ShoppingCartController@getTotalCart');
     });
 });

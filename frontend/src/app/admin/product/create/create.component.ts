@@ -64,5 +64,4 @@ export class CreateComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-
 }

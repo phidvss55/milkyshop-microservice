@@ -53,6 +53,8 @@ import { ProductboughtComponent } from './user/productbought/productbought.compo
 // ----------------------- 404 -----------------------
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CartComponent } from './home/shopping/cart/cart.component';
+import { PayComponent } from './home/shopping/pay/pay.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +98,8 @@ import { HttpClientModule } from '@angular/common/http';
     HomeCategoryComponent,
     HomeSupplierComponent,
     LayoutUserComponent,
+    CartComponent,
+    PayComponent,
   ],
   imports: [
     BrowserModule,

@@ -85,25 +85,4 @@ export class TokenService {
     }
     return false;
   }
-
-  adminIsValid() {
-    const token = this.getTokenAdmin();
-    if(token) {
-      const payload = this.adminPayload(token);
-      if(payload) {
-        // return (payload.iss === 'http://localhost:8000/api/home/login') ? true : false;
-        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
-      }
-    }
-    return false;
-  }
-
-  adminPayload(token) {
-    const payload = token.split('.')[1];
-    return this.adminDecode(payload);
-  }
-
-  adminDecode(payload) {
-    return JSON.parse(atob(payload));
-  }
 }
