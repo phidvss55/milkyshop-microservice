@@ -1,5 +1,5 @@
 import { DataService } from './../../../services/data.service';
-import { Category } from './../category.module';
+import { Category } from '../category.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

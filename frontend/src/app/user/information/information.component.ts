@@ -50,7 +50,7 @@ export class InformationComponent implements OnInit {
     var obj = {
       "email": this.token.getEmail()
     }
-    this.auth.getDataAdmin(obj).subscribe(res => {
+    this.auth.getDataUser(obj).subscribe(res => {
       this.dataArr = res;
       this.form = this.dataArr;
     });

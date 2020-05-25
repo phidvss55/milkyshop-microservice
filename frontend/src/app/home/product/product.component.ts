@@ -1,3 +1,6 @@
+import { Alert } from './alert.model';
+import { CartService } from './../../services/home/cart.service';
+import { ProductCart } from './product-cart.model';
 import { HomeService } from './../../services/home/home.service';
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,24 +20,76 @@ export class ProductComponent implements OnInit {
   productsArr: any;
   loveProductsArr: any;
 
+  productAddedTocart: ProductCart[];
+  cartItemCount: number = 0;
+  public alerts: Array<Alert> = [];
+
   imageDirectoryPath = 'http://localhost:8000/image/product/';
 
   constructor(
     private dataService: DataService,
-    private homeService: HomeService
-  ) { }
+    private homeService: HomeService,
+    private cartService: CartService
 
-  addCart(id) {
-    this.homeService.addCart(id).subscribe( res => {
-      alert(res);
-    });
-  }
+  ) { }
 
   ngOnInit(): void {
     this.getCategories();
     this.getSupplier();
     this.getProduct();
     this.getLoveProduct();
+  }
+  
+  addCart(product: ProductCart) {
+    console.log(product);
+
+    this.productAddedTocart = this.cartService.getProductFromCart();
+    if (this.productAddedTocart == null) {
+      this.productAddedTocart = [];
+      this.productAddedTocart.push(product);
+      this.cartService.addProductToCart(this.productAddedTocart);
+      this.alerts.push({
+        id: 1,
+        type: 'success',
+        message: 'Product added to cart.'
+      });
+      setTimeout(() => {
+        this.closeAlert(this.alerts);
+      }, 3000);
+    } else {
+      let tempProduct = this.productAddedTocart.find(p => p.id == product.id);
+      if (tempProduct == null) {
+        this.productAddedTocart.push(product);
+        this.cartService.addProductToCart(this.productAddedTocart);
+        this.alerts.push({
+          id: 1,
+          type: 'success',
+          message: 'Thêm sản phẩm thành công.'
+        });
+        setTimeout(() => {
+          this.closeAlert(this.alerts);
+        }, 3000);
+      }
+      else {
+        this.alerts.push({
+          id: 2,
+          type: 'warning',
+          message: ' Sản phẩm này đã tồN tại trong giỏ hàng.'
+        });
+        setTimeout(() => {
+          this.closeAlert(this.alerts);
+        }, 3000);
+      }
+
+    }
+    this.cartItemCount = this.productAddedTocart.length;
+
+    this.cartService.updateCartCount(this.cartItemCount);
+  }
+
+  public closeAlert(alert: any) {
+    const index: number = this.alerts.indexOf(alert);
+    this.alerts.splice(index, 1);
   }
 
   getLoveProduct() {
@@ -130,5 +185,4 @@ export class ProductComponent implements OnInit {
   passCategories(data) {
     this.categoriesArr = data;
   }
-
 }

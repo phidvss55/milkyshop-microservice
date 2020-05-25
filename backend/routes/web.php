@@ -60,8 +60,11 @@ Route::prefix('home')->group(function() {
         Route::post('', 'HomeContactController@insertData');
     });
 
-    Route::group(['prefix' => 'shopping'], function() {
-        Route::get('add/{id}', 'ShoppingCartController@addCart');
-        Route::get('total', 'ShoppingCartController@getTotalCart');
-    });
+    // Route::group(['prefix' => 'shopping'], function() {
+
+    //     Route::get('add/{id}', 'ShoppingCartController@getAddToCart');
+    //     Route::get('danh-sach', 'ShoppingCartController@getListProduct');
+    //     Route::get('total', 'ShoppingCartController@getTotalCart');
+    //     // Route::get('get/{id}', 'ShoppingCartController@getCartDetail');
+    // });
 });

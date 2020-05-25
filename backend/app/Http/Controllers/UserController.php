@@ -60,6 +60,7 @@ class UserController extends Controller
 
     public function get(Request $request) {
         $email = $request->email;
+        // $user = User::select('name', 'avatar')->where('email', $email)->first();
         $user = User::where('email', $email)->first();
         return response()->json($user);
     }

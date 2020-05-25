@@ -33,7 +33,7 @@ export class AuthService {
     this.adminLoggedIn.next(value);
   }
 
-  getDataAdmin(email) {
+  getDataUser(email) {
     return this.httpClient.post(`${this.baseHomeUrl}/get`, email);
   }
 

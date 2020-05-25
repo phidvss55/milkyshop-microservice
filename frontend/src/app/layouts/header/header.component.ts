@@ -1,3 +1,4 @@
+import { CartService } from './../../services/home/cart.service';
 import { HomeService } from './../../services/home/home.service';
 import { DataService } from './../../services/data.service';
 import { TokenService } from './../../services/token.service';
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   public loggedIn: boolean;
   suppliersArr: any;
   categoriesArr: any;
-  totalCart: any;
+  cartItemCount: any;
   
   userInfor: any;
   imageDirectoryPath = 'http://localhost:8000/image/user/';
@@ -25,10 +26,12 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private token: TokenService,
     private dataService: DataService,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private cartService: CartService,
   ) { }
 
   ngOnInit(): void {
+    this.cartService.currentMessage.subscribe(msg => this.cartItemCount = msg);
     this.getData();
     this.getSupplier();
     this.getCategories();
@@ -37,16 +40,14 @@ export class HeaderComponent implements OnInit {
   }
 
   getCartTotal() {
-    this.homeService.getTotalCart().subscribe( res => {
-      this.totalCart = res;
-    });
+    //get total product
   }
 
   getData() {
     var obj = {
       "email": this.token.getEmail()
     }
-    this.auth.getDataAdmin(obj).subscribe( 
+    this.auth.getDataUser(obj).subscribe( 
       data => this.handleData(data),
       error => console.log(error),
     );
@@ -54,7 +55,7 @@ export class HeaderComponent implements OnInit {
 
   handleData(data) {
     this.userInfor = data;
-  }
+    }
 
   getSupplier() {
     this.dataService.getSupplier().subscribe(

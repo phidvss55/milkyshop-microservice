@@ -26,7 +26,7 @@ export class LayoutUserComponent implements OnInit {
     var obj = {
       "email": this.token.getEmail()
     }
-    this.auth.getDataAdmin(obj).subscribe( 
+    this.auth.getDataUser(obj).subscribe( 
       data => this.handleData(data),
       error => console.log(error),
     );

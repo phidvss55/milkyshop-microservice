@@ -79,11 +79,15 @@ export class HomeService {
   }
 
   //shopping cart
-  addCart(id) {
-    return this.httpClient.get(`${this.baseShoppingUrl}/add/` + id);
-  }
+  // addCart(id) {
+  //   return this.httpClient.get(`${this.baseShoppingUrl}/add/` + id);
+  // }
 
-  getTotalCart() {
-    return this.httpClient.get(`${this.baseShoppingUrl}/total`);
-  }
+  // getTotalCart() {
+  //   return this.httpClient.get(`${this.baseShoppingUrl}/total`);
+  // }
+
+  // getListProduct() {
+  //   return this.httpClient.get(`${this.baseShoppingUrl}/danh-sach`);
+  // }
 }

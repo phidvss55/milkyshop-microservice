@@ -14,10 +14,12 @@ composer install
 ### Serving Your Application
 php artisan serve
 
-
 # In **frontend folder**  
 ### install npm
+rm -rf node_modules dist tmp
+npm install --save-dev angular-cli@latest
 npm install
+npm init
 
 ### Serving Your Application
 ng serve

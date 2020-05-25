@@ -1,5 +1,5 @@
 import { HomeService } from './../../services/home/home.service';
-import { Contact } from './contact.module';
+import { Contact } from './contact.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

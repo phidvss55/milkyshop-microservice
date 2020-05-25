@@ -24,21 +24,21 @@
                             <table class="table table-striped jambo_table bulk_action">
                                 <thead>
                                 <tr class="headings">
-                                    <th class="column-title">#</th>
-                                    <th class="column-title">Tên khách hàng</th>
-                                    <th class="column-title">Email</th>
-                                    <th class="column-title">Hình ảnh</th>
-                                    <th class="column-title">Trạng thái</th>
-                                    <th class="column-title">Thao tác</th>
+                                    <th>#</th>
+                                    <th>Tên khách hàng</th>
+                                    <th>Email</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                     <tr class="even pointer" *ngFor="let user of dataArr | paginate: { itemsPerPage: 5, currentPage: p }" >
-                                        <td>{{ user.id }}</td>
-                                        <td>{{ user.name }}</td>
-                                        <td>{{ user.email }}</td>
+                                        <td width="5%">{{ user.id }}</td>
+                                        <td width="20%">{{ user.name }}</td>
+                                        <td width="20%">{{ user.email }}</td>
                                         <td>
-                                            <img src="{{ imageDirectoryPath }}{{ user.avatar }}" alt="admin" class="zvn-thumb">
+                                            <img src="{{ imageDirectoryPath }}{{ user.avatar }}" alt="admin" class="zvn-thumb img-user">
                                         </td>
                                         <td>
                                             <button (click)="changeActive(user.id, 1)" type="button" *ngIf="user.active == 1" class="btn btn-detail btn-success"> Public </button>

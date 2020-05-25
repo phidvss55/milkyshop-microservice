@@ -71,8 +71,8 @@ const routes: Routes = [
       { path: 'product/detail/:id/:slug', component: HomeProductDetailComponent },
       { path: 'supplier/:id', component: HomeSupplierComponent },
       { path: 'category/:id', component: HomeCategoryComponent },
-      { path: 'shopping/cart', component: HomeCartComponent, canActivate: [AfterLoginService] },
-      { path: 'shopping/pay', component: HomePayComponent, canActivate: [AfterLoginService] },
+      { path: 'shopping/cart', component: HomeCartComponent },
+      { path: 'shopping/pay', component: HomePayComponent },
     ]
   },
   {
