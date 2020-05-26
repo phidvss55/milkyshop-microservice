@@ -83,13 +83,16 @@ Route::prefix('admin')->group(function() {
     //ql don hang
     Route::group(['prefix' => 'transaction'], function() {
         Route::get('', 'AdminTransactionController@index');
-        // Route::get('/view/{id}', 'AdminTransactionController@viewOrder')->name('admin.get.view.order');
+        Route::get('/get/{id}', 'AdminTransactionController@get');
+        Route::post('/status', 'AdminTransactionController@updateTransaction');
+        Route::delete('/delete/{id}', 'AdminTransactionController@delete');
         // Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.transaction');
     });
 
     //ql user
     Route::group(['prefix' => 'user'], function() {
         Route::get('', 'AdminUserController@index');
+        Route::get('/get/{email}', 'AdminUserController@get');
         Route::post('/change-active', 'AdminUserController@changeActive');
         Route::delete('/delete/{id}', 'AdminUserController@delete');
     });

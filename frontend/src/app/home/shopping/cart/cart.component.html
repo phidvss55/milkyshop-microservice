@@ -14,25 +14,35 @@
                             <th>Id</th>
                             <th>Tên sản phẩm</th>
                             <th>Hình ảnh</th>
-                            <th> Số lượng </th>
                             <th> Giá </th>
+                            <th> Số lượng </th>
                             <th> Thành tiền </th>
                             <th> Thao tác </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>John</td>
-                            <td>Doe</td>
-                            <td>john@example.com</td>
-                            <td>john@example.com</td>
-                            <td>john@example.com</td>
-                            <td>john@example.com</td>
-                            <td>john@example.com</td>
+                        <tr *ngFor="let product of productAddedTocart">
+                            <td>{{ product.id }}</td>
+                            <td style="width: 25%">
+                                <b><a routerLink="/home/product/detail/{{ product.id }}/{{ product.pro_slug}}">{{ product.pro_name }}</a></b>
+                            </td>
+                            <td>
+                                <img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="" class="img-product">
+                            <td style="width: 10%;"><b>{{ product.price | number }}</b></td>
+                            <td style="width: 15%;">
+                                <input (change)="updateInfor($event, product)" type="number" name="qty" value="{{ product.quantity }}" class="form-control qty" min="0">
+                            </td>
+                            <td>{{ product.price * product.quantity | number}}</td>
+                            <td>
+                                <button type="button" (click)="deleteItemFromCart(product)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></button>
+                            </td>
                         </tr>
-                     
                     </tbody>
                 </table>
+            </div>
+            <div class="pull-right">
+                <h3><b>Tổng cộng : {{ allTotal | number }}</b></h3>
+                <button [routerLink]="['/home/shopping/pay']" class="btn-checkout btn btn-primary" type="button"> Thanh Toán </button>
             </div>
         </div>
     </div>

@@ -69,10 +69,10 @@ const routes: Routes = [
       { path: 'contact', component: HomeContactComponent }, //this
       { path: 'product', component: HomeProductComponent },
       { path: 'product/detail/:id/:slug', component: HomeProductDetailComponent },
-      { path: 'supplier/:id', component: HomeSupplierComponent },
-      { path: 'category/:id', component: HomeCategoryComponent },
+      // { path: 'supplier/:id', component: HomeSupplierComponent },
+      { path: 'category/:slug/:id', component: HomeCategoryComponent },
       { path: 'shopping/cart', component: HomeCartComponent },
-      { path: 'shopping/pay', component: HomePayComponent },
+      { path: 'shopping/pay', component: HomePayComponent, canActivate: [HomeAfterLoginService] },
     ]
   },
   {

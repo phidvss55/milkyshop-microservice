@@ -24,7 +24,7 @@ export class AdminComponent implements OnInit {
   }
 
   getTransaction() {
-    this.homeService.getTransaction().subscribe(
+    this.dataService.getTransaction().subscribe(
       data => this.getTotalInMoney(data),
       error => console.log(error) 
     )

@@ -76,14 +76,6 @@
                             </a>
                         </div>
                     </div>
-                    <div class="tg-searchbox">
-                        <form class="tg-formtheme tg-formsearch">
-                            <fieldset>
-                                <input type="text" name="search" class="typeahead form-control" placeholder="Search by title, author, keyword, ISBN...">
-                                <button type="submit"><i class="icon-magnifier"></i></button>
-                            </fieldset>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
@@ -103,26 +95,26 @@
                         </div>
                         <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
                             <ul>
-                                <li><a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-                                <li class="menu-item-has-children" [routerLinkActive]="['active-link']">
-                                    <a>Supplier</a>
+                                <li><a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Trang Chủ </a></li>
+                                <!-- <li class="menu-item-has-children" [routerLinkActive]="['active-link']">
+                                    <a> Nhà Cung Cấp </a>
                                     <ul class="sub-menu">
                                         <li *ngFor="let supplier of suppliersArr">
                                             <a routerLink="/home/supplier/{{ supplier.id }}" >{{ supplier.s_name }}</a>
                                         </li>
                                     </ul>
-                                </li>
-                                <li class="menu-item-has-children" [routerLinkActive]="['active-link']">
-                                    <a>Category</a>
+                                </li> -->
+                                <li class="menu-item-has-children" routerLinkActive="active-link">
+                                    <a> Danh Mục </a>
                                     <ul class="sub-menu">
                                         <li *ngFor="let category of categoriesArr">
-                                            <a routerLink="/home/category/{{ category.id }}" >{{ category.c_name }}</a>
+                                            <a routerLink="/home/category/{{category.c_slug}}/{{category.id}}" (click)="loadPage()">{{ category.c_name }}</a>
                                         </li>
                                     </ul>
                                 </li>
-                                <li><a [routerLink]="['/home/product']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">All Products</a></li>
-                                <li><a [routerLink]="['/home/article']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">News</a></li>
-                                <li><a [routerLink]="['/home/contact']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
+                                <li><a [routerLink]="['/home/product']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Toàn Bộ Sản Phẩm</a></li>
+                                <li><a [routerLink]="['/home/article']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Tin Tức </a></li>
+                                <li><a [routerLink]="['/home/contact']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Liên Hệ </a></li>
                                 <li class="pull-right" *ngIf="!loggedIn">
                                     <a [routerLink]="['/home/login']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Đăng Nhập </a>
                                 </li>

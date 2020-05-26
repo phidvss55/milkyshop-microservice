@@ -35,12 +35,7 @@ export class HeaderComponent implements OnInit {
     this.getData();
     this.getSupplier();
     this.getCategories();
-    this.getCartTotal()
     this.auth.authStatus.subscribe(value => this.loggedIn = value);
-  }
-
-  getCartTotal() {
-    //get total product
   }
 
   getData() {
@@ -73,6 +68,12 @@ export class HeaderComponent implements OnInit {
       data => this.passCategory(data),
       error => console.log(error)
     )
+  }
+
+  loadPage() {
+    setTimeout(function () {
+      location.reload()
+    }, 100);
   }
 
   passCategory(data) {

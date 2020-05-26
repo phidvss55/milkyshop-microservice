@@ -65,5 +65,4 @@ export class ArticleDetailComponent implements OnInit {
     var nameArr = arr.split('-');
     this.name = nameArr.join(' ');
   }
-
 }

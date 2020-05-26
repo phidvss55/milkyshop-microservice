@@ -11,15 +11,38 @@ export class TransactionComponent implements OnInit {
 
   dataArr: any;
   userArr: any;
+  userListArr: any;
+  p: number = 1;
 
   constructor(
-    private homeService: HomeService,
     private dataService: DataService
   ) { }
 
   ngOnInit(): void {
     this.getTransactions();
+    this.getUserList();
     this.getUserData();
+  }
+
+  getUserList() {
+    this.dataService.getUser().subscribe ( res => {
+      this.userListArr = res;
+    })
+  }
+
+  resolveProblem(id) {
+    var obj = {
+      "id": id
+    }
+    this.dataService.resolveTransaction(obj).subscribe( res => {
+      this.getTransactions();
+    });
+  }
+
+  deleteTran(id) {
+    this.dataService.deleteTransaction(id).subscribe( res => {
+      this.getTransactions();
+    })
   }
 
   getUserData() {
@@ -30,18 +53,16 @@ export class TransactionComponent implements OnInit {
   }
 
   handleUserData(data) {
-    console.log(data);
     this.userArr = data;
   }
 
   getTransactions() {
-    this.homeService.getTransaction().subscribe(
+    this.dataService.getTransaction().subscribe(
       data => this.handleData(data),
       error => console.log(error)
     );
   }
   handleData(data) {
-    console.log(data);
     this.dataArr = data;
   }
 }

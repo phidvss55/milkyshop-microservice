@@ -7,11 +7,12 @@ import { Injectable } from '@angular/core';
 })
 export class HomeService {
 
-  private baseTransactionUrl = 'http://localhost:8000/admin/transaction'; // ???????? change to data service
   private baseProductUrl = 'http://localhost:8000/home/product';
   private baseArticleUrl = 'http://localhost:8000/home/article';
+  private baseCategoryeUrl = 'http://localhost:8000/home/category';
   private baseContactUrl = 'http://localhost:8000/home/contact';
   private baseShoppingUrl = 'http://localhost:8000/home/shopping';
+  private baseHomeUrl = 'http://localhost:8000/home';
 
   constructor(
     private httpClient: HttpClient
@@ -20,6 +21,10 @@ export class HomeService {
   //articles
   getArticles() {
     return this.httpClient.get(`${this.baseArticleUrl}`);
+  }
+
+  getHomeArticles() {
+    return this.httpClient.get(`${this.baseArticleUrl}/home-article/get`);
   }
 
   updateView(id) {
@@ -38,9 +43,22 @@ export class HomeService {
     return this.httpClient.get(`${this.baseArticleUrl}/relate/article`);
   }
 
+  //category
+  getProductInCategory(id) {
+    return this.httpClient.get(`${this.baseCategoryeUrl}/get/` + id);
+  }
+
+  searchProViaCategory(data) {
+    return this.httpClient.post(`${this.baseCategoryeUrl}/search`, data);
+  }
+
   //get product HomeProudctController
   getProducts() {
     return this.httpClient.get(`${this.baseProductUrl}`);
+  }
+
+  updateViewProduct(id) {
+    return this.httpClient.post(`${this.baseProductUrl}/update-view`, id);
   }
 
   getLoveProduct() {
@@ -68,20 +86,28 @@ export class HomeService {
     return this.httpClient.get(`${this.baseProductUrl}/relate-product/` + id);
   }
 
-  //transaction
-  getTransaction() {
-    return this.httpClient.get(`${this.baseTransactionUrl}`);
-  }
-
   //contact 
   insertContact(data) {
     return this.httpClient.post(`${this.baseContactUrl}`, data);
   }
 
   //shopping cart
-  // addCart(id) {
-  //   return this.httpClient.get(`${this.baseShoppingUrl}/add/` + id);
-  // }
+  saveInforCart(data) {
+    return this.httpClient.post(`${this.baseShoppingUrl}/thanh-toan`, data);
+  }
+
+  //Home
+  getDiscountProduct() {
+    return this.httpClient.get(`${this.baseHomeUrl}/get-discount`);
+  }
+
+  getHotestProduct() {
+    return this.httpClient.get(`${this.baseHomeUrl}/get-hotest`);
+  }
+
+  getNewestProduct() {
+    return this.httpClient.get(`${this.baseHomeUrl}/get-newest`);
+  }
 
   // getTotalCart() {
   //   return this.httpClient.get(`${this.baseShoppingUrl}/total`);

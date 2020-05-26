@@ -47,31 +47,32 @@ jQuery(document).on('ready', function() {
 	/*--------------------------------------
 			BEST BOOK SLIDER				
 	--------------------------------------*/
-	var _tg_bestsellingbooksslider = jQuery('#tg-bestsellingbooksslider');
-	_tg_bestsellingbooksslider.owlCarousel({
-		nav: true,
-		loop: true,
-		autoplay: true,
-		autoplayTimeout: 1000,
-		autoplayHoverPause: true,
-		margin: 30,
-		dots: true,
-		navText: [
-					'<i class="icon-chevron-left"></i>',
-					'<i class="icon-chevron-right"></i>'
-				],
-		navClass: [
-					'owl-prev tg-btnround tg-btnprev',
-					'owl-next tg-btnround tg-btnnext'
-				],
-		responsive: {
-			0: { items:1 },
-			480: { items:2 },
-			600: { items:3 },
-			1000: { items:5 },
-			1200: { items:6 },
-		}
-	});
+	// var _tg_bestsellingbooksslider = jQuery('#tg-bestsellingbooksslider');
+	// _tg_bestsellingbooksslider.owlCarousel({
+	// 	nav: true,
+	// 	loop: true,
+	// 	autoplay: true,
+	// 	autoplayTimeout: 1000,
+	// 	autoplayHoverPause: true,
+	// 	margin: 30,
+	// 	rewind: true,
+	// 	dots: true,
+	// 	navText: [
+	// 				'<i class="icon-chevron-left"></i>',
+	// 				'<i class="icon-chevron-right"></i>'
+	// 			],
+	// 	navClass: [
+	// 				'owl-prev tg-btnround tg-btnprev',
+	// 				'owl-next tg-btnround tg-btnnext'
+	// 			],
+	// 	responsive: {
+	// 		0: { items:1 },
+	// 		480: { items:2 },
+	// 		600: { items:3 },
+	// 		1000: { items:5 },
+	// 		1200: { items:6 },
+	// 	}
+	// });
 	/*--------------------------------------
 			RELATED PRODUCT SLIDER			
 	--------------------------------------*/

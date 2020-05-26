@@ -1,0 +1,16 @@
+.alert-add {
+    position: fixed;
+    top: 10%;
+    z-index: 999;
+    right: 40%;
+}
+
+.img-desc {
+    width: 165px !important;
+    height: 165px !important;
+}
+
+.img-article {
+    width: 220px !important;
+    height: 165px !important;
+}

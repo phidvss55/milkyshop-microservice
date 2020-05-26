@@ -29,9 +29,17 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params.id;
     this.handleSlug(this.route.snapshot.params.slug);
+    this.updateView(this.id);
     this.getProduct();
     this.getCategories();
     this.getPayestProduct();
+  }
+
+  updateView(id) {
+    var obj = {
+      "id": id
+    }
+    this.homeService.updateViewProduct(obj).subscribe( res => {});
   }
 
   getPayestProduct() {
