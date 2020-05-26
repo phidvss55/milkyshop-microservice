@@ -1,3 +1,4 @@
+import { HomeService } from './../../services/home/home.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArticleComponent implements OnInit {
 
-  constructor() { }
+  dataArr: any;
+  imageDirectoryPath = 'http://localhost:8000/image/article/';
+  topArticleArr: any;
+  relateArticleArr: any;
+
+  constructor(
+    private homeService: HomeService
+  ) { }
 
   ngOnInit(): void {
+    this.getArticles();
+    this.getTopArticle();
+    this.getRelateArticle();
   }
 
+  loadPage() {
+    setTimeout(function () {
+      location.reload()
+    }, 100);
+  }
+
+  getRelateArticle() {
+    this.homeService.getRelateArticle().subscribe( res => {
+      this.relateArticleArr = res;
+    })
+  }
+
+  getTopArticle() {
+    this.homeService.getTopArticle().subscribe( res => {
+      this.topArticleArr = res;
+    })
+  }
+
+  getArticles() {
+    this.homeService.getArticles().subscribe( res => {
+      this.dataArr = res;
+    })
+  }
 }

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryComponent implements OnInit {
 
+  p: number = 1;
   dataArr: any;
   supplierArr: any;
 
@@ -30,6 +31,26 @@ export class CategoryComponent implements OnInit {
     this.dataService.getCategory().subscribe( res => {
       this.dataArr = res;
     });
+  }
+
+  changeActive(id, status) {
+    var obj = {
+      "id": id,
+      "status": status
+    }
+    this.dataService.changeActiveCategory(obj).subscribe( res => {
+      this.getCategoriesData();
+    });
+  }
+
+  changeHome(id, home) {
+    var obj = {
+      "id": id,
+      "home": home
+    }
+    this.dataService.changeHomeCategory(obj).subscribe( res => {
+      this.getCategoriesData();
+    })
   }
 
   deleteData(id) {

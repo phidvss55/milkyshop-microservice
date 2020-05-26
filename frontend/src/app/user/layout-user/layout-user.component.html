@@ -5,11 +5,11 @@
                 <!-- <div class="clearfix"></div> -->
                 <div class="profile clearfix">
                     <div class="profile_pic">
-                        <img src="../assets/theme_admin/img/user.png" alt="..." class="img-circle profile_img">
+                        <img src="{{ imageDirectoryPath }}{{ dataArr.avatar }}" alt="" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <h2>{{ dataArr.name }}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -18,10 +18,11 @@
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                     <div class="menu_section">
                         <ul class="nav side-menu" style="margin-left: 5px">
-                            <li><a routerLink="/user"><i class="fa fa-home"></i> Trang Tổng Quan </a></li>
-                            <li><a routerLink="/user/information"><i class="fa icon-info"></i> Cập nhật thông tin </a></li>
-                            <li><a routerLink="/user/change-password"><i class="fa icon-key"></i> Cập nhật mật khẩu </a></li>
-                            <li><a routerLink="/user/product-bought"><i class="fa icon-compass"></i> Sản phẩm đã mua </a></li>
+                            
+                            <li><a routerLink="/user" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fa fa-home"></i> Trang Tổng Quan </a></li>
+                            <li><a routerLink="/user/information" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fa icon-info"></i> Cập nhật thông tin </a></li>
+                            <li><a routerLink="/user/change-password" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fa icon-key"></i> Cập nhật mật khẩu </a></li>
+                            <li><a routerLink="/user/product-bought" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"><i class="fa icon-compass"></i> Sản phẩm đã mua </a></li>
                             <li><a routerLink="/home"><i class="fa icon-arrow-left"></i> Quay Lại </a></li>
                         </ul>
                     </div>
@@ -36,13 +37,6 @@
                     <div class="nav toggle">
                         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
                     </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a routerLink="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="./assets/theme_admin/img/img.jpg" alt="">
-                            </a>
-                        </li>
-                    </ul>
                 </nav>
             </div>
         </div>

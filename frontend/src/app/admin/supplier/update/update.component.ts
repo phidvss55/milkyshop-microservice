@@ -1,5 +1,5 @@
 import { DataService } from './../../../services/data.service';
-import { Supplier } from './../supplier.module';
+import { Supplier } from '../supplier.model';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

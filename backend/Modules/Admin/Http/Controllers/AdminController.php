@@ -2,54 +2,38 @@
 
 namespace Modules\Admin\Http\Controllers;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function index() {
-        // $ratings = Rating::with('user:id,name', 'product:id,pro_name')->limit(10)->get();
-        // $contacts = Contact::limit(10)->get();
+    public function login(Request $request) {
 
-        // //Doanh thu theo ngay tim trong ngay do nhung donhang nao da xu ly
-        // $moneyDay = Transaction::whereDay('updated_at', date('d'))->where('tr_status', Transaction::STATUS_DONE)
-        // ->sum('tr_total');
+        $admin = Admin::where('email', $request->email)->first();
+        if (!$admin) {
+            return response()->json(['status' => 'error', 'message' => ' Mật khẩu hoặc tài khoản không đúng. '], 404);
+        }
+        if (Hash::check($request->password, $admin->password)){
+            
+            $admin = DB::table('admins')->where('email', $request->email)->update(['fa2_code' => Str::random(150)]);
+            $admin = Admin::where('email', $request->email)->first();
+            $token = $admin->fa2_code;
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'admin' => $admin
+            ]);
+        }
 
-        // //Doanh thu theo thang tim trong ngay do nhung donhang nao da xu ly
-        // $moneyMonth = Transaction::whereMonth('updated_at', date('m'))->where('tr_status', Transaction::STATUS_DONE)
-        // ->sum('tr_total');
+       return response()->json(['status' => 'error', 'message' => 'Mật khẩu hoặc tài khoản không đúng.'], 401);
+    }
 
-        // $dataMoney = [
-        //     [
-        //         "name"  => "Doanh thu ngày",
-        //         "y"     => (int)$moneyDay,
-        //     ],
-        //     [
-        //         "name"  => "Doanh thu tuần",
-        //         "y"     => (int)$moneyDay,
-        //     ],            
-        //     [
-        //         "name"  => "Doanh thu tháng",
-        //         "y"     => (int)$moneyMonth,
-        //     ],
-        //     [
-        //         "name"  => "Doanh thu năm",
-        //         "y"     => (int)$moneyDay,
-        //     ],
-        // ];
-
-        // //Danh sach don hàng mới nhất
-        // $transactionNews = Transaction::with('user:id,name')->limit(5)->orderByDesc('id')->get();
-
-        // $viewData = [
-        //     'ratings'       => $ratings,
-        //     'contacts'      => $contacts,
-        //     'moneyDay'      => $moneyDay,
-        //     'moneyMonth'    => $moneyMonth,
-        //     'dataMoney'     => json_encode($dataMoney),
-        //     'transactionNews'   => $transactionNews,
-        // ];
-        // return view('admin::index', $viewData);
+    public function get($token) {
+        $admin = Admin::where('fa2_code', $token)->first();
+        return response()->json($admin->name);
     }
 }

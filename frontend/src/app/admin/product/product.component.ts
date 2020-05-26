@@ -8,18 +8,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
+  
+  p: number = 1;
   dataArr: any;
+
   categoriesArr: any;
   imageDirectoryPath = 'http://localhost:8000/image/product/';
   search_value: string;
-  data: Array<any>;
-  totalRecords: String;
-  page: Number = 1;
-
+ 
   constructor(
     private dataService: DataService,
-    private activeRoute: ActivatedRoute
+    // private activeRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
@@ -44,6 +43,26 @@ export class ProductComponent implements OnInit {
       data => this.handleData(data),
       error => console.log(error)
     );
+  }
+
+  changeActive(id, status) {
+    var obj = {
+      "id": id,
+      "status": status
+    }
+    this.dataService.changeActiveProduct(obj).subscribe( res => {
+      this.getProductsData();
+    });
+  }
+
+  changeHot(id, hot) {
+    var obj = {
+      "id": id,
+      "hot": hot
+    }
+    this.dataService.changeHotProduct(obj).subscribe( res => {
+      this.getProductsData();
+    })
   }
 
   handleData(data) {

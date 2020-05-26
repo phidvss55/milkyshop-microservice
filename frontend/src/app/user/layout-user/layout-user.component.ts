@@ -1,3 +1,5 @@
+import { AuthService } from './../../services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
 
 @Component({
@@ -7,9 +9,31 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class LayoutUserComponent implements OnInit {
 
-  constructor( private elementRef: ElementRef ) { }
+  dataArr: any;
+  imageDirectoryPath = 'http://localhost:8000/image/user/';
+
+  constructor( 
+    private elementRef: ElementRef,
+    private token: TokenService,
+    private auth: AuthService
+  ) { }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    var obj = {
+      "email": this.token.getEmail()
+    }
+    this.auth.getDataUser(obj).subscribe( 
+      data => this.handleData(data),
+      error => console.log(error),
+    );
+  }
+
+  handleData(data) {
+    this.dataArr = data;
   }
 
   ngAfterViewInit() {

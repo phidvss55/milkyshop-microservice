@@ -1,4 +1,7 @@
+import { TokenService } from 'src/app/services/token.service';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -7,36 +10,41 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 })
 export class LayoutComponent implements OnInit {
 
+  name: any;
+
   constructor(
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+    private authService: AuthService,
+    private token: TokenService,
+    private router: Router,
+    private auth: AuthService
+
   ) { }
 
   ngOnInit(): void {
+    this.getAdmin();
+  }
 
+  logout(event: MouseEvent) {
+    event.preventDefault();
+    this.token.removeTokenAdmin();
+    this.auth.adminChangeAuthStatus(false);
+    this.router.navigateByUrl('/admin/login');
+  }
+
+  getAdmin() {
+    this.authService.getAdmin(this.token.getTokenAdmin()).subscribe(res => {
+      this.name = res;
+    });
   }
 
   ngAfterViewInit() {
     this.importnprogressCss();
-    this.importGreenCss();  
+    this.importGreenCss();
     this.importbootstrapProgressbarCss();
     this.importMyCss();
     this.importCustomCss();
   }
-
-  //add this to add product
-//   readURL(input) {
-//     if(input.files && input.files[0]) {
-//         var reader = new FileReader();
-//         reader.onload = function(e) {
-//             $('#out_img').attr('src', e.target.result);
-//         }
-//         reader.readAsDataURL(input.files[0]);
-//     }
-// }
-
-//   $('#in_img').change(function() {
-//     readURL(this);
-// });
 
   importCustomCss() {
     var style = document.createElement('link');

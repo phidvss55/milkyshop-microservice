@@ -1,0 +1,13 @@
+.tg-sectionspace {
+    padding-top: 40px;
+}
+
+.tg-formcontactus fieldset .form-group:first-child{
+    padding: 0;
+    padding-right: 10px;
+}
+
+.tg-formcontactus fieldset .form-group:last-child{
+    padding: 0;
+    padding-left: 10px;
+}

@@ -8,8 +8,8 @@
                         <img src="../assets/theme_admin/img/user.png" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <span>Xin Chào,</span>
+                        <h2>{{ name }}</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -38,18 +38,12 @@
         <!-- top navigation -->
         <div class="top_nav">
             <div class="nav_menu">
-                <nav>
-                    <div class="nav toggle">
-                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-                    </div>
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="">
-                            <a routerLink="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="./assets/theme_admin/img/img.jpg" alt="">
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="">
+                        <a (click)="logout($event)" [routerLink]="['/home']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                            <i style="margin: 0 10px;margin-top: 8px;" class="fa fa-sign-out pull-right"></i>  Đăng Xuất </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>

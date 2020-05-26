@@ -97,3 +97,12 @@ span.highlight{
 .panel-orange {
     background: rgb(184, 124, 14);
 }
+
+ul.ngx-pagination {
+    margin: auto;
+    float: right;
+    display: inline-block;
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px
+}

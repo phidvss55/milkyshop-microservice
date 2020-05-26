@@ -1,5 +1,8 @@
-import { AfterLoginService } from './services/active/after-login.service';
-import { BeforeLoginService } from './services/active/before-login.service';
+import { AfterLoginService as HomeAfterLoginService, AfterLoginService } from './services/active/after-login.service';
+import { BeforeLoginService as HomeBeforeLoginService } from './services/active/before-login.service';
+
+import { AfterLoginService as AdminAfterLoginService } from './services/active-admin/after-login.service';
+import { BeforeLoginService as AdminBeforeLoginService } from './services/active-admin/before-login.service';
 // ---------------------- LAYOUTS HOME ------------------------------------------------
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
@@ -37,6 +40,8 @@ import { ProductComponent as HomeProductComponent } from './home/product/product
 import { ProductDetailComponent as HomeProductDetailComponent } from './home/product/product-detail/product-detail.component';
 import { CategoryComponent as HomeCategoryComponent } from './home/category/category.component';
 import { SupplierComponent as HomeSupplierComponent } from './home/supplier/supplier.component';
+import { PayComponent as HomePayComponent } from './home/shopping/pay/pay.component';
+import { CartComponent as HomeCartComponent } from './home/shopping/cart/cart.component';
 
 // ----------------------- USER -----------------------
 import { UserComponent } from './user/user.component';
@@ -58,48 +63,50 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'article', component: HomeArticleComponent },
-      { path: 'article/:id/detail', component: HomeArticleDetailComponent }, //this,
-      { path: 'login', component: HomeLoginComponent, canActivate: [BeforeLoginService] }, //this
-      { path: 'register', component: HomeRegisterComponent, canActivate: [BeforeLoginService] }, //this
+      { path: 'article/detail/:slug/:id', component: HomeArticleDetailComponent }, //this,
+      { path: 'login', component: HomeLoginComponent, canActivate: [HomeBeforeLoginService] }, //this
+      { path: 'register', component: HomeRegisterComponent, canActivate: [HomeBeforeLoginService] }, //this
       { path: 'contact', component: HomeContactComponent }, //this
       { path: 'product', component: HomeProductComponent },
-      { path: 'product/:id/detail', component: HomeProductDetailComponent },
+      { path: 'product/detail/:id/:slug', component: HomeProductDetailComponent },
       { path: 'supplier/:id', component: HomeSupplierComponent },
       { path: 'category/:id', component: HomeCategoryComponent },
+      { path: 'shopping/cart', component: HomeCartComponent },
+      { path: 'shopping/pay', component: HomePayComponent },
     ]
   },
   {
     path: 'admin',
     children: [
-      { path: '', component: AdminComponent },
-      { path: 'article', component: AdminArticleComponent },
-      { path: 'article/create', component: ArticleCreateComponent },
-      { path: 'article/:id/update', component: ArticleUpdateComponent },
-      { path: 'category', component: AdminCategoryComponent },
-      { path: 'category/create', component: CategoryCreateComponent },
-      { path: 'category/:id/update', component: CategoryUpdateComponent },
-      { path: 'contact', component: AdminContactComponent },
-      { path: 'login', component: AdminLoginComponent },
-      { path: 'product', component: AdminProductComponent },
-      { path: 'product/create', component: ProductCreateComponent },
-      { path: 'product/:id/update', component: ProductUpdateComponent },
-      { path: 'supplier', component: AdminSupplierComponent },
-      { path: 'supplier/create', component: SupplierCreateComponent },
-      { path: 'supplier/:id/update', component: SupplierUpdateComponent },
-      { path: 'transaction', component: AdminTransactionComponent },
-      { path: 'rating', component: AdminRatingComponent },
-      { path: 'user', component: AdminUserComponent },
-      { path: 'warehouse', component: AdminWarehouseComponent },
+      { path: '', component: AdminComponent, canActivate: [AdminAfterLoginService] },
+      { path: 'article', component: AdminArticleComponent, canActivate: [AdminAfterLoginService] },
+      { path: 'article/create', component: ArticleCreateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'article/:id/update', component: ArticleUpdateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'category', component: AdminCategoryComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'category/create', component: CategoryCreateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'category/:id/update', component: CategoryUpdateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'contact', component: AdminContactComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'login', component: AdminLoginComponent , canActivate: [AdminBeforeLoginService] },
+      { path: 'product', component: AdminProductComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'product/create', component: ProductCreateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'product/:id/update', component: ProductUpdateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'supplier', component: AdminSupplierComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'supplier/create', component: SupplierCreateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'supplier/:id/update', component: SupplierUpdateComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'transaction', component: AdminTransactionComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'rating', component: AdminRatingComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'user', component: AdminUserComponent , canActivate: [AdminAfterLoginService] },
+      { path: 'warehouse', component: AdminWarehouseComponent , canActivate: [AdminAfterLoginService] },
 
     ]
   },
   {
     path: 'user',
     children: [
-      { path: '', component: UserComponent, canActivate: [AfterLoginService] },
-      { path: 'information', component: InformationComponent, canActivate: [AfterLoginService] },
-      { path: 'change-password', component: ChangepasswordComponent, canActivate: [AfterLoginService] },
-      { path: 'product-bought', component: ProductboughtComponent, canActivate: [AfterLoginService] },
+      { path: '', component: UserComponent, canActivate: [HomeAfterLoginService] },
+      { path: 'information', component: InformationComponent, canActivate: [HomeAfterLoginService] },
+      { path: 'change-password', component: ChangepasswordComponent, canActivate: [HomeAfterLoginService] },
+      { path: 'product-bought', component: ProductboughtComponent, canActivate: [HomeAfterLoginService] },
     ]
   },
   { path: '**', component: PageNotFoundComponent },

@@ -10,8 +10,8 @@
                     <strong class="tg-logo"><a routerLink="/home" routerLinkActive="current-menu-item"><img src="./assets/images/logo.png" alt="company name here"></a></strong>
                     <div class="tg-wishlistandcart">
                         <div class="dropdown tg-themedropdown tg-minicartdropdown">
-                            <a href="javascript:void(0);" id="tg-minicart" class="tg-btnthemedropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="tg-themebadge">3</span>
+                            <a [routerLink]="['/home/shopping/cart']" id="tg-minicart" class="tg-btnthemedropdown">
+                                <span class="tg-themebadge">{{ cartItemCount }}</span>
                                 <i class="icon-cart"></i>
                                 <span>$123.00</span>
                             </a>
@@ -55,18 +55,22 @@
                                     </a>
                                     <span class="tg-subtotal">Subtotal: <strong>35.78</strong></span>
                                     <div class="tg-btns">
-                                        <a class="tg-btn tg-active" href="javascript:void(0);">View Cart</a>
-                                        <a class="tg-btn" href="javascript:void(0);">Checkout</a>
+                                        <a class="tg-btn tg-active" href="#">View Cart</a>
+                                        <a class="tg-btn" href="#"> Checkout </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="dropdown tg-themedropdown tg-wishlistdropdown">
                             <a class="tg-btnthemedropdown" *ngIf="loggedIn">
-                                <a [routerLink]="['/user']"><span>Hi, John</span></a>
+                                <a [routerLink]="['/user']" *ngIf=" userInfor ">
+                                    <span>{{ userInfor.name }}</span>
+                                </a>
                                 <div class="tg-userlogin">
                                     <figure>
-                                        <a [routerLink]="['/user']"><img src="./assets/images/users/img-01.jpg" alt="image description"></a>
+                                        <a [routerLink]="['/user']" *ngIf="userInfor">
+                                            <img src="{{ imageDirectoryPath }}{{ userInfor.avatar }}" alt="image description">
+                                        </a>
                                     </figure>
                                 </div>
                             </a>
@@ -84,7 +88,7 @@
             </div>
         </div>
     </div>
-    <div class="tg-navigationarea">
+    <div class="tg-navigationarea" id="tg-navigationarea1">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -99,621 +103,35 @@
                         </div>
                         <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
                             <ul>
-                                <!-- <li class="menu-item-has-children menu-item-has-mega-menu">
-                                    <a href="javascript:void(0);">All Categories</a>
-                                    <div class="mega-menu">
-                                        <ul class="tg-themetabnav" role="tablist">
-                                            <li role="presentation" class="active">
-                                                <a href="#artandphotography" aria-controls="artandphotography" role="tab" data-toggle="tab">Art &amp; Photography</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#biography" aria-controls="biography" role="tab" data-toggle="tab">Biography</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#childrensbook" aria-controls="childrensbook" role="tab" data-toggle="tab">Children’s Book</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#craftandhobbies" aria-controls="craftandhobbies" role="tab" data-toggle="tab">Craft &amp; Hobbies</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#crimethriller" aria-controls="crimethriller" role="tab" data-toggle="tab">Crime &amp; Thriller</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#fantasyhorror" aria-controls="fantasyhorror" role="tab" data-toggle="tab">Fantasy &amp; Horror</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#fiction" aria-controls="fiction" role="tab" data-toggle="tab">Fiction</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#fooddrink" aria-controls="fooddrink" role="tab" data-toggle="tab">Food &amp; Drink</a>
-                                            </li><li role="presentation">
-                                                <a href="#graphicanimemanga" aria-controls="graphicanimemanga" role="tab" data-toggle="tab">Graphic, Anime &amp; Manga</a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a href="#sciencefiction" aria-controls="sciencefiction" role="tab" data-toggle="tab">Science Fiction</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content tg-themetabcontent">
-                                            <div role="tabpanel" class="tab-pane active" id="artandphotography">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="biography">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="childrensbook">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="craftandhobbies">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="crimethriller">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="fantasyhorror">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="fiction">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="fooddrink">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="graphicanimemanga">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div role="tabpanel" class="tab-pane" id="sciencefiction">
-                                                <ul>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>History</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Veniam quis nostrud</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Exercitation</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Laboris nisi ut aliuip</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Commodo conseat</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Duis aute irure</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Architecture</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tough As Nails</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Pro Grease Monkey</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Building Memories</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Bulldozer Boyz</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Build Or Leave On Us</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                    <li>
-                                                        <div class="tg-linkstitle">
-                                                            <h2>Art Forms</h2>
-                                                        </div>
-                                                        <ul>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Consectetur adipisicing</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Aelit sed do eiusmod</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Tempor incididunt labore</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Dolore magna aliqua</a></li>
-                                                            <li><a routerLink="/products" routerLinkActive="current-menu-item">Ut enim ad minim</a></li>
-                                                        </ul>
-                                                        <a class="tg-btnviewall" routerLink="/products" routerLinkActive="current-menu-item">View All</a>
-                                                    </li>
-                                                </ul>
-                                                <ul>
-                                                    <li>
-                                                        <figure><img src="./assets/images/img-01.png" alt="image description"></figure>
-                                                        <div class="tg-textbox">
-                                                            <h3>More Than<span>12,0657,53</span>Books Collection</h3>
-                                                            <div class="tg-description">
-                                                                <p>Consectetur adipisicing elit sed doe eiusmod tempor incididunt laebore toloregna aliqua enim.</p>
-                                                            </div>
-                                                            <a class="tg-btn" routerLink="/products" routerLinkActive="current-menu-item">view all</a>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li> -->
-                                
-                                <li><a routerLink="/home" routerLinkActive="current-menu-item">Home</a></li>
-                                <li class="menu-item-has-children">
-                                    <a href="javascript:void(0);">Suppliers</a>
+                                <li><a routerLink="/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+                                <li class="menu-item-has-children" [routerLinkActive]="['active-link']">
+                                    <a>Supplier</a>
                                     <ul class="sub-menu">
-                                        <li><a [routerLink]="['/home/supplier/1']" routerLinkActive="current-menu-item">Friso</a></li>
-                                        <li><a routerLink="/home/supplier/1" routerLinkActive="current-menu-item">Abbott</a></li>
-                                        <li><a routerLink="/home/supplier/1" routerLinkActive="current-menu-item">Vinamilk</a></li>
+                                        <li *ngFor="let supplier of suppliersArr">
+                                            <a routerLink="/home/supplier/{{ supplier.id }}" >{{ supplier.s_name }}</a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li class="menu-item-has-children">
-                                    <a href="javascript:void(0);">Category</a>
+                                <li class="menu-item-has-children" [routerLinkActive]="['active-link']">
+                                    <a>Category</a>
                                     <ul class="sub-menu">
-                                        <li><a routerLink="/home/category/12" routerLinkActive="current-menu-item">Sữa Bột</a></li>
-                                        <li><a routerLink="/home/category/12" routerLinkActive="current-menu-item">Sữa Nước</a></li>
-                                        <li><a routerLink="/home/category/12" routerLinkActive="current-menu-item">Sữa Đặc</a></li>
-                                        <li><a routerLink="/home/category/12" routerLinkActive="current-menu-item">Sữa Chua</a></li>
-                                        <li><a routerLink="/home/category/12" routerLinkActive="current-menu-item">Sữa Tươi Lên Men</a></li>
-                                        <li><a routerLink="/home/category/12" routerLinkActive="current-menu-item">Sữa Trái Cây</a></li>
+                                        <li *ngFor="let category of categoriesArr">
+                                            <a routerLink="/home/category/{{ category.id }}" >{{ category.c_name }}</a>
+                                        </li>
                                     </ul>
                                 </li>
-                                <li><a routerLink="/home/product" routerLinkActive="current-menu-item">All Products</a></li>
-                                <li><a routerLink="/home/article" routerLinkActive="current-menu-item">News</a></li>
-                                <li><a routerLink="/home/contact" routerLinkActive="current-menu-item">Contact</a></li>
-                                <li class="pull-right" *ngIf="!loggedIn"><a routerLink="/home/login" routerLinkActive="current-menu-item"> Đăng Nhập </a></li>
-                                <li class="pull-right" *ngIf="!loggedIn"><a routerLink="/home/register" routerLinkActive="current-menu-item"> Đăng Ký </a></li>
-                                <li class="pull-right" *ngIf="loggedIn"><a (click)="logout($event)" routerLink="/home/logout" routerLinkActive="current-menu-item"> Đăng Xuất </a></li>
+                                <li><a [routerLink]="['/home/product']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">All Products</a></li>
+                                <li><a [routerLink]="['/home/article']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">News</a></li>
+                                <li><a [routerLink]="['/home/contact']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Contact</a></li>
+                                <li class="pull-right" *ngIf="!loggedIn">
+                                    <a [routerLink]="['/home/login']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Đăng Nhập </a>
+                                </li>
+                                <li class="pull-right" *ngIf="!loggedIn">
+                                    <a [routerLink]="['/home/register']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Đăng Ký </a>
+                                </li>
+                                <li class="pull-right" *ngIf="loggedIn">
+                                    <a (click)="logout($event)" [routerLink]="['/home/logout']" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}"> Đăng Xuất </a>
+                                </li>
                                 
                             </ul>
                         </div>

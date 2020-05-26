@@ -37,14 +37,17 @@
                                 </thead>
                                 <tbody>
                                     <!-- <ng-container *ngIf="suppliers"> -->
-                                        <tr class="even pointer" *ngFor="let supplier of dataArr">
+                                        <tr class="even pointer" *ngFor="let supplier of dataArr | paginate: { itemsPerPage: 5, currentPage: p }" >
                                             <td class="">{{ supplier.id }}</td>
                                             <td width="20%">{{ supplier.s_name }}</td>
                                             <td width="13%">
-                                                <a href="#" class="btn btn-round btn-success">{{ supplier.s_active }}</a>
+                                                <button (click)="changeActive(supplier.id, 1)" *ngIf="supplier.s_active == 1" class="btn btn-icon btn-detail btn-success"> Public </button>
+                                                <button (click)="changeActive(supplier.id, 0)" *ngIf="supplier.s_active != 1" class="btn btn-icon btn-detail btn-default"> Private </button>
+                                                <!-- <a href="#" class="btn btn-round btn-success">{{ supplier.s_active }}</a> -->
                                             </td>
                                             <td width="13%">
-                                                <a href="#" class="btn btn-round btn-success">{{ supplier.s_home }}</a>
+                                                <button (click)="changeHome(supplier.id, 1)" *ngIf="supplier.s_home == 1" class="btn btn-icon btn-detail btn-success"> Public </button>
+                                                <button (click)="changeHome(supplier.id, 0)" *ngIf="supplier.s_home != 1" class="btn btn-icon btn-detail btn-default"> Private </button>
                                             </td>
                                             <td width="20%">{{ supplier.s_title_seo }}</td>
                                             <td width="15%">
@@ -60,6 +63,7 @@
                                     <!-- </ng-container> -->
                                 </tbody>
                             </table>
+                            <pagination-controls class="page-item" (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
                 </div>

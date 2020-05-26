@@ -1,5 +1,5 @@
 import { DataService } from './../../../services/data.service';
-import { Product } from './../product.module';
+import { Product } from '../product.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -64,5 +64,4 @@ export class CreateComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-
 }

@@ -11,6 +11,7 @@ export class TokenService {
   }
 
   constructor( ) { }
+
   handleEmail(email) {
     localStorage.setItem('user_email', email);
   }
@@ -61,5 +62,27 @@ export class TokenService {
 
   loggedIn() { //đã login
     return this.isValid();
+  }
+
+  ///////////////////////////////ADMIN
+  handleTokenAdmin(token) {
+    localStorage.setItem('token_admin', token);
+  }
+
+  getTokenAdmin() {
+    return localStorage.getItem('token_admin');
+  }
+
+  removeTokenAdmin() {
+    localStorage.removeItem('token_admin');
+  }
+
+  adminLoggedIn() { //đã login
+    // return this.adminIsValid();
+    const token = this.getTokenAdmin();
+    if(token) {
+      return true;
+    }
+    return false;
   }
 }

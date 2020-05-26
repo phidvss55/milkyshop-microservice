@@ -18,3 +18,8 @@ use Illuminate\Http\Request;
 //     Route::post('refresh', 'AdminAuthController@refresh');
 //     Route::post('me', 'AdminAuthController@me');
 // });
+
+Route::group(['prefix' => 'admin','middleware' => ['assign.guard:admins','jwt.auth']],function ()
+{
+	Route::get('/demo','AdminController@demo');	
+});

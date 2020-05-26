@@ -36,7 +36,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer"  *ngFor="let category of dataArr">
+                                    <tr class="even pointer"  *ngFor="let category of dataArr | paginate: { itemsPerPage: 5, currentPage: p }" >
                                         <td>{{ category.id }} </td>
                                         <td>{{ category.c_name }}</td>
                                         <td>
@@ -46,8 +46,14 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>{{ category.c_active }}</td>
-                                        <td>{{ category.c_home }}</td>
+                                        <td>
+                                            <button (click)="changeActive(category.id, 1)" *ngIf="category.c_active == 1" class="btn btn-icon btn-detail btn-success"> Public </button>
+                                            <button (click)="changeActive(category.id, 0)" *ngIf="category.c_active != 1" class="btn btn-icon btn-detail btn-default"> Private </button>
+                                        </td>
+                                        <td>
+                                            <button (click)="changeHome(category.id, 1)" *ngIf="category.c_home == 1" class="btn btn-icon btn-detail btn-success"> Public </button>
+                                            <button (click)="changeHome(category.id, 0)" *ngIf="category.c_home != 1" class="btn btn-icon btn-detail btn-default"> Private </button>
+                                        </td>
                                         <td>{{ category.c_title_seo }}</td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">
@@ -58,6 +64,7 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <pagination-controls class="page-item" (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
                 </div>

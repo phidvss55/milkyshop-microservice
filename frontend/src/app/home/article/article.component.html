@@ -6,8 +6,8 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="tg-innerbannercontent">
                     <ol class="tg-breadcrumb">
-                        <li><a href="javascript:void(0);">Home</a></li>
-                        <li class="tg-active">News</li>
+                        <li><a routerLink="./home/article"> Trang chủ </a></li>
+                        <li class="tg-active"> Tin tức </li>
                     </ol>
                 </div>
             </div>
@@ -28,72 +28,28 @@
                         <div id="tg-content" class="tg-content">
                             <div class="tg-newslist">
                                 <div class="tg-sectionhead">
-                                    <h2><span>Latest News &amp; Articles</span>What's Hot in The News</h2>
+                                    <h2><span> Tin tức và bài viết mới nhất </span> Có gì hót tuần này </h2>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngFor="let article of dataArr">
                                         <article class="tg-post">
-                                            <figure><a href="javascript:void(0);"><img src="images/blog/img-01.jpg" alt="image description"></a></figure>
+                                            <figure><a routerLink="/home/article/detail/{{ article.a_slug }}/{{ article.id }}">
+                                                <img class="img_description" src="{{ imageDirectoryPath }}{{ article.a_avatar }}" alt="image description"></a>
+                                            </figure>
                                             <div class="tg-postcontent">
                                                 <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                    <li><a href="javascript:void(0);">Fun</a></li>
+                                                    <li><a href="#"> Sữa và các tin tức liên quan </a></li>
                                                 </ul>
                                                 <div class="tg-themetagbox"><span class="tg-themetag">featured</span></div>
                                                 <div class="tg-posttitle">
-                                                    <h3><a href="javascript:void(0);">Where The Wild Things Are</a></h3>
+                                                    <h3><a routerLink="/home/article/detail/{{ article.a_slug }}/{{ article.id }}">{{ article.a_name }}</a></h3>
                                                 </div>
                                                 <div class="tg-description">
-                                                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua uti enim ad minim veniam quis nostrud exercitation ullamcoiars nisiuip commodo consequat aute... <a href="javascript:(0);">More</a></p>
+                                                    <p>{{ article.a_description }}</p>
                                                 </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Kathrine Culbertson</a></span>
+                                                <span class="tg-bookwriter">Created at: {{ article.created_at | date:'medium' }}</span>
                                                 <ul class="tg-postmetadata">
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>24,565 Views</i></a></li>
-                                                </ul>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <article class="tg-post">
-                                            <figure><a href="javascript:void(0);"><img src="images/blog/img-02.jpg" alt="image description"></a></figure>
-                                            <div class="tg-postcontent">
-                                                <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                    <li><a href="javascript:void(0);">Fun</a></li>
-                                                </ul>
-                                                <div class="tg-posttitle">
-                                                    <h3><a href="javascript:void(0);">Where The Wild Things Are</a></h3>
-                                                </div>
-                                                <div class="tg-description">
-                                                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua uti enim ad minim veniam quis nostrud exercitation ullamcoiars nisiuip commodo consequat aute... <a href="javascript:(0);">More</a></p>
-                                                </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Kathrine Culbertson</a></span>
-                                                <ul class="tg-postmetadata">
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>24,565 Views</i></a></li>
-                                                </ul>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <article class="tg-post">
-                                            <figure><a href="javascript:void(0);"><img src="images/blog/img-03.jpg" alt="image description"></a></figure>
-                                            <div class="tg-postcontent">
-                                                <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                    <li><a href="javascript:void(0);">Fun</a></li>
-                                                </ul>
-                                                <div class="tg-posttitle">
-                                                    <h3><a href="javascript:void(0);">Where The Wild Things Are</a></h3>
-                                                </div>
-                                                <div class="tg-description">
-                                                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua uti enim ad minim veniam quis nostrud exercitation ullamcoiars nisiuip commodo consequat aute... <a href="javascript:(0);">More</a></p>
-                                                </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Kathrine Culbertson</a></span>
-                                                <ul class="tg-postmetadata">
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>24,565 Views</i></a></li>
+                                                    <li><i class="fa fa-eye"></i><i> {{ article.a_view }} </i></li>
                                                 </ul>
                                             </div>
                                         </article>
@@ -104,41 +60,48 @@
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
                         <aside id="tg-sidebar" class="tg-sidebar">
-                            <div class="tg-widget tg-widgetsearch bar-ping">
-                                <img src="../assets/images/bar-ping.png" alt="">
-                                <h2> Hỏi đáp bài viết </h2>
-                            </div>
-                            <div class="tg-widget tg-catagories">
+                            <div class="tg-widget tg-widgettrending">
                                 <div class="tg-widgettitle">
-                                    <h3> Chủ đề thảo luận </h3>
+                                    <h3> Bài viết nổi bật </h3>
                                 </div>
                                 <div class="tg-widgetcontent">
                                     <ul>
-                                        <li><a href="javascript:void(0);"><span>Android</span><em>28245</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Iphone - IOS</span><em>4856</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Từ 5 triệu - 7 triệu</span><em>4856</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Từ 7 triệu - 10 triệu</span><em>4856</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Trên 10 triệu</span><em>4856</em></a></li>
+                                        <li *ngFor="let article of topArticleArr">
+                                            <article class="tg-post">
+                                                <figure><a routerLink="/home/article/detail/{{article.a_slug}}/{{article.id}}" (click)="loadPage()">
+                                                    <img class="img-desc" src="{{ imageDirectoryPath }}{{ article.a_avatar }}" alt="image description">
+                                                </a></figure>
+                                                <div class="tg-postcontent">
+                                                    <div class="tg-posttitle">
+                                                        <h3><a routerLink="/home/article/detail/{{article.a_slug}}/{{article.id}}" (click)="loadPage()">{{ article.a_name }}</a></h3>
+                                                    </div>
+                                                    <span class="tg-bookwriter">{{ article.created_at | date:'medium' }}</span>
+                                                </div>
+                                            </article>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="tg-widget tg-widgetinstagram">
+                            <div class="tg-widget tg-widgettrending">
                                 <div class="tg-widgettitle">
-                                    <h3>TAGS</h3>
+                                    <h3> Bài viết liên quan </h3>
                                 </div>
                                 <div class="tg-widgetcontent">
-                                    <div class="exp-tags">
-                                        <div class="tags">
-                                            <a href="#" class="hastag"> Đội tuyển Việt Nam </a>
-                                            <a href="#" class="hastag"> Việt Nam </a>
-                                            <a href="#" class="hastag"> Máy Tính </a>
-                                            <a href="#" class="hastag"> Laptop </a>
-                                            <a href="#" class="hastag"> Vi tính </a>
-                                            <a href="#" class="hastag"> Phụ Kiện Chính Hãng </a>
-                                            <a href="#" class="hastag"> Điện Thoại </a>
-                                            <a href="#" class="hastag"> Tay Nghe </a>
-                                        </div>
-                                    </div>
+                                    <ul>
+                                        <li *ngFor="let article of relateArticleArr">
+                                            <article class="tg-post">
+                                                <figure><a routerLink="/home/article/detail/{{article.a_slug}}/{{article.id}}" (click)="loadPage()">
+                                                    <img class="img-desc" src="{{ imageDirectoryPath }}{{ article.a_avatar }}" alt="image description">
+                                                </a></figure>
+                                                <div class="tg-postcontent">
+                                                    <div class="tg-posttitle">
+                                                        <h3><a routerLink="/home/article/detail/{{article.a_slug}}/{{article.id}}" (click)="loadPage()">{{ article.a_name }}</a></h3>
+                                                    </div>
+                                                    <span class="tg-bookwriter">{{ article.created_at | date:'medium' }}</span>
+                                                </div>
+                                            </article>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </aside>

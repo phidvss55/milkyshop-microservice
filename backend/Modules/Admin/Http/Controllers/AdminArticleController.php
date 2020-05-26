@@ -7,6 +7,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class AdminArticleController extends Controller
@@ -24,7 +25,15 @@ class AdminArticleController extends Controller
         $articles = Article::where('a_name', 'like', '%' . $value_search . '%');
         $articles = $articles->orderByDesc('id')->paginate(10);
         return response()->json($articles);
-        
+    }
+
+    public function changeActive(Request $request) {
+        if($request->active == 1) {
+            DB::table('articles')->where('id', $request->id)->update(['a_active' => 0]);
+        } else {
+            DB::table('articles')->where('id', $request->id)->update(['a_active' => 1]);
+        }
+        return response()->json(200);
     }
 
     public function store(Request $request) {

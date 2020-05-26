@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 // ---------------------- LAYOUTS HOME ------------------------------------------------
 import { HeaderComponent } from './layouts/header/header.component';
@@ -52,6 +54,8 @@ import { ProductboughtComponent } from './user/productbought/productbought.compo
 // ----------------------- 404 -----------------------
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CartComponent } from './home/shopping/cart/cart.component';
+import { PayComponent } from './home/shopping/pay/pay.component';
 
 @NgModule({
   declarations: [
@@ -95,12 +99,15 @@ import { HttpClientModule } from '@angular/common/http';
     HomeCategoryComponent,
     HomeSupplierComponent,
     LayoutUserComponent,
+    CartComponent,
+    PayComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

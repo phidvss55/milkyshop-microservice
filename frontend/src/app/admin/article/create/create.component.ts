@@ -1,5 +1,5 @@
 import { DataService } from './../../../services/data.service';
-import { Article } from './../article.module';
+import { Article } from '../article.model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 

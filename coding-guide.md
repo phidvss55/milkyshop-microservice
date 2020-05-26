@@ -12,12 +12,20 @@ composer install
 ### Serving Your Application
 php artisan serve
 
-### JWT 
+### JWT
 (https://jwt-auth.readthedocs.io/en/develop/lumen-installation/)
 (https://dev.to/ndiecodes/build-a-jwt-authenticated-api-with-lumen-2afm)
 php artisan jwt:secret
 php artisan config:clear
 php artisan config:cache
+
+### Implementation shoppingcart for laravel
+composer require gloudemans/shoppingcart
+
+### If your laravel version below 5.4
+Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class
+'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+`` https://github.com/Crinsane/LaravelShoppingcart ``
 
 # In **frontend folder**  
 ### install npm

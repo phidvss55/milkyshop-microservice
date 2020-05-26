@@ -11,15 +11,13 @@ class Admin extends Authenticatable implements JWTSubject
 {
     use Notifiable;
 
-    use Notifiable;
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
