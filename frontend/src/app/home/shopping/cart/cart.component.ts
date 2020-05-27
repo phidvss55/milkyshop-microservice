@@ -52,6 +52,12 @@ export class CartComponent implements OnInit {
     this.cartService.addProductToCart(this.productAddedTocart);
   }
 
+  loadPage() {
+    setTimeout(function () {
+      location.reload()
+    }, 100);
+  }
+
   initTotalPriceItem() {
     this.productAddedTocart.forEach(ele => {
       ele.totalPrice = ele.price * ele.quantity;

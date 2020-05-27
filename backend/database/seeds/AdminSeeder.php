@@ -13,14 +13,19 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        // DB::table('admins')->insert([
+        //     'name'  => 'Phong Phu Ha Nam',
+        //     'email' => 'phi@gmail.com',
+        //     'password'  => Hash::make('123'),
+        // ]);
+        // DB::table('admins')->insert([
+        //     'name'  => 'Alexander Alnord',
+        //     'email' => 'alnord@gmail.com',
+        //     'password'  => Hash::make('123'),
+        // ]);
         DB::table('admins')->insert([
-            'name'  => 'Phong Phu Ha Nam',
-            'email' => 'phi@gmail.com',
-            'password'  => Hash::make('123'),
-        ]);
-        DB::table('admins')->insert([
-            'name'  => 'Alexander Alnord',
-            'email' => 'alnord@gmail.com',
+            'name'  => 'Tran Thi Minh Thu',
+            'email' => 'thu@gmail.com',
             'password'  => Hash::make('123'),
         ]);
     }

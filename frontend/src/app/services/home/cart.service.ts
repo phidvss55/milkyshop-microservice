@@ -19,6 +19,14 @@ export class CartService {
     return JSON.parse(localStorage.getItem('product'));
   }
 
+  getTotalItem() {
+    if (localStorage.getItem("product") != null) {
+      return JSON.parse(localStorage.product).length;
+    } else {
+      return 0;
+    }
+  }
+
   removeAllProductFromCart() {
     return localStorage.removeItem("product");
   }

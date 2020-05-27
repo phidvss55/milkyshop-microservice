@@ -131,17 +131,21 @@ export class ProductDetailComponent implements OnInit {
 
   saveRating() {
     let email = this.tokenService.getEmail();
-    var obj = {
-      "id_product": this.id,
-      "start": this.ratingStart,
-      "review": this.review,
-      "email": email
+    if(email) {
+      var obj = {
+        "id_product": this.id,
+        "start": this.ratingStart,
+        "review": this.review,
+        "email": email
+      }
+  
+      this.homeService.saveRating(obj).subscribe( res => {
+        alert(res)
+        this.loadPage();
+      });
+    } else {
+      alert("Vui lòng đăng nhập tài khoản để thực hiện chức năng này. Xin cảm ơn. ");
     }
-
-  this.homeService.saveRating(obj).subscribe( res => {
-      alert(res)
-      this.loadPage();
-    });
   }
 
   onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {

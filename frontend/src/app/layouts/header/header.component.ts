@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   public loggedIn: boolean;
   suppliersArr: any;
   categoriesArr: any;
-  cartItemCount: any;
+  cartItemCount: any = 0;
   
   userInfor: any;
   imageDirectoryPath = 'http://localhost:8000/image/user/';
@@ -31,7 +31,8 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.cartService.currentMessage.subscribe(msg => this.cartItemCount = msg);
+    // this.cartService.currentMessage.subscribe(msg => this.cartItemCount = msg);
+    this.cartItemCount = this.cartService.getTotalItem();
     this.getData();
     this.getSupplier();
     this.getCategories();

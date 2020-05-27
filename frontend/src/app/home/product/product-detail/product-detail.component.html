@@ -45,7 +45,7 @@
                                             <div class="tg-postbookcontent">
                                                 <span class="tg-bookprice">
                                                     <div *ngIf="product.pro_sale > 0">
-                                                        <ins>{{  (product.pro_price * (100 - product.pro_sale)) / 100 | number }}</ins>
+                                                        <ins>{{ (product.pro_price * (100 - product.pro_sale)) / 100 | number }}</ins>
                                                         <del>{{ product.pro_price | number }}</del>
                                                     </div>
                                                     <div *ngIf="!(product.pro_sale > 0)">
@@ -76,8 +76,8 @@
                                                 <h3>{{ product.pro_name }}</h3>
                                             </div>
                                             <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
-                                                <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
-                                                <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i > (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i > (product.pro_total_number / product.pro_total_rating)))"></i>
                                             </div>
                                             <div class="tg-sectionhead" style="margin-top: 5px">
                                                 <h2>Product Description</h2>
