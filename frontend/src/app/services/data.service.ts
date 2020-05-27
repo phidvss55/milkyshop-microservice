@@ -15,6 +15,8 @@ export class DataService {
   private baseUserUrl = 'http://localhost:8000/admin/user';
   private baseContactUrl = 'http://localhost:8000/admin/contact';
   private baseTransactionUrl = 'http://localhost:8000/admin/transaction';
+  private baseOrderUrl = 'http://localhost:8000/admin/order';
+  private baseRatingUrl = 'http://localhost:8000/admin/rating';
 
   constructor(
     private httpClient: HttpClient
@@ -192,5 +194,23 @@ export class DataService {
 
   deleteTransaction(id) {
     return this.httpClient.delete(`${this.baseTransactionUrl}/delete/` + id);
+  }
+
+  getTransactionByIdUser(id) {
+    return this.httpClient.get(`${this.baseTransactionUrl}/get-transaction/` + id);
+  }
+
+  //orders
+  getProductByIdTransaction(id) {
+    return this.httpClient.get(`${this.baseOrderUrl}/get/` + id);
+  }
+
+  //rating
+  getRating() {
+    return this.httpClient.get(`${this.baseRatingUrl}`);
+  }
+
+  deleteRating(id) {
+    return this.httpClient.delete(`${this.baseRatingUrl}/delete/` + id);
   }
 }

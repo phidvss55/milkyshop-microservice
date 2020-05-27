@@ -1,3 +1,7 @@
+.tg-sectionspace {
+    padding: 60px 0;
+}
+
 .alert-add {
     position: fixed;
     top: 10%;
@@ -13,4 +17,8 @@
 .img-article {
     width: 220px !important;
     height: 165px !important;
+}
+
+.active-star {
+    color: #f8df00;
 }

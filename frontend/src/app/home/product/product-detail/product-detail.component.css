@@ -26,3 +26,7 @@ del {
 .tg-love:hover {
     color: red;
 }
+
+.active-star {
+    color: #f8df00;
+}

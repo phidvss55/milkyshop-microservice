@@ -47,6 +47,7 @@ export class CartComponent implements OnInit {
   deleteItemFromCart(id) {
     let index = this.productAddedTocart.indexOf(id);
     this.productAddedTocart.splice(index, 1)
+    this.calculteAllTotal(this.productAddedTocart);
     this.cartService.removeAllProductFromCart();
     this.cartService.addProductToCart(this.productAddedTocart);
   }

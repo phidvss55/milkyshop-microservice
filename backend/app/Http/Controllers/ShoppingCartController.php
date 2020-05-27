@@ -47,6 +47,7 @@ class ShoppingCartController extends Controller
                         'or_sale'          => $product['pro_sale'],
                     ]);
                     $this->updateProductPay($product['id']);
+                    $this->updateProductQuantity($product['id'], $product['quantity']);
                 }
             }
 
@@ -57,6 +58,13 @@ class ShoppingCartController extends Controller
             DB::rollback();
             return $e->getMessage();
         }
+    }
+
+    private function updateProductQuantity($id, $quantity) {
+        $product = Product::select('pro_number')->where('id', $id)->first();
+        $totalNumber = $product->pro_number;
+        $totalNumber = $totalNumber - $quantity;
+        $product = Product::where('id', $id)->update(['pro_number' => $totalNumber]);
     }
 
     private function updateProductPay($id) {

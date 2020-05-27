@@ -31,7 +31,10 @@
                                     <div class="tg-booktitle">
                                         <h3><a  routerLink="/home/product/detail/{{ product.id }}/{{ product.pro_slug}}">{{ product.pro_name }}</a></h3>
                                     </div>
-                                    <span class="tg-stars"><span></span></span>
+                                    <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                        <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                        <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                    </div>
                                     <span class="tg-bookprice">
                                         <div *ngIf="product.pro_sale > 0">
                                             <ins>{{  (product.pro_price * (100 - product.pro_sale)) / 100 | number }}</ins>
@@ -77,7 +80,11 @@
                         <span class="tg-bookwriter">
                             {{ product.pro_description }}
                         </span>
-                        <span class="tg-stars"><span></span></span>
+                        <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                            <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                            <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                        </div>
+                        <!-- <span class="tg-stars"><span></span></span> -->
                         <div class="tg-priceandbtn">
                             <span class="tg-bookprice">
                                 <div *ngIf="product.pro_sale > 0">
@@ -153,7 +160,15 @@
                                                 <ins>{{ product.pro_price | number }}</ins>
                                             </div>
                                         </span>
-                                        <span class="tg-stars"><span></span></span>
+                                        <!-- <span class="tg-stars"><span></span></span> -->
+                                        <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                            <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                            <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                        </div>
+                                        <button class="tg-btn tg-btnstyletwo" (click)="addCart(product)" style="outline:none;">
+                                            <i class="fa fa-shopping-basket"></i>
+                                            <em>Add To Basket</em>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +226,15 @@
                                                 <ins>{{ product.pro_price | number }}</ins>
                                             </div>
                                         </span>
-                                        <span class="tg-stars"><span></span></span>
+                                        <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                            <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                            <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                        </div>
+                                        <!-- <span class="tg-stars"><span></span></span> -->
+                                        <button class="tg-btn tg-btnstyletwo" (click)="addCart(product)" style="outline:none;">
+                                            <i class="fa fa-shopping-basket"></i>
+                                            <em>Add To Basket</em>
+                                        </button>
                                     </div>
                                 </div>
                             </div>

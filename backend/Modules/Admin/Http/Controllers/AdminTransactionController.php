@@ -16,6 +16,7 @@ class AdminTransactionController extends Controller
 
     public function get($id) {
         $transactions = Transaction::where('tr_user_id', $id)->get();
+        // dd($transactions);
         return response()->json($transactions, 201);
     }
 

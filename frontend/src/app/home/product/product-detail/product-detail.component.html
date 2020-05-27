@@ -36,6 +36,9 @@
                         <div id="tg-content" class="tg-content">
                             <div class="tg-productdetail">
                                 <div class="row" *ngFor="let product of dataArr">
+                                    <div *ngFor="let alert of alerts" class="alert alert-add alert-{{ alert.type }}">
+                                        <p (close)="closeAlert(alert)">{{ alert.message }}</p>
+                                    </div>
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
                                         <div class="tg-postbook">
                                             <figure class="tg-featureimg"><img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="image description"></figure>
@@ -52,7 +55,6 @@
                                                 <ul class="tg-delevrystock">
                                                     <li><i class="icon-rocket"></i><span> 5% phí vận chuyển </span></li>
                                                     <li><i class="icon-checkmark-circle"></i><span> Chứng nhận của bộ y tế </span></li>
-                                                    <!-- <li><i class="icon-store"></i><span>Status: <em>In Stock</em></span></li> -->
                                                 </ul>
                                             </div>
                                         </div>
@@ -73,16 +75,18 @@
                                             <div class="tg-booktitle" style="border-bottom: 1px solid #dbdbdb;margin-bottom: 25px;">
                                                 <h3>{{ product.pro_name }}</h3>
                                             </div>
-                                            <!-- <span class="tg-stars"><span></span></span> -->
-                                            <!-- <span class="tg-addreviews"><a href="javascript:void(0);">Add Your Review</a></span> -->
-                                            <div class="tg-sectionhead">
+                                            <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                                <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                            </div>
+                                            <div class="tg-sectionhead" style="margin-top: 5px">
                                                 <h2>Product Description</h2>
                                             </div>
                                             <div class="tg-description">
                                                 <p>{{ product.pro_description }}</p>
                                             </div>
                                             <div>
-                                                <a class="tg-btn tg-active tg-btn-lg" href="#"><i class="icon-cart"></i> Add To Basket </a>
+                                                <button class="tg-btn tg-active tg-btn-lg" (click)="addCart(product)"><i class="icon-cart"></i> Add To Basket </button>
                                                 <a class="tg-btnaddtowishlist" (click)="loveProduct(product.id)" href="#" style="display:block;width:fit-content;padding: 0 50px;margin-top:20px;">
                                                     <span><i class="icon-heart"></i> Love product</span>
                                                 </a>
@@ -103,8 +107,15 @@
                                                 </div>
                                                 <div role="tabpanel" class="tg-tab-pane tab-pane" id="review">
                                                     <div class="tg-description">
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, voluptatem animi. Magni a fuga possimus architecto nesciunt, cupiditate impedit repellendus.</p>
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, voluptatem animi. Magni a fuga possimus architecto nesciunt, cupiditate impedit repellendus.</p>
+                                                        <div class="form-group">
+                                                            <label for=""> Đánh giá </label>
+                                                            <star-rating value="0" totalstars={{totalstar}} checkedcolor="#ffbe00" uncheckedcolor="black" size="24px" readonly="false" (rate)="onRate($event)"></star-rating>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="review"> Viết nhận xét </label>
+                                                            <textarea name="review" class="form-control" [(ngModel)]="review" style="height: auto;" cols="30" rows="5"></textarea>
+                                                        </div>
+                                                        <button type="button" class="btn btn-success" (click)="saveRating()"> Đăng nhận xét </button>
                                                     </div>
                                                 </div>
                                             </div>

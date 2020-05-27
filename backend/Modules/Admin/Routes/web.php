@@ -86,7 +86,12 @@ Route::prefix('admin')->group(function() {
         Route::get('/get/{id}', 'AdminTransactionController@get');
         Route::post('/status', 'AdminTransactionController@updateTransaction');
         Route::delete('/delete/{id}', 'AdminTransactionController@delete');
+        Route::get('/get-transaction/{id}', 'AdminTransactionController@getTransaction');
         // Route::get('/{action}/{id}', 'AdminTransactionController@action')->name('admin.get.action.transaction');
+    });
+
+    Route::group(['prefix' => 'order'], function() {
+        Route::get('/get/{id}', 'AdminOrderController@getProductId');
     });
 
     //ql user
@@ -97,10 +102,11 @@ Route::prefix('admin')->group(function() {
         Route::delete('/delete/{id}', 'AdminUserController@delete');
     });
 
-    //ql thanh vien
-    // Route::group(['prefix' => 'rating'], function() {
-    //     Route::get('/', 'AdminRatingController@index')->name('admin.get.list.rating');
-    // });
+    //ql rating
+    Route::group(['prefix' => 'rating'], function() {
+        Route::get('/', 'AdminRatingController@index');
+        Route::delete('/delete/{id}', 'AdminRatingController@delete');
+    });
 
     //ql lien he
     Route::group(['prefix' => 'contact'], function() {

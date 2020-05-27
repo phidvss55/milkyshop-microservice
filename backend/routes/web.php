@@ -72,6 +72,10 @@ Route::prefix('home')->group(function() {
         Route::post('', 'HomeContactController@insertData');
     });
 
+    Route::group(['prefix' => 'rating'], function() {
+        Route::post('/save-rating', 'HomeRatingController@saveRating');
+    });
+
     Route::group(['prefix' => 'shopping'], function() {
         // Route::get('add/{id}', 'ShoppingCartController@getAddToCart');
         Route::post('thanh-toan', 'ShoppingCartController@saveInfoShoppingCar');

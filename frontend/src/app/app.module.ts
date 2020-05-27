@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-
+import { RatingModule } from 'ng-starrating';
 
 // ---------------------- LAYOUTS HOME ------------------------------------------------
 import { HeaderComponent } from './layouts/header/header.component';
@@ -108,6 +108,7 @@ import { PayComponent } from './home/shopping/pay/pay.component';
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

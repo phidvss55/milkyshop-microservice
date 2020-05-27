@@ -12,6 +12,7 @@ export class HomeService {
   private baseCategoryeUrl = 'http://localhost:8000/home/category';
   private baseContactUrl = 'http://localhost:8000/home/contact';
   private baseShoppingUrl = 'http://localhost:8000/home/shopping';
+  private baseRatingUrl = 'http://localhost:8000/home/rating';
   private baseHomeUrl = 'http://localhost:8000/home';
 
   constructor(
@@ -109,9 +110,10 @@ export class HomeService {
     return this.httpClient.get(`${this.baseHomeUrl}/get-newest`);
   }
 
-  // getTotalCart() {
-  //   return this.httpClient.get(`${this.baseShoppingUrl}/total`);
-  // }
+  //rating
+  saveRating(data) {
+    return this.httpClient.post(`${this.baseRatingUrl}/save-rating`, data);
+  }
 
   // getListProduct() {
   //   return this.httpClient.get(`${this.baseShoppingUrl}/danh-sach`);

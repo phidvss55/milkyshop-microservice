@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   productAddedTocart: ProductCart[];
   cartItemCount: number = 0;
   public alerts: Array<Alert> = [];
+  startArr = [1, 2, 3, 4, 5];
 
   constructor(
     private homeService: HomeService,

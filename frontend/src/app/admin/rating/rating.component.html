@@ -33,81 +33,39 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer">
-                                        <td>1</td>
-                                        <td>Mai CHi Tho</td>
+                                    <tr class="even pointer" *ngFor="let rating of ratingsArr | paginate: { itemsPerPage: 5, currentPage: p }" >
+                                        <td>{{ rating.id }}</td>
+                                        <td width="20%">
+                                            <div *ngFor="let user of usersArr">
+                                                <div *ngIf="user.id == rating.ra_user_id">
+                                                    {{ user.name }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td width="25%">
+                                            <div *ngFor="let product of productsArr">
+                                                <div *ngIf="product.id == rating.ra_product_id">
+                                                    {{ product.pro_name }}
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td>
-                                            <a href="">Friso 3 900g</a>
+                                            {{ rating.ra_content }}
                                         </td>
-                                        <td>San pham tốt cho trẻ tiêu đường</td>
-                                        <td>3 sao</td>
+                                        <td>{{ rating.ra_number }} Sao</td>
                                         <td class="last">
-                                            <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr class="even pointer">
-                                        <td>1</td>
-                                        <td>Mai CHi Tho</td>
-                                        <td>
-                                            <a href="">Friso 3 900g</a>
-                                        </td>
-                                        <td>San pham tốt cho trẻ tiêu đường</td>
-                                        <td>3 sao</td>
-                                        <td class="last">
-                                            <a href="#" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
+                                            <button type="button" href="#" (click)="deleteData(rating.id)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></button>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
+                            <pagination-controls class="page-item" (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--end-box-lists-->
-        <!--box-pagination-->
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Phân trang
-                        </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="m-b-0">Số phần tử trên trang: <b>2</b> trên <span
-                                        class="label label-success label-pagination">3 trang</span></p>
-                                <p class="m-b-0">Hiển thị<b> 1 </b> đến<b> 2</b> trên<b> 6</b> Phần tử</p>
-                            </div>
-                            <div class="col-md-6">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination zvn-pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">«</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">»</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end-box-pagination-->
     </div>
     <!-- /page content -->
 </div>
