@@ -210,6 +210,10 @@ export class DataService {
     return this.httpClient.get(`${this.baseRatingUrl}`);
   }
 
+  getRatingById(id) {
+    return this.httpClient.get(`${this.baseRatingUrl}/get-product-id/` + id);
+  }
+
   deleteRating(id) {
     return this.httpClient.delete(`${this.baseRatingUrl}/delete/` + id);
   }

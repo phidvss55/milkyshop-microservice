@@ -86,7 +86,7 @@
                                                 <p>{{ product.pro_description }}</p>
                                             </div>
                                             <div>
-                                                <button class="tg-btn tg-active tg-btn-lg" (click)="addCart(product)"><i class="icon-cart"></i> Add To Basket </button>
+                                                <button class="tg-btn tg-active tg-btn-lg" (click)="addCart(product)"><i class="icon-cart"></i> Thêm sản phẩm </button>
                                                 <a class="tg-btnaddtowishlist" (click)="loveProduct(product.id)" href="#" style="display:block;width:fit-content;padding: 0 50px;margin-top:20px;">
                                                     <span><i class="icon-heart"></i> Love product</span>
                                                 </a>
@@ -124,18 +124,29 @@
                                     <div class="tg-aboutauthor">
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                                             <div class="tg-sectionhead">
-                                                <h2>About Author</h2>
+                                                <h2> Đánh giá của khách hàng </h2>
                                             </div>
-                                            <div class="tg-authorbox">
-                                                <figure class="tg-authorimg">
-                                                    <img src="./assets/images/authors/imag-24.jpg" alt="image description">
+                                            <div class="tg-authorbox" *ngFor="let rating of ratingsArr">
+                                                <figure class="tg-authorimg" *ngFor="let user of usersArr">
+                                                    <div *ngIf="user.id == rating.ra_user_id">
+                                                        <img class="img_user_comment" src="{{ userImageDirectoryPath }}{{ user.avatar }}" alt="image description">
+                                                    </div>
                                                 </figure>
                                                 <div class="tg-authorinfo">
                                                     <div class="tg-authorhead">
                                                         <div class="tg-leftarea">
                                                             <div class="tg-authorname">
-                                                                <h2>Kathrine Culbertson</h2>
-                                                                <span>Author Since: June 27, 2017</span>
+                                                                <div *ngFor="let user of usersArr">
+                                                                    <div *ngIf="user.id == rating.ra_user_id">
+                                                                        <h2>{{ user.name }}</h2>
+                                                                    </div>
+                                                                </div>
+                                                                <span>
+                                                                    <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                                                        <i class="fa fa-star active-star" *ngIf="!(i > rating.ra_number)"></i>
+                                                                        <i class="fa fa-star" *ngIf="(i > rating.ra_number)"></i>
+                                                                    </div>
+                                                                </span>
                                                             </div>
                                                         </div>
                                                         <div class="tg-rightarea">
@@ -149,9 +160,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="tg-description">
-                                                        <p>Laborum sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae ab illo inventore veritatis etation.</p>
+                                                        <p>{{ rating.ra_content }}</p>
                                                     </div>
-                                                    <a class="tg-btn tg-active" href="javascript:void(0);">View All Books</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,6 +198,9 @@
                                                     <div class="tg-love"><i class="icon-heart"></i>
                                                         {{ product.pro_love }}
                                                     </div>
+                                                    <div class="tg-love"><i class="icon-eye"></i>
+                                                        {{ product.pro_view }}
+                                                    </div>
                                                 </div>
                                             </article>
                                         </li>
@@ -219,6 +232,9 @@
                                                     </span>
                                                     <div class="tg-love"><i class="icon-heart"></i>
                                                         {{ product.pro_love }}
+                                                    </div>
+                                                    <div class="tg-love"><i class="icon-eye"></i>
+                                                        {{ product.pro_view }}
                                                     </div>
                                                 </div>
                                             </article>

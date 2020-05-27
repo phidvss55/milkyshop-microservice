@@ -27,6 +27,9 @@
                 <div id="tg-twocolumns" class="tg-twocolumns">
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
                         <div id="tg-content" class="tg-content">
+                            <div *ngFor="let alert of alerts" class="alert alert-add alert-{{ alert.type }}">
+                                <p (close)="closeAlert(alert)">{{ alert.message }}</p>
+                            </div>
                             <div class="tg-newslist">
                                 <div class="tg-sectionhead">
                                     <h2><span> Trong danh mục </span> Sản phẩm nổi bật </h2>
@@ -41,6 +44,10 @@
                                                 <ul class="tg-bookscategories">
                                                     <li> Sữa </li>
                                                 </ul>
+                                                <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                                    <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                    <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                </div>
                                                 <div class="tg-themetagbox" *ngIf="product.pro_sale > 0">
                                                     <span class="tg-themetag">Sale : {{ product.pro_sale }}%</span>
                                                 </div>
@@ -64,10 +71,18 @@
                                                 </span>
                                                 <ul class="tg-postmetadata" style="margin-top: 10px">
                                                     <li>
+                                                        <i class="fa fa-heart"></i>
+                                                        <i> {{ product.pro_love }} Yêu thích</i>
+                                                    </li>
+                                                    <li>
                                                         <i class="fa fa-eye"></i>
-                                                        <i> {{ product.pro_view }} Views</i>
+                                                        <i> {{ product.pro_view }} Lượt xem</i>
                                                     </li>
                                                 </ul>
+                                                <button class="tg-btn tg-btnstyletwo" (click)="addCart(product)" style="outline:none;float:left;margin: 20px 0;">
+                                                    <i class="fa fa-shopping-basket"></i>
+                                                    <em>Add To Basket</em>
+                                                </button>
                                             </div>
                                         </article>
                                     </div>

@@ -19,8 +19,9 @@ del {
 
 .tg-love {
     float: left;
-    width: 100%;
-    padding-top: 15px
+    width: fit-content;
+    padding-top: 15px;
+    padding-right: 10px;
 }
 
 .tg-love:hover {
@@ -29,4 +30,16 @@ del {
 
 .active-star {
     color: #f8df00;
+}
+
+.img_user_comment {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+.alert-add {
+    position: fixed;
+    top: 10%;
+    z-index: 999;
+    right: 40%;
 }

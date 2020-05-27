@@ -15,6 +15,11 @@ class AdminRatingController extends Controller
         return response()->json($ratings);
     }
 
+    public function getRatingById($id) {
+        $ratings = Rating::select('id', 'ra_user_id', 'ra_product_id', 'ra_number', 'ra_content', 'created_at')->where('ra_product_id', $id)->get();
+        return response()->json($ratings);
+    }
+
     public function delete($id) {
         $ratings = Rating::findOrFail($id);
         $ratings->delete();

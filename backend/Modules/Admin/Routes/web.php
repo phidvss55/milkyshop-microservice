@@ -106,6 +106,7 @@ Route::prefix('admin')->group(function() {
     Route::group(['prefix' => 'rating'], function() {
         Route::get('/', 'AdminRatingController@index');
         Route::delete('/delete/{id}', 'AdminRatingController@delete');
+        Route::get('/get-product-id/{id}', 'AdminRatingController@getRatingById');
     });
 
     //ql lien he

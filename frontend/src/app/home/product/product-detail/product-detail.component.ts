@@ -21,6 +21,8 @@ export class ProductDetailComponent implements OnInit {
   categoriesArr: any;
   suppliersArr: any;
   payProductArr: any;
+  usersArr: any;
+  ratingsArr : any;
   relateProductArr: any;
   currentRate = 8;
   productAddedTocart: ProductCart[];
@@ -33,6 +35,7 @@ export class ProductDetailComponent implements OnInit {
   average: number = 5;
 
   imageDirectoryPath = 'http://localhost:8000/image/product/';
+  userImageDirectoryPath = 'http://localhost:8000/image/user/';
 
   constructor(
     private route: ActivatedRoute,
@@ -49,6 +52,20 @@ export class ProductDetailComponent implements OnInit {
     this.getProduct();
     this.getCategories();
     this.getPayestProduct();
+    this.getUsers();
+    this.getRatingByIdProduct();
+  }
+
+  getRatingByIdProduct() {
+    this.dataService.getRatingById(this.id).subscribe( res => {
+      this.ratingsArr = res;
+    });
+  }
+
+  getUsers() {
+    this.dataService.getUser().subscribe( res => {
+      this.usersArr = res;
+    })
   }
 
   updateView(id) {
