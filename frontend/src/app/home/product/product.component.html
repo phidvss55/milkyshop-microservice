@@ -55,13 +55,10 @@
                                             <figure class="tg-featureimg">
                                                 <div class="tg-bookimg">
                                                     <div class="tg-frontcover">
-                                                        <img class="image-description"
-                                                            src="{{ imageDirectoryPath }}{{ product.pro_avatar }}"
-                                                            alt="image description">
+                                                        <img class="image-description" src="{{ imageDirectoryPath }}{{ product.pro_avatar }}"alt="image description">
                                                     </div>
                                                 </div>
-                                                <a class="tg-btnaddtowishlist" (click)="loveProduct(product.id)"
-                                                    href="">
+                                                <a class="tg-btnaddtowishlist" (click)="loveProduct(product.id)" href="">
                                                     <i class="icon-heart"></i>
                                                     <span> Yêu thích </span>
                                                 </a>
@@ -80,9 +77,7 @@
                                                     <span> </span>
                                                 </div>
                                                 <div class="tg-booktitle">
-                                                    <h3><a
-                                                            routerLink="/home/product/detail/{{ product.id }}/{{ product.pro_slug}}">{{ product.pro_name }}</a>
-                                                    </h3>
+                                                    <h3><a routerLink="/home/product/detail/{{ product.id }}/{{ product.pro_slug}}">{{ product.pro_name }}</a></h3>
                                                 </div>
                                                 <span class="tg-stars"><span></span></span>
                                                 <span class="tg-bookprice">
@@ -94,49 +89,10 @@
                                                         <ins>{{ product.pro_price | number }}</ins>
                                                     </div>
                                                 </span>
-                                                <button class="tg-btn tg-btnstyletwo" (click)="addCart(product)"
-                                                    style="outline:none;">
+                                                <button class="tg-btn tg-btnstyletwo" (click)="addCart(product)" style="outline:none;">
                                                     <i class="fa fa-shopping-basket"></i>
                                                     <em>Add To Basket</em>
                                                 </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
-                                        <div class="tg-postbook">
-                                            <figure class="tg-featureimg">
-                                                <div class="tg-bookimg">
-                                                    <div class="tg-frontcover"><img
-                                                            src="./assets/images/books/img-10.jpg"
-                                                            alt="image description"></div>
-                                                    <div class="tg-backcover"><img
-                                                            src="./assets/images/books/img-10.jpg"
-                                                            alt="image description"></div>
-                                                </div>
-                                                <a class="tg-btnaddtowishlist">
-                                                    <i class="icon-heart"></i>
-                                                    <span>add to wishlist</span>
-                                                </a>
-                                            </figure>
-                                            <div class="tg-postbookcontent">
-                                                <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Comic</a></li>
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                </ul>
-                                                <div class="tg-themetagbox"><span class="tg-themetag">sale</span></div>
-                                                <div class="tg-booktitle">
-                                                    <h3><a href="javascript:void(0);">Help Me Find My Stomach</a></h3>
-                                                </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Angela
-                                                        Gunning</a></span>
-                                                <span class="tg-stars"><span></span></span>
-                                                <span class="tg-bookprice">
-                                                    <ins>$25.18</ins>
-                                                </span>
-                                                <a class="tg-btn tg-btnstyletwo" href="javascript:void(0);">
-                                                    <i class="fa fa-shopping-basket"></i>
-                                                    <em>Add To Basket</em>
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -167,12 +123,9 @@
                                 <div class="tg-widgetcontent">
                                     <ul>
                                         <li><a (click)="searchProArrange('oldest')" href="#"> Sản phẩm cũ nhất </a></li>
-                                        <li><a (click)="searchProArrange('newest')" href="#"> Sản phẩm mới nhất </a>
-                                        </li>
-                                        <li><a (click)="searchProArrange('asc')" href="#"> Giá sản phẩm tăng dần </a>
-                                        </li>
-                                        <li><a (click)="searchProArrange('desc')" href="#"> Giá sản phẩm giảm dần </a>
-                                        </li>
+                                        <li><a (click)="searchProArrange('newest')" href="#"> Sản phẩm mới nhất </a></li>
+                                        <li><a (click)="searchProArrange('asc')" href="#"> Giá sản phẩm tăng dần </a></li>
+                                        <li><a (click)="searchProArrange('desc')" href="#"> Giá sản phẩm giảm dần </a></li>
                                     </ul>
                                 </div>
                             </div>

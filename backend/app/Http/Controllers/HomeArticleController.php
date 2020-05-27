@@ -13,6 +13,11 @@ class HomeArticleController extends Controller
         return response()->json($articles, 201); 
     }
 
+    public function getArticlesHomePage() {
+        $articles = Article::where('a_active', 1)->orderBy('a_view', 'desc')->limit(4)->get();
+        return response()->json($articles, 201); 
+    }
+
     public function getOneArticles($id) {
         $articles = Article::findOrFail($id);
         return response()->json($articles, 201);

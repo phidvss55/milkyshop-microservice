@@ -21,7 +21,7 @@ export class AfterLoginService implements CanActivate {
     } else {
       this.location.replaceState('/');
       alert(" Bạn phải đăng nhập trước khi thực hiện hoạt động này. ");
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home/login']);
       return this.token.loggedIn();
     }
   }

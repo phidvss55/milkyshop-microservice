@@ -69,8 +69,16 @@ class HomeProductController extends Controller
 
     public function getLoveProduct() {
         $product_love = DB::table('products')->orderBy('pro_love', 'desc')->limit(3)->get();
-        // dd($product_love);
         return response()->json($product_love, 201);
+    }
+
+    public function updateView(Request $request) {
+        $view = 0;
+        $product = Product::findOrFail($request->id);
+        $view = $product->pro_view;
+        $view = $view + 1;
+        DB::table('products')->where('id', $request->id)->update(['pro_view' => $view]);
+        return response()->json(200);
     }
 
     public function loveProduct(Request $request) {

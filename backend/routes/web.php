@@ -29,10 +29,13 @@ Route::group([ 'middleware' => 'api', 'prefix' => 'home' ], function ($router) {
     Route::put('update/{id}', 'UserController@update');
     
     Route::post('change-password', 'UserController@changePassword');
-});
+}); 
 
 Route::prefix('home')->group(function() {
-    // Route::get('/', 'AdminController@index');
+    
+    Route::get('/get-discount', 'HomeController@getDiscountProduct');
+    Route::get('/get-hotest', 'HomeController@getHotestProduct');
+    Route::get('/get-newest', 'HomeController@getNewestProduct');
 
     //articles
     Route::group(['prefix' => 'article'], function() {
@@ -41,12 +44,21 @@ Route::prefix('home')->group(function() {
         Route::post('/updateView', 'HomeArticleController@updateView');
         Route::get('/top/article', 'HomeArticleController@getTopArticle');
         Route::get('/relate/article', 'HomeArticleController@getRelateArticle');
+        Route::get('/home-article/get', 'HomeArticleController@getArticlesHomePage');
     });
+
+    //categories 
+    Route::group(['prefix' => 'category'], function() {
+        Route::get('get/{id}', 'HomeCategoryController@getProductInCateId');
+        Route::post('search', 'HomeCategoryController@searchProduct');
+    });
+
     //product
     Route::group(['prefix' => 'product'], function() {
         Route::get('', 'HomeProductController@index');
         Route::post('love-product', 'HomeProductController@loveProduct');
         Route::post('search', 'HomeProductController@searchProduct');
+        Route::post('update-view', 'HomeProductController@updateView');
         Route::get('love-product', 'HomeProductController@getLoveProduct');
 
         Route::get('/{id}', 'HomeProductDetailController@get');
@@ -60,11 +72,12 @@ Route::prefix('home')->group(function() {
         Route::post('', 'HomeContactController@insertData');
     });
 
-    // Route::group(['prefix' => 'shopping'], function() {
+    Route::group(['prefix' => 'rating'], function() {
+        Route::post('/save-rating', 'HomeRatingController@saveRating');
+    });
 
-    //     Route::get('add/{id}', 'ShoppingCartController@getAddToCart');
-    //     Route::get('danh-sach', 'ShoppingCartController@getListProduct');
-    //     Route::get('total', 'ShoppingCartController@getTotalCart');
-    //     // Route::get('get/{id}', 'ShoppingCartController@getCartDetail');
-    // });
+    Route::group(['prefix' => 'shopping'], function() {
+        // Route::get('add/{id}', 'ShoppingCartController@getAddToCart');
+        Route::post('thanh-toan', 'ShoppingCartController@saveInfoShoppingCar');
+    });
 });

@@ -1,0 +1,19 @@
+.tg-sectionspace {
+    padding: 60px 0;
+}
+.image-description {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.active-star {
+    color: #f8df00;
+}
+
+.alert-add {
+    position: fixed;
+    top: 10%;
+    z-index: 999;
+    right: 40%;
+}

@@ -16,7 +16,6 @@ export class CartService {
   }
   
   getProductFromCart() {
-    //return localStorage.getItem("product");
     return JSON.parse(localStorage.getItem('product'));
   }
 

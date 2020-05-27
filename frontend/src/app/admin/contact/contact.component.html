@@ -41,8 +41,7 @@
                                         <td width="30%">{{ contact.c_title }}</td>
                                         <td width="15%">
                                             <button disabled *ngIf="contact.c_status == 1" class="btn btn-icon btn-detail btn-success"> Đã xử lý </button>
-                                            <button (click)="resolveProblem(contact.id)" *ngIf="contact.c_status != 1" class="btn btn-icon btn-detail btn-default"> Chưa giải quyết
-                                            </button>
+                                            <button (click)="resolveProblem(contact.id)" *ngIf="contact.c_status != 1" class="btn btn-icon btn-detail btn-default"> Chưa giải quyết</button>
                                         </td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">

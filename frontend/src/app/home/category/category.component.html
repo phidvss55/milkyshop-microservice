@@ -5,10 +5,10 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="tg-innerbannercontent">
-                    <h1>Tên Dnah Mục here</h1>
+                    <h1> Danh Mục </h1>
                     <ol class="tg-breadcrumb">
-                        <li><a href="javascript:void(0);">home</a></li>
-                        <li class="tg-active">Category</li>
+                        <li><a href="">home</a></li>
+                        <li class="tg-active">{{ name }}</li>
                     </ol>
                 </div>
             </div>
@@ -27,75 +27,62 @@
                 <div id="tg-twocolumns" class="tg-twocolumns">
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-9 pull-right">
                         <div id="tg-content" class="tg-content">
+                            <div *ngFor="let alert of alerts" class="alert alert-add alert-{{ alert.type }}">
+                                <p (close)="closeAlert(alert)">{{ alert.message }}</p>
+                            </div>
                             <div class="tg-newslist">
                                 <div class="tg-sectionhead">
-                                    <h2><span>Latest News &amp; Articles</span>What's Hot in The News</h2>
+                                    <h2><span> Trong danh mục </span> Sản phẩm nổi bật </h2>
                                 </div>
                                 <div class="row">
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" *ngFor="let product of productsArr">
                                         <article class="tg-post">
-                                            <figure><a href="javascript:void(0);"><img src="images/blog/img-01.jpg" alt="image description"></a></figure>
+                                            <figure><a routerLink="/home/product/detail/{{ product.id }}/{{ product.pro_slug}}">
+                                                <img class="image-description" src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="image description">
+                                            </a></figure>
                                             <div class="tg-postcontent">
                                                 <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                    <li><a href="javascript:void(0);">Fun</a></li>
+                                                    <li> Sữa </li>
                                                 </ul>
-                                                <div class="tg-themetagbox"><span class="tg-themetag">featured</span></div>
+                                                <div class="pro-rating" *ngFor="let i of startArr" style="display:inline;padding:5px">
+                                                    <i class="fa fa-star active-star" *ngIf="((product.pro_total_rating != 0 ) && !(i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                    <i class="fa fa-star" *ngIf="((product.pro_total_rating == 0) || (i >= (product.pro_total_number / product.pro_total_rating)))"></i>
+                                                </div>
+                                                <div class="tg-themetagbox" *ngIf="product.pro_sale > 0">
+                                                    <span class="tg-themetag">Sale : {{ product.pro_sale }}%</span>
+                                                </div>
+                                                <div class="tg-themetagbox" *ngIf="!(product.pro_sale > 0)">
+                                                    <span> </span>
+                                                </div>
                                                 <div class="tg-posttitle">
-                                                    <h3><a href="javascript:void(0);">Where The Wild Things Are</a></h3>
+                                                    <h3><a routerLink="/home/product/detail/{{ product.id }}/{{ product.pro_slug}}" >{{ product.pro_name }}</a></h3>
                                                 </div>
                                                 <div class="tg-description">
-                                                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua uti enim ad minim veniam quis nostrud exercitation ullamcoiars nisiuip commodo consequat aute... <a href="javascript:(0);">More</a></p>
+                                                    <p>{{ product.pro_description }}</p>
                                                 </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Kathrine Culbertson</a></span>
-                                                <ul class="tg-postmetadata">
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>24,565 Views</i></a></li>
+                                                <span class="tg-bookprice">
+                                                    <div *ngIf="product.pro_sale > 0">
+                                                        <ins>{{  (product.pro_price * (100 - product.pro_sale)) / 100 | number }}</ins>
+                                                        <del>{{ product.pro_price | number }}</del>
+                                                    </div>
+                                                    <div *ngIf="!(product.pro_sale > 0)">
+                                                        <ins>{{ product.pro_price | number }}</ins>
+                                                    </div>
+                                                </span>
+                                                <ul class="tg-postmetadata" style="margin-top: 10px">
+                                                    <li>
+                                                        <i class="fa fa-heart"></i>
+                                                        <i> {{ product.pro_love }} Yêu thích</i>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-eye"></i>
+                                                        <i> {{ product.pro_view }} Lượt xem</i>
+                                                    </li>
                                                 </ul>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <article class="tg-post">
-                                            <figure><a href="javascript:void(0);"><img src="images/blog/img-02.jpg" alt="image description"></a></figure>
-                                            <div class="tg-postcontent">
-                                                <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                    <li><a href="javascript:void(0);">Fun</a></li>
-                                                </ul>
-                                                <div class="tg-posttitle">
-                                                    <h3><a href="javascript:void(0);">Where The Wild Things Are</a></h3>
-                                                </div>
-                                                <div class="tg-description">
-                                                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua uti enim ad minim veniam quis nostrud exercitation ullamcoiars nisiuip commodo consequat aute... <a href="javascript:(0);">More</a></p>
-                                                </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Kathrine Culbertson</a></span>
-                                                <ul class="tg-postmetadata">
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>24,565 Views</i></a></li>
-                                                </ul>
-                                            </div>
-                                        </article>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                                        <article class="tg-post">
-                                            <figure><a href="javascript:void(0);"><img src="images/blog/img-03.jpg" alt="image description"></a></figure>
-                                            <div class="tg-postcontent">
-                                                <ul class="tg-bookscategories">
-                                                    <li><a href="javascript:void(0);">Adventure</a></li>
-                                                    <li><a href="javascript:void(0);">Fun</a></li>
-                                                </ul>
-                                                <div class="tg-posttitle">
-                                                    <h3><a href="javascript:void(0);">Where The Wild Things Are</a></h3>
-                                                </div>
-                                                <div class="tg-description">
-                                                    <p>Consectetur adipisicing elit sed do eiusmod tempor incididunt labore toloregna aliqua uti enim ad minim veniam quis nostrud exercitation ullamcoiars nisiuip commodo consequat aute... <a href="javascript:(0);">More</a></p>
-                                                </div>
-                                                <span class="tg-bookwriter">By: <a href="javascript:void(0);">Kathrine Culbertson</a></span>
-                                                <ul class="tg-postmetadata">
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-comment-o"></i><i>21,415 Comments</i></a></li>
-                                                    <li><a href="javascript:void(0);"><i class="fa fa-eye"></i><i>24,565 Views</i></a></li>
-                                                </ul>
+                                                <button class="tg-btn tg-btnstyletwo" (click)="addCart(product)" style="outline:none;float:left;margin: 20px 0;">
+                                                    <i class="fa fa-shopping-basket"></i>
+                                                    <em>Add To Basket</em>
+                                                </button>
                                             </div>
                                         </article>
                                     </div>
@@ -105,35 +92,28 @@
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 pull-left">
                         <aside id="tg-sidebar" class="tg-sidebar">
-                            <div class="tg-widget tg-widgetsearch bar-ping">
-                                <img src="../assets/images/bar-ping.png" alt="">
-                                <h2> Lọc sản phẩm</h2>
-                            </div>
                             <div class="tg-widget tg-catagories">
                                 <div class="tg-widgettitle">
-                                    <h3>Khoảng giá</h3>
+                                    <h3> Nhà cung cấp </h3>
                                 </div>
                                 <div class="tg-widgetcontent">
                                     <ul>
-                                        <li><a href="javascript:void(0);"><span>Dưới 1 tr</span><em>28245</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Từ 3 triệu - 5 triệu</span><em>4856</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Từ 5 triệu - 7 triệu</span><em>4856</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Từ 7 triệu - 10 triệu</span><em>4856</em></a></li>
-                                        <li><a href="javascript:void(0);"><span>Trên 10 triệu</span><em>4856</em></a></li>
+                                        <li *ngFor="let category of categoriesArr">
+                                            <a routerLink="/home/category/{{category.c_slug}}/{{category.id}}" (click)="loadPage()"><span>{{ category.c_name }}</span></a>
+                                        </li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="tg-widget tg-widgettrending">
+                            <div class="tg-widget tg-catagories">
                                 <div class="tg-widgettitle">
-                                    <h3>Sắp Xếp</h3>
+                                    <h3> Sắp Xếp </h3>
                                 </div>
                                 <div class="tg-widgetcontent">
                                     <ul>
-                                        <li><a href="javascript:void(0);"><span>Mặc đinh</span></a></li>
-                                        <li><a href="javascript:void(0);"><span>Mới nhất</span></a></li>
-                                        <li><a href="javascript:void(0);"><span>Sản phẩm cũ nhất</span></a></li>
-                                        <li><a href="javascript:void(0);"><span>Sản phẩm mới nhất</span></a></li>
-                                        <li><a href="javascript:void(0);"><span>Sản phẩm tồn nhiều nhất</span></a></li>
+                                        <li><a (click)="searchProArrange('oldest')" href="#"> Sản phẩm cũ nhất </a></li>
+                                        <li><a (click)="searchProArrange('newest')" href="#"> Sản phẩm mới nhất </a></li>
+                                        <li><a (click)="searchProArrange('asc')" href="#"> Giá sản phẩm tăng dần </a></li>
+                                        <li><a (click)="searchProArrange('desc')" href="#"> Giá sản phẩm giảm dần </a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -144,14 +124,14 @@
                                 <div class="tg-widgetcontent">
                                     <div class="exp-tags">
                                         <div class="tags">
-                                            <a href="#">camera</a>
-                                            <a href="#">mobile</a>
-                                            <a href="#">electronic</a>
-                                            <a href="#">destop</a>
-                                            <a href="#">tablet</a>
-                                            <a href="#">accessories</a>
-                                            <a href="#">camcorder</a>
-                                            <a href="#">laptop</a>
+                                            <a href="#"> Friso </a>
+                                            <a href="#"> Sữa Bột </a>
+                                            <a href="#"> Sữa Nước </a>
+                                            <a href="#"> Sữa Tươi </a>
+                                            <a href="#"> Sữa Chua Ăn </a>
+                                            <a href="#"> Sữa Chua Uống </a>
+                                            <a href="#"> Sữa Đặc </a>
+                                            <a href="#"> Abbott </a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,1 +1,114 @@
-<p>pay works!</p>
+<app-header></app-header>
+
+<div class="tg-innerbanner tg-haslayout tg-parallax tg-bginnerbanner" data-z-index="-100" data-appear-top-offset="600"
+    data-parallax="scroll" data-image-src="./assets/images/parallax/bgparallax-07.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="tg-innerbannercontent">
+                    <h1> Thanh toán </h1>
+                    <ol class="tg-breadcrumb">
+                        <li><a href="javascript:void(0);">home</a></li>
+                        <li class="tg-active">checkout</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="bg-light">
+    <div class="container">
+        <div class="container wrapper">
+
+            <div class="row cart-body">
+                <form class="form-horizontal" method="post" action="">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
+                        <!--REVIEW ORDER-->
+                        <div class="panel panel-info">
+                            <div class="panel-heading"> Danh sách sản phẩm </div>
+                            <div class="panel-body">
+                                <div class="form-group" *ngFor="let product of productAddedTocart">
+                                    <div class="col-sm-3 col-xs-3">
+                                        <img class="img-responsive" src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" />
+                                    </div>
+                                    <div class="col-sm-6 col-xs-6">
+                                        <div class="col-xs-12">{{ product.pro_name }}</div>
+                                        <div class="col-xs-12"><small>Quantity:<span> {{ product.quantity }}</span></small></div>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-3 text-right">
+                                        <h6>{{ product.totalPrice | number }} VND</h6>
+                                    </div>
+                                    <hr/>
+                                </div>
+                                <div class="form-group">
+                                    <hr />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <strong>Subtotal</strong>
+                                        <div class="pull-right"><span>{{ allTotal | number }} VND</span></div>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <small>Shipping</small>
+                                        <div class="pull-right"><span>0 VND</span></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <hr />
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-xs-12">
+                                        <strong>Order Total</strong>
+                                        <div class="pull-right"><span>{{ allTotal | number }} VND </span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--REVIEW ORDER END-->
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
+                        <!--SHIPPING METHOD-->
+                        <div class="panel panel-info">
+                            <div class="panel-heading"> Thông tin thanh toán </div>
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong> Địa chỉ </strong></div>
+                                    <div class="col-md-12">
+                                        <input type="text" [(ngModel)]="dataUser.address" class="form-control" name="address" placeholder=" Nhập địa chỉ ... ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong> Email </strong></div>
+                                    <div class="col-md-12">
+                                        <input type="email" [(ngModel)]="dataUser.email" name="email" class="form-control" placeholder="Nhập email ... ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong> Số điện thoại </strong></div>
+                                    <div class="col-md-12">
+                                        <input type="number" [(ngModel)]="dataUser.phone" name="phone" class="form-control" placeholder=" Nhập số điện thoại ... ">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-12"><strong> Ghi chú </strong></div>
+                                    <div class="col-md-12">
+                                        <textarea style="height:auto;" [(ngModel)]="note" name="note" cols="30" class="form-control" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <button [routerLink]="['/home/shopping/cart']" type="button" class="btn btn-primary btn-submit-fix"> Giỏ hàng </button>
+                                        <button type="submit" (click)="saveInforCart()" class="btn btn-success btn-submit-fix" style="outline: none;margin: 0 10px;"> Thanh toán </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

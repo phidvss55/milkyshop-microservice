@@ -25,6 +25,11 @@ class AdminUserController extends Controller
         return response()->json(200);
     }
 
+    public function get($email) {
+        $user =User::select('id', 'email', 'address', 'phone')->where('email', $email)->first();
+        return response()->json($user);
+    }
+
     public function delete($id) {
         $user = User::findOrFail($id);    
         $user->delete();

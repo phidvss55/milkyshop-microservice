@@ -39,19 +39,23 @@ export class ProductComponent implements OnInit {
     this.getProduct();
     this.getLoveProduct();
   }
-  
-  addCart(product: ProductCart) {
-    console.log(product);
 
+  addCart(product: ProductCart) {
     this.productAddedTocart = this.cartService.getProductFromCart();
     if (this.productAddedTocart == null) {
       this.productAddedTocart = [];
+      if (product['pro_sale'] > 0) {
+        product.price = product['pro_price'] * (100 - product['pro_sale']) / 100;
+      } else {
+        product.price = product['pro_price'];
+      }
       this.productAddedTocart.push(product);
+
       this.cartService.addProductToCart(this.productAddedTocart);
       this.alerts.push({
         id: 1,
         type: 'success',
-        message: 'Product added to cart.'
+        message: 'Thêm sản phẩm thành công.'
       });
       setTimeout(() => {
         this.closeAlert(this.alerts);
@@ -59,6 +63,11 @@ export class ProductComponent implements OnInit {
     } else {
       let tempProduct = this.productAddedTocart.find(p => p.id == product.id);
       if (tempProduct == null) {
+        if (product['pro_sale'] > 0) {
+          product.price = product['pro_price'] * (100 - product['pro_sale']) / 100;
+        } else {
+          product.price = product['pro_price'];
+        }
         this.productAddedTocart.push(product);
         this.cartService.addProductToCart(this.productAddedTocart);
         this.alerts.push({
@@ -80,10 +89,8 @@ export class ProductComponent implements OnInit {
           this.closeAlert(this.alerts);
         }, 3000);
       }
-
     }
     this.cartItemCount = this.productAddedTocart.length;
-
     this.cartService.updateCartCount(this.cartItemCount);
   }
 
@@ -93,7 +100,7 @@ export class ProductComponent implements OnInit {
   }
 
   getLoveProduct() {
-    this.homeService.getLoveProduct().subscribe( res => {
+    this.homeService.getLoveProduct().subscribe(res => {
       this.loveProductsArr = res;
     });
   }
@@ -103,7 +110,7 @@ export class ProductComponent implements OnInit {
       "keyword_search": this.keyword_search
     }
     event.preventDefault();
-    this.homeService.searchProduct(obj).subscribe( res => {
+    this.homeService.searchProduct(obj).subscribe(res => {
       this.productsArr = res;
     });
     this.keyword_search = "";
@@ -113,7 +120,7 @@ export class ProductComponent implements OnInit {
     event.preventDefault();
     this.homeService.loveProducts(id).subscribe(
       data => this.handleData(data),
-      error => console.log(error)      
+      error => console.log(error)
     )
   }
 
@@ -122,7 +129,7 @@ export class ProductComponent implements OnInit {
       "key_word": key_word
     }
     event.preventDefault();
-    this.homeService.searchProduct(obj).subscribe( res => {
+    this.homeService.searchProduct(obj).subscribe(res => {
       this.productsArr = res;
     });
   }
@@ -136,7 +143,7 @@ export class ProductComponent implements OnInit {
       'distance': id
     }
     event.preventDefault();
-    this.homeService.searchProduct(obj).subscribe( res => {
+    this.homeService.searchProduct(obj).subscribe(res => {
       this.productsArr = res;
       console.log(this.productsArr);
     });
@@ -145,9 +152,9 @@ export class ProductComponent implements OnInit {
   searchProCate(id) {
     var obj = {
       "cate_id": id
-    }    
+    }
     event.preventDefault();
-    this.homeService.searchProduct(obj).subscribe( res => {
+    this.homeService.searchProduct(obj).subscribe(res => {
       this.productsArr = res;
     });
   }
@@ -160,7 +167,7 @@ export class ProductComponent implements OnInit {
   }
 
   passProduct(data) {
-    this.productsArr = data   
+    this.productsArr = data
   }
 
   getSupplier() {
@@ -173,7 +180,7 @@ export class ProductComponent implements OnInit {
   passSupplier(data) {
     this.suppliersArr = data;
   }
-  
+
 
   getCategories() {
     this.dataService.getCategory().subscribe(

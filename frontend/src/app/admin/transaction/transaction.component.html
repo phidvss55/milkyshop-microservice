@@ -27,7 +27,6 @@
                                     <th class="column-title">#</th>
                                     <th class="column-title">Tên khách hàng</th>
                                     <th class="column-title">Địa chỉ</th>
-                                    <th class="column-title">Số điện thoại</th>
                                     <th class="column-title">Tổng tiền</th>
                                     <th class="column-title">Trạng thái</th>
                                     <th class="column-title">Thời gian</th>
@@ -35,74 +34,89 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="even pointer" *ngFor="let transaction of dataArr">
+                                    <tr class="even pointer" *ngFor="let transaction of dataArr | paginate: { itemsPerPage: 5, currentPage: p }">
                                         <td>{{ transaction.id }}</td>
-                                        <td>{{ transaction.tr_address }}</td>
-                                        <td>{{ transaction.tr_phone }}</td>
-                                        <td>{{ transaction.tr_total }}</td>
                                         <td>
-                                            <a href="" type="button" *ngIf="transaction.tr_status == 1" class="btn btn-round btn-success"> Đã xử lý </a>
-                                            <a href="" type="button" *ngIf="transaction.tr_status != 1" class="btn btn-round btn-default"> Chưa xử lý </a>
+                                            <div *ngFor="let user of userListArr">
+                                                <div *ngIf="user.id == transaction.tr_user_id">
+                                                    {{ user.name }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{ transaction.tr_address }}</td>
+                                        <td>{{ transaction.tr_total | number }}</td>
+                                        <td>
+                                            <button disabled *ngIf="transaction.tr_status == 1" class="btn btn-icon btn-detail btn-success"> Đã xử lý </button>
+                                            <button (click)="resolveProblem(transaction.id)" *ngIf="transaction.tr_status != 1" class="btn btn-icon btn-detail btn-default"> Chưa giải quyết</button>
                                         </td>
                                         <td>{{ transaction.created_at | date:'medium' }}</td>
                                         <td class="last">
                                             <div class="zvn-box-btn-filter">
-                                                <a href="#" type="button" class="btn btn-icon btn-success" data-toggle="tooltip"><i class="fa icon-eye"></i>View</a>
-                                                <a href="" type="button" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i>Delete</a>
+                                                <button data-toggle="modal" [attr.data-target]="'#myModal_' + transaction.id" type="button" class="btn btn-icon btn-primary btn-detail">
+                                                    <i class="fa icon-eye"></i> Chi tiết 
+                                                </button>
+                                                <a type="button" (click)="deleteTran(transaction.id)" class="btn btn-icon btn-danger btn-delete"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
+
+                                        <!-- Modal HERE -->
+                                        <div class="modal fade" id="myModal_{{transaction.id}}" role="dialog">
+                                            <div class="modal-dialog">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content" style="width:800px;margin: 0 auto;">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close"
+                                                            data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Thông tin liên lạc</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table class="table table-striped">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Họ tên</th>
+                                                                    <th>Số điện thoại</th>
+                                                                    <th>Nội dung</th>
+                                                                    <th>Tổng tiền </th>
+                                                                    <th>Thơi gian </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        <div *ngFor="let user of userListArr">
+                                                                            <div *ngIf="user.id == transaction.tr_user_id">
+                                                                                {{ user.name }}
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>{{ transaction.tr_phone }}</td>
+                                                                    <td>{{ transaction.tr_address }}</td>
+                                                                    <td>{{ transaction.tr_total }}</td>
+                                                                    <td>{{ transaction.created_at | date:'medium' }}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- End MODAL HERE -->
+
                                     </tr>
                                 </tbody>
                             </table>
+                            <pagination-controls class="page-item" (pageChange)="p = $event"></pagination-controls>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!--end-box-lists-->
-        <!--box-pagination-->
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Phân trang
-                        </h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li class="pull-right"><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-
-                        </ul>
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="m-b-0">Số phần tử trên trang: <b>2</b> trên <span
-                                        class="label label-success label-pagination">3 trang</span></p>
-                                <p class="m-b-0">Hiển thị<b> 1 </b> đến<b> 2</b> trên<b> 6</b> Phần tử</p>
-                            </div>
-                            <div class="col-md-6">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination zvn-pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link" href="#" tabindex="-1">«</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">»</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end-box-pagination-->
     </div>
     <!-- /page content -->
 </div>

@@ -13,7 +13,7 @@ class AdminCategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::select('id', 'c_name', 'c_supplier_id', 'c_title_seo', 'c_active', 'c_home')->get();
+        $categories = Category::select('id','c_slug', 'c_name', 'c_supplier_id', 'c_title_seo', 'c_active', 'c_home')->get();
         return response()->json($categories);
     }
 

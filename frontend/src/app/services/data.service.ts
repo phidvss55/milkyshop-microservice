@@ -14,6 +14,9 @@ export class DataService {
   private baseProductUrl = 'http://localhost:8000/admin/product';
   private baseUserUrl = 'http://localhost:8000/admin/user';
   private baseContactUrl = 'http://localhost:8000/admin/contact';
+  private baseTransactionUrl = 'http://localhost:8000/admin/transaction';
+  private baseOrderUrl = 'http://localhost:8000/admin/order';
+  private baseRatingUrl = 'http://localhost:8000/admin/rating';
 
   constructor(
     private httpClient: HttpClient
@@ -164,11 +167,54 @@ export class DataService {
     return this.httpClient.get(`${this.baseUserUrl}`);
   }
 
+  getOneUser(email) {
+    return this.httpClient.get(`${this.baseUserUrl}/get/` + email);
+  }
+
   changeActiveUser(data) {
     return this.httpClient.post(`${this.baseUserUrl}/change-active`, data);
   }
 
   deleteUser(id) {
     return this.httpClient.delete(`${this.baseUserUrl}/delete/` + id);
+  }
+
+   //transaction
+   getTransaction() {
+    return this.httpClient.get(`${this.baseTransactionUrl}`);
+  }
+
+  getUserTransaction(id) {
+    return this.httpClient.get(`${this.baseTransactionUrl}/get/` + id);
+  }
+
+  resolveTransaction(data) {
+    return this.httpClient.post(`${this.baseTransactionUrl}/status`, data);
+  }
+
+  deleteTransaction(id) {
+    return this.httpClient.delete(`${this.baseTransactionUrl}/delete/` + id);
+  }
+
+  getTransactionByIdUser(id) {
+    return this.httpClient.get(`${this.baseTransactionUrl}/get-transaction/` + id);
+  }
+
+  //orders
+  getProductByIdTransaction(id) {
+    return this.httpClient.get(`${this.baseOrderUrl}/get/` + id);
+  }
+
+  //rating
+  getRating() {
+    return this.httpClient.get(`${this.baseRatingUrl}`);
+  }
+
+  getRatingById(id) {
+    return this.httpClient.get(`${this.baseRatingUrl}/get-product-id/` + id);
+  }
+
+  deleteRating(id) {
+    return this.httpClient.delete(`${this.baseRatingUrl}/delete/` + id);
   }
 }
