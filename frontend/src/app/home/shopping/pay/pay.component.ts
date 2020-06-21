@@ -16,7 +16,7 @@ export class PayComponent implements OnInit {
   productAddedTocart: ProductCart[];
   allTotal:number = 0;
   dataUser: any;
-  note: string;
+  note: string = "";
 
   imageDirectoryPath = 'http://localhost:8000/image/product/';
   
@@ -41,6 +41,7 @@ export class PayComponent implements OnInit {
     }
     formData.append('transaction', JSON.stringify(obj));
     formData.append('order', JSON.stringify(this.productAddedTocart));
+    
     this.homeService.saveInforCart(formData).subscribe( res => {
       alert(res);
       this.cartService.removeAllProductFromCart();

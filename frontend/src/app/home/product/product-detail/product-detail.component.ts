@@ -118,7 +118,7 @@ export class ProductDetailComponent implements OnInit {
         this.alerts.push({
           id: 2,
           type: 'warning',
-          message: ' Sản phẩm này đã tồN tại trong giỏ hàng.'
+          message: ' Sản phẩm này đã tồn tại trong giỏ hàng.'
         });
         setTimeout(() => {
           this.closeAlert(this.alerts);

@@ -59,22 +59,6 @@ class AdminSupplierController extends Controller
         return response()->json(['Status' => 'Delete Ok'], 201);
     }
 
-    // public function action($action, $id) {
-    //     if($action) {
-    //         $article = Article::findOrFail($id);
-    //         switch($action) {
-    //             case 'delete':
-    //                 $article->delete();
-    //                 break;
-    //             case 'active':
-    //                 $article->a_active = $article->a_active ? 0 : 1;
-    //                 $article->save();
-    //                 break;
-    //         }
-    //     }
-    //     return redirect()->back();
-    // }
-
     public function insertOrUpdate($request, $id='') {
         $supplier = new Supplier();
         if($id) { $supplier = Supplier::findOrFail($id); }

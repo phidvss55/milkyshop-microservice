@@ -17,7 +17,9 @@
                             <div class="tg-postbook">
                                 <figure class="tg-featureimg">
                                     <div class="tg-bookimg">
-                                        <div class="tg-frontcover"><img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="image description"></div>
+                                        <div class="tg-frontcover">
+                                            <img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="image description" class="img-description">
+                                        </div>
                                     </div>
                                     <div class="tg-themetagbox" *ngIf="product.pro_sale > 0">
                                         <span class="tg-themetag">Sale : {{ product.pro_sale }} %</span>
@@ -139,7 +141,7 @@
                                     <figure class="tg-featureimg">
                                         <div class="tg-bookimg">
                                             <div class="tg-frontcover">
-                                                <img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="image description">
+                                                <img src="{{ imageDirectoryPath }}{{ product.pro_avatar }}" alt="image description" class="img-description">
                                             </div>
                                         </div>
                                         <a class="tg-btnaddtowishlist" (click)="loveProduct(product.id)" href="" title=" Yêu thích sản phẩm này">

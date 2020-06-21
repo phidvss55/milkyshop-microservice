@@ -82,4 +82,9 @@ class ShoppingCartController extends Controller
         $totalMoney = $totalMoney + $total;
         $user = User::where('id', $id)->update(['total_pay' => $totalTime, 'total_money_paid' => $totalMoney]);
     }
+
+
+
+    
+
 }

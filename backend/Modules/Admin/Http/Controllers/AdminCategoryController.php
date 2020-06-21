@@ -57,27 +57,11 @@ class AdminCategoryController extends Controller
         return response()->json(['Status' => 'Delete Ok'], 201);
     }
 
-    // public function action($action, $id) {
-    //     if($action) {
-    //         $article = Article::findOrFail($id);
-    //         switch($action) {
-    //             case 'delete':
-    //                 $article->delete();
-    //                 break;
-    //             case 'active':
-    //                 $article->a_active = $article->a_active ? 0 : 1;
-    //                 $article->save();
-    //                 break;
-    //         }
-    //     }
-    //     return redirect()->back();
-    // }
-
     public function insertOrUpdate($request, $id='') {
         $category = new Category();
         if($id) { $category = Category::findOrFail($id); }
 
-        $category_request = $request->all();
+        $category_request = json_decode($request->data, true);
 
         $category->c_name               = $category_request['c_name'];
         $category->c_slug               = Str::slug($category_request['c_name']);

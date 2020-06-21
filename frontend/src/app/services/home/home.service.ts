@@ -11,7 +11,7 @@ export class HomeService {
   private baseArticleUrl = 'http://localhost:8000/home/article';
   private baseCategoryeUrl = 'http://localhost:8000/home/category';
   private baseContactUrl = 'http://localhost:8000/home/contact';
-  private baseShoppingUrl = 'http://localhost:8000/home/shopping';
+  private baseShoppingUrl = 'http://localhost:8000/home/shopping'; //thanh-toan/{id}
   private baseRatingUrl = 'http://localhost:8000/home/rating';
   private baseHomeUrl = 'http://localhost:8000/home';
 
